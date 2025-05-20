@@ -1,0 +1,248 @@
+body #title-content-header {
+  display: block !important;
+}
+body .content-wrap {
+  padding: 0.5rem 1rem;
+  max-height: 85vh;
+  overflow: auto;
+}
+body .content-wrap #participants-container {
+  display: grid;
+  gap: 0.8em;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  overflow: auto;
+  max-height: 76vh;
+}
+body .content-wrap #participants-container .participant-group.active {
+  border-color: #2200b8 !important;
+}
+body .content-wrap #participants-container .participant-group.active .pangkalan-info {
+  border-color: #2200b8 !important;
+}
+body .content-wrap #participants-container .participant-group.active .no-peserta {
+  background: #2200b8;
+  color: white;
+  border-radius: 8px;
+}
+body .content-wrap #participants-container .participant-group {
+  display: grid;
+  gap: 0.8em;
+  grid-template-columns: max-content 1fr;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 0.5em;
+  color: var(--ptch-clr-blk-1);
+  filter: brightness(100%) grayscale(0%);
+  padding: 1rem;
+  cursor: pointer;
+  transition: all var(--speed-faster) ease-in-out;
+}
+body .content-wrap #participants-container .participant-group:hover {
+  border-color: #2200b8 !important;
+}
+body .content-wrap #participants-container .participant-group:hover .pangkalan-info {
+  border-color: #2200b8 !important;
+}
+body .content-wrap #participants-container .participant-group:hover .no-peserta {
+  background: #2200b8;
+  color: white;
+  border-radius: 8px;
+}
+body .content-wrap #participants-container .participant-group .pangkalan-header {
+  background: rgba(34, 0, 184, 0.1215686275);
+  padding: 0.5rem;
+  display: grid;
+  border-radius: 8px;
+  justify-content: center;
+  text-align: center;
+}
+body .content-wrap #participants-container .participant-group .pangkalan-header .no-peserta {
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .pangkalan-info {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #d1d1d1;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .pangkalan-info .pangkalan-name {
+  font-weight: bold;
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .pangkalan-info span {
+  font-size: var(--font-size-normal);
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .pangkalan-info .lomba-header {
+  font-size: var(--font-size-normal);
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .update-peserta-lomba {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  font-size: 14px;
+  padding: 0 !important;
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .update-peserta-lomba:hover {
+  color: #2200B8 !important;
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .lomba-list {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .lomba-list .lomba-item {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+body .content-wrap #participants-container .participant-group .pangkalan-body .lomba-list .lomba-header {
+  font-size: 11px !important;
+}
+
+.checkbox {
+  position: absolute;
+  left: -9999px;
+}
+.checkbox + label {
+  position: relative;
+  display: inline-block;
+  padding: 6px 30px;
+  cursor: pointer;
+}
+.checkbox + label:before, .checkbox + label:after {
+  position: absolute;
+  top: 0;
+  content: "";
+  border-radius: 1px;
+}
+.checkbox + label:before {
+  top: 4px;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #CCC;
+  background-color: #fff;
+}
+.checkbox + label:after {
+  /* hidden */
+  width: 0;
+  height: 0;
+}
+.checkbox:checked + label:before {
+  border-color: #0096D9;
+  background-color: #0096D9;
+}
+.checkbox:checked + label:after {
+  width: 6px;
+  height: 13px;
+  top: 3px;
+  left: 5px;
+  color: #fff;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(37deg);
+}
+.checkbox:disabled + label {
+  color: #CCC;
+}
+.checkbox:disabled + label:before {
+  border-color: #CCC;
+  background-color: #F2F2F2;
+  box-shadow: none;
+}
+.checkbox:disabled + label:after {
+  /* hidden */
+  width: 0;
+  height: 0;
+}
+
+#modal-token-peserta .modal-content .table-container {
+  overflow: unset !important;
+}
+#modal-token-peserta .modal-content .token-wrapper .token-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+#modal-token-peserta .modal-content .token-wrapper .token-header h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 !important;
+}
+#modal-token-peserta .modal-content .token-wrapper .token-header .export-btn {
+  background-color: #198754;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#modal-token-peserta .modal-content .token-wrapper .token-header .export-btn i {
+  font-size: 16px;
+}
+#modal-token-peserta .modal-content .token-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+#modal-token-peserta .modal-content .token-wrapper table thead {
+  background-color: #f2f2f2;
+}
+#modal-token-peserta .modal-content .token-wrapper table thead th {
+  border: 0 !important;
+}
+#modal-token-peserta .modal-content .token-wrapper table th,
+#modal-token-peserta .modal-content .token-wrapper table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+#modal-token-peserta .modal-content .token-wrapper table th .btn-group,
+#modal-token-peserta .modal-content .token-wrapper table td .btn-group {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+#modal-token-peserta .modal-content .token-wrapper table th .btn-group button,
+#modal-token-peserta .modal-content .token-wrapper table td .btn-group button {
+  border: 1px solid #dee2e6;
+  background-color: white;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+#modal-token-peserta .modal-content .token-wrapper table th .btn-group button:hover,
+#modal-token-peserta .modal-content .token-wrapper table td .btn-group button:hover {
+  background-color: #f0f0f0;
+}
+#modal-token-peserta .modal-content .token-wrapper table th .btn-group button i,
+#modal-token-peserta .modal-content .token-wrapper table td .btn-group button i {
+  font-size: 16px;
+}
+#modal-token-peserta .modal-content .token-wrapper table .text-primary {
+  color: #0d6efd;
+  font-weight: 600;
+}
+#modal-token-peserta .modal-content .token-wrapper table .text-success {
+  color: #198754;
+}
+#modal-token-peserta .modal-content .token-wrapper table .text-muted {
+  color: #6c757d;
+}
+#modal-token-peserta .modal-content .token-wrapper table .text-center {
+  text-align: center;
+}/*# sourceMappingURL=mst_peserta.css.map */

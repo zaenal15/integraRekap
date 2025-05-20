@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengurangan Point Kriteria</title>
+  <link href="https://cdn.jsdelivr.net/npm/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    /* Basic table styles */
+    .pengurangan-point-table {
+      width: 100%;
+      margin-bottom: 20px;
+      border-collapse: collapse;
+    }
+
+    .pengurangan-point-table th,
+    .pengurangan-point-table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    .form-input {
+      display: flex;
+      align-items: center;
+    }
+
+    .form-input input {
+      padding: 5px;
+      margin-right: 5px;
+    }
+
+    .form-input button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .form-input button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Kategori Pengurangan Point</h1>
+
+    <!-- Tempat untuk menampilkan tabel pengurangan point -->
+    <table class="pengurangan-point-table">
+      <thead>
+        <tr>
+          <th>Nama Kategori</th>
+          <th>Peraturan</th>
+          <th>Point</th>
+          <th>Total Point</th>
+        </tr>
+      </thead>
+      <tbody class="keriteria-pengurangan-list">
+        <!-- Content will be dynamically inserted here by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/boxicons"></script>
+  <script>
+    async function setKategoriPenguranganPoint() {
+      try {
+        // Data kategori (Kategori Penilaian)
+        const kategoriData = [
+          {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "PBB",
+            "kategori_id": 1,
+            "set_nilai": "active"
+          },
+          {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "DANTON",
+            "kategori_id": 2,
+            "set_nilai": "active"
+          },
+          {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "VARIASI FORMASI",
+            "kategori_id": 3,
+            "set_nilai": "inactive"
+          }
+        ];
+
+        // Data kategori pengurangan point
+        const kriteriaPenguranganData = [
+          {
+            "kriteria_point_pengurangan": "Telat ketika sudah dipanggil 3x untuk tampil.",
+            "id": 11,
+            "kategori_id": 1,
+            "nama_kategori": "PBB",
+            "lomba_id": 11
+          },
+          {
+            "kriteria_point_pengurangan": "Tongkat tidak boleh ditaruh di bawah (bukan parade).",
+            "id": 13,
+            "kategori_id": 1,
+            "nama_kategori": "PBB",
+            "lomba_id": 11
+          },
+          {
+            "kriteria_point_pengurangan": "Tidak ada yel yel selain variasi formasi.",
+            "id": 12,
+            "kategori_id": 1,
+            "nama_kategori": "PBB",
+            "lomba_id": 11
+          },
+          {
+            "kriteria_point_pengurangan": "Setiap peserta menginjak garis batas arena lomba pengurangan poin akan diberikan kepada danton.",
+            "id": 10,
+            "kategori_id": 2,
+            "nama_kategori": "DANTON",
+            "lomba_id": 11
+          },
+          {
+            "kriteria_point_pengurangan": "Melewati waktu 8 menit 10 detik.",
+            "id": 14,
+            "kategori_id": 2,
+            "nama_kategori": "DANTON",
+            "lomba_id": 11
+          },
+          {
+            "kriteria_point_pengurangan": "-Intonasi suara\n-Ketepatan Aba aba\n-Sikap",  // This will now be treated as a single input
+            "id": 15,
+            "kategori_id": 2,
+            "nama_kategori": "DANTON",
+            "lomba_id": 11
+          }
+        ];
+
+        let tableContent = ''; // Inisialisasi konten tabel
+
+        // Menyaring data sub-point berdasarkan kategori
+        kategoriData.forEach(value => {
+          // Hanya menampilkan kategori yang aktif
+          const dataKriteriaList = kriteriaPenguranganData.filter(item => item.kategori_id === value.kategori_id);
+
+          // Menyusun kategori dengan rowspan berdasarkan jumlah kriteria
+          if (dataKriteriaList.length > 0) {
+            let rowContent = ''; // Konten baris untuk kategori ini
+
+            dataKriteriaList.forEach((item, index) => {
+              // Split kriteria berdasarkan '-' dan filter nilai kosong
+              const itemKriteriaArr = item.kriteria_point_pengurangan.split('-').filter(val => val.trim() !== "");
+
+              let itemContent = ''; // Initialize item content
+
+              // Menangani multiple sub-criteria (if more than one)
+              if (itemKriteriaArr.length > 1) {
+                itemContent += itemKriteriaArr.map((val, index) => `<span style="display: block;">${index + 1}. ${val.trim()}</span>`).join('');
+              } else {
+                itemContent += `<span style="display: block;"> ${itemKriteriaArr[0].trim()}</span>`;
+              }
+
+              // Menambahkan item sebagai satu baris
+              rowContent += ` 
+                <tr data-id="${item.id}" kategori-id="${item.kategori_id}">
+                  ${index === 0 ? `<td rowspan="${dataKriteriaList.length}">${value.nama_kategori}</td>` : ''} <!-- Nama Kategori dengan Rowspan -->
+                  <td>${itemContent}</td> <!-- Kriteria Point Pengurangan -->
+                  <td data-id="${item.id}" class="pengurangan-nilai-field" >
+                  </td>
+                  ${index === 0 ? `<td rowspan="${dataKriteriaList.length}"></td>` : ''} <!-- Total Point (still placeholder) -->
+                </tr>
+              `;
+            });
+
+            // Menambahkan kategori ke dalam tabel
+            tableContent += rowContent;
+          }
+        });
+
+        // Menampilkan tabel ke dalam elemen DOM
+        const kategoriListElement = document.querySelector('.keriteria-pengurangan-list');
+        if (kategoriListElement) {
+          kategoriListElement.innerHTML = tableContent;
+        }
+
+      } catch (error) {
+        console.error('Terjadi kesalahan:', error);
+      }
+    }
+
+    // Panggil fungsi untuk memuat kategori dan pengurangan point
+    setKategoriPenguranganPoint();
+  </script>
+
+</body>
+</html>

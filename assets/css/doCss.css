@@ -1,0 +1,1312 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Poppins";
+  src: url(../../assets/font/Poppins/Poppins-Regular.ttf);
+}
+body {
+  font-family: "Poppins", sans-serif !important;
+  font-size: var(--font-size-normal);
+  background: #F4F7FE;
+}
+body input[type=date] {
+  color-scheme: dark !important;
+}
+body main {
+  border-radius: 0.5em;
+  background: transparent;
+  grid-template-columns: 5em 1fr 0px;
+  grid-template-rows: auto repeat(2, 1fr);
+  grid-template-areas: "mainSidebar mainHeader mainSlideBar" "mainSidebar mainContent mainSlideBar" "mainSidebar mainContent mainSlideBar";
+  transition: all var(--speed-faster) ease-in-out;
+}
+body main #mainHeader {
+  height: 3em;
+  display: grid;
+  gap: 1em;
+  padding: 1rem 1.5rem;
+  color: var(--cpi-clr-blk-1);
+  background: #f4f7fe;
+  grid-template-columns: 1fr max-content;
+  align-items: center;
+}
+body main #mainHeader #nav-toggle-menu {
+  display: none;
+}
+body main #mainHeader .label-header {
+  border-left: 2px solid #DEDEDE !important;
+  padding-left: 0.5rem;
+  display: grid;
+}
+body main #mainHeader .label-header span {
+  display: block;
+  margin: auto;
+  background: #2200b8;
+  color: white !important;
+  padding: 4px 7px;
+  border-radius: 100px;
+  font-weight: bold;
+  font-size: 12px;
+}
+body main #mainHeader #title-content-header {
+  font-size: var(--font-size-xlarge);
+  color: var(--cpi-clr-blk-1);
+  font-weight: bolder;
+  margin: auto 0px;
+}
+body main #mainHeader #header-toggle-buttons {
+  border-color: var(--main-clr-blk-1);
+}
+body main #mainHeader #header-toggle-buttons .header-toggle {
+  color: var(--main-clr-blk-1);
+}
+body main #mainHeader #logout-button {
+  margin: auto 0px;
+  font-size: var(--font-size-large);
+  background: var(--cpi-clr-wht-1);
+  color: var(--cpi-clr-blk-2);
+}
+body main #mainHeader #logout-button:hover {
+  background: var(--cpi-clr-red-1);
+  color: var(--cpi-clr-wht-1);
+}
+body main #mainHeader #broadcast-section {
+  padding-right: 1em;
+  border-right: 0.2em solid var(--main-clr-blk-1);
+  margin: 0px auto;
+  padding-top: 1em;
+  margin-right: 0px;
+  margin-left: -1em;
+  text-shadow: var(--main-neon-wht-medium);
+  background: var(--main-clr-wht-3);
+}
+body main #mainHeader #title-logo {
+  padding: 0.1em;
+  display: flex;
+  display: none !important;
+}
+body main #mainHeader #title-logo img {
+  height: 100%;
+  margin-right: 1em;
+}
+body main #mainHeader #title-logo span {
+  font-size: var(--font-size-normal);
+  font-weight: bolder;
+  color: var(--cpi-clr-blk-1);
+  margin: auto 0px;
+}
+body main #mainHeader #runtime-datetime {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  padding: 0.5em 1em;
+  height: -moz-max-content;
+  height: max-content;
+  position: relative;
+  gap: 1em;
+  margin: auto;
+  margin-right: 0px;
+  padding-right: 1em;
+}
+body main #mainHeader #runtime-datetime span {
+  color: var(--cpi-clr-blk-1);
+  font-weight: bolder;
+  margin: auto;
+}
+body main #mainHeader #runtime-datetime #runtime-date {
+  display: flex;
+  gap: 0.5em;
+  margin: 0px auto;
+  margin-right: 0px;
+}
+body main #mainHeader #runtime-datetime #runtime-date span {
+  color: var(--cpi-clr-blk-1);
+  margin: auto;
+  font-size: var(--font-size-normal);
+  margin-top: auto;
+}
+body main #mainHeader #runtime-datetime #runtime-date span:first-child {
+  padding-right: 0.2em;
+  border-right: 0.1em solid var(--cpi-clr-blk-1);
+}
+body main #mainHeader #runtime-datetime #runtime-date span:last-child {
+  color: var(--cpi-clr-blk-1);
+  font-weight: normal;
+}
+body main #mainHeader #runtime-datetime #runtime-time {
+  margin-left: auto;
+  font-size: var(--font-size-large);
+  cursor: pointer;
+  width: 100%;
+}
+body main #mainHeader .user-info {
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 200px;
+  gap: 0.5rem;
+}
+body main #mainHeader .user-info span {
+  color: #A3AED0;
+}
+body main #mainHeader .user-info .user-info-name {
+  font-weight: normal;
+}
+body main #mainHeader .user-info #header-toggle-buttons {
+  border: 0;
+  padding: 0;
+  border-right: 2px solid #DEDEDE !important;
+  padding-right: 0.5rem;
+}
+body main #mainHeader .user-info #header-toggle-buttons .header-toggle i {
+  color: #A3AED0;
+}
+body main #mainHeader .user-info #header-toggle-buttons .header-toggle:hover i {
+  color: #2200B8;
+}
+body main #mainSidebar {
+  background: white;
+  width: 5em;
+  transition: all var(--speed-faster) ease-in-out;
+  display: grid;
+  grid-template-rows: 5em 1fr max-content;
+  background-size: cover;
+  background-position: top;
+  position: absolute;
+  height: 100vh;
+}
+body main #mainSidebar .header-sidebar {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid #a3aed0;
+  justify-content: center;
+}
+body main #mainSidebar .header-sidebar button {
+  background: transparent !important;
+  font-size: 18px;
+  display: none;
+}
+body main #mainSidebar #title-logo {
+  display: none !important;
+}
+body main #mainSidebar .user-info {
+  border-bottom: 0.2em solid var(--cpi-clr-wht-1);
+}
+body main #mainSidebar .user-info #header-user-info-name {
+  color: var(--cpi-clr-wht-1);
+}
+body main #mainSidebar #nav-main-menu {
+  margin-top: 0px;
+}
+body main #mainSidebar #nav-main-menu .main-menu,
+body main #mainSidebar #nav-main-menu .sub-menu {
+  color: #A3AED0;
+}
+body main #mainSidebar #nav-main-menu .main-menu i,
+body main #mainSidebar #nav-main-menu .sub-menu i {
+  color: #A3AED0;
+}
+body main #mainSidebar #nav-main-menu .main-menu span,
+body main #mainSidebar #nav-main-menu .sub-menu span {
+  color: #A3AED0;
+}
+body main #mainSidebar #nav-main-menu .main-menu:hover::before,
+body main #mainSidebar #nav-main-menu .sub-menu:hover::before {
+  left: -20px;
+  background: #2200B8;
+}
+body main #mainSidebar #nav-main-menu .main-menu:hover i,
+body main #mainSidebar #nav-main-menu .sub-menu:hover i {
+  color: #2200B8;
+}
+body main #mainSidebar #nav-main-menu .main-menu:hover span,
+body main #mainSidebar #nav-main-menu .sub-menu:hover span {
+  color: #2200B8;
+}
+body main #mainSidebar #nav-main-menu .main-menu.active,
+body main #mainSidebar #nav-main-menu .main-menu.open,
+body main #mainSidebar #nav-main-menu .sub-menu.active {
+  border-left: 0.5em solid #2200B8;
+}
+body main #mainSidebar #nav-main-menu .main-menu.active i,
+body main #mainSidebar #nav-main-menu .main-menu.open i,
+body main #mainSidebar #nav-main-menu .sub-menu.active i {
+  color: #2200B8;
+}
+body main #mainSidebar #nav-main-menu .main-menu.active span,
+body main #mainSidebar #nav-main-menu .main-menu.open span,
+body main #mainSidebar #nav-main-menu .sub-menu.active span {
+  color: #2200B8;
+}
+body main #mainSidebar #nav-main-menu .sub-menu.active {
+  border-left: unset !important;
+}
+body main #mainSidebar #nav-main-menu .sub-menu.active::before {
+  left: -20px;
+  background: var(--cpi-clr-blu-1);
+}
+body main #mainSidebar .button-sidebar {
+  margin: 0.2em auto !important;
+}
+body main #mainSidebar #toggle-sidebar {
+  margin-bottom: 1rem !important;
+}
+body main #mainSidebar #footer-sidebar {
+  display: none !important;
+  border-top: 0.2em solid var(--cpi-clr-wht-1);
+}
+body main #mainSidebar #footer-sidebar span {
+  color: var(--cpi-clr-wht-1);
+}
+body main #mainSidebar.expand {
+  width: 17em;
+  z-index: 10;
+}
+body main #mainSidebar.expand ~ #doFloating {
+  left: 18em;
+  background: red;
+}
+body main #mainSidebar:not(.expand) ~ #doFloating {
+  z-index: 9;
+}
+body main #mainContent {
+  display: grid;
+  gap: 1em;
+}
+body main #mainSlideBar #general-settings-section #running-text-setting {
+  grid-template-columns: 1fr max-content;
+  grid-template-rows: max-content 1fr;
+  grid-template-areas: "label button" "textarea textarea";
+  gap: 0.5em 1em;
+}
+body main #mainSlideBar #general-settings-section #running-text-setting label {
+  grid-area: label;
+}
+body main #mainSlideBar #general-settings-section #running-text-setting textarea {
+  grid-area: textarea;
+  font-size: larger;
+  resize: none;
+  width: calc(100% - 1em);
+}
+body main #mainSlideBar #general-settings-section #running-text-setting button {
+  min-width: 125px;
+  grid-area: button;
+}
+body main #mainSlideBar #user-settings-section #chart-opt-setting {
+  display: none;
+}
+body main #mainSlideBar #user-settings-section #slideshow-opt-setting {
+  grid-template-columns: 1fr max-content;
+}
+body main #doModal {
+  grid-area: doModal;
+}
+body main #doModal .modal {
+  background-color: white;
+}
+body main #doModal .modal .modal-content .field-box label,
+body main #doModal .modal .modal-content .field-box input {
+  color: var(--cpi-clr-wht-1);
+}
+body main #doModal .modal .modal-content .field-box label {
+  font-size: 1.2em;
+}
+body main #doModal .modal .modal-content .field-box input {
+  font-size: 1.5em;
+  background: var(--cpi-clr-wht-1);
+  color: var(--cpi-clr-blk-1);
+}
+body main #doModal .modal-master .modal-content {
+  background: white;
+}
+body main #doModal .modal-master .modal-content .modal-master-info {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+body main #doModal .modal-master .modal-content .modal-master-info #device-update-ed-calibration-title {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.2em solid var(--mtb-clr-wht-1);
+}
+body main #doModal .modal-master .modal-content .modal-master-info #device-update-ed-calibration-title h2,
+body main #doModal .modal-master .modal-content .modal-master-info #device-update-ed-calibration-title button {
+  border-bottom: 0px solid transparent;
+  margin: auto 0px !important;
+}
+body main #doModal .modal-master .modal-content .modal-master-info #device-update-ed-calibration-title button {
+  padding: 0.5em 2em;
+}
+body main #doModal .modal-master .modal-content .modal-master-info #device-update-ed-calibration-title button:hover {
+  background: var(--cpi-clr-blu-2);
+  color: var(--cpi-clr-wht-1);
+}
+body main #doModal .modal-master .modal-content .modal-master-info #device-update-ed-calibration-title button.active {
+  background: var(--cpi-clr-blu-2);
+  color: var(--cpi-clr-wht-1);
+}
+body main #doModal #modal-verify-password .modal-content {
+  display: grid;
+  gap: 1em;
+}
+body main #doModal #modal-change-password #modal-verify-password-info,
+body main #doModal #modal-verify-password #modal-verify-password-info {
+  color: var(--cpi-clr-wht-1);
+  font-size: larger;
+  padding-bottom: 0.5em;
+  border-bottom: 0.2em solid var(--cpi-clr-wht-1);
+}
+body main #doModal #modal-change-password .user-update-password,
+body main #doModal #modal-verify-password .user-update-password {
+  background: var(--cpi-clr-blk-1);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+body main #doModal #modal-change-password #change-pass-username,
+body main #doModal #modal-verify-password #change-pass-username {
+  color: var(--cpi-clr-wht-1);
+  font-size: var(--font-size-medium);
+}
+body main #doModal #modal-change-password button,
+body main #doModal #modal-verify-password button {
+  width: 100%;
+}
+body main #doModal #table-emission-list-logs table {
+  width: 100% !important;
+}
+body main #doFloating .floating-section {
+  transition: unset;
+}
+body main #doFloating #slideshow-opt-floating {
+  overflow: hidden;
+  border-radius: 0.5em;
+  background: var(--cpi-clr-blk-1);
+  box-shadow: var(--main-neon-wht-light);
+  display: grid;
+  gap: 0.5em;
+  grid-template-rows: max-content 1fr max-content;
+  grid-template-areas: "title" "control" "progressBar";
+  position: absolute;
+  cursor: move;
+  min-width: 250px;
+  width: -moz-max-content;
+  width: max-content;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-title {
+  grid-area: title;
+  font-size: larger;
+  font-weight: bolder;
+  color: var(--cpi-clr-wht-1);
+  padding: 0em 0.7em;
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists {
+  grid-area: control;
+  display: grid;
+  gap: 0.5em;
+  padding: 0em 0.7em;
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists .control-section {
+  display: flex;
+  gap: 0.5em;
+  padding: 0px 0.5em;
+  border-left: 0.1em solid var(--cpi-clr-wht-1);
+  border-right: 0.1em solid var(--cpi-clr-wht-1);
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists .control-section button {
+  width: 100%;
+  margin: auto 0px;
+  font-size: var(--font-size-medium);
+  position: relative;
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists .control-section button .tooltip-button {
+  left: -1em;
+  font-size: large;
+  top: -2em;
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists .control-section button span {
+  color: var(--cpi-clr-blk-1);
+  font-size: small;
+  font-weight: bolder;
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists .control-section button:hover {
+  background: var(--cpi-clr-red-1);
+  color: var(--cpi-clr-wht-1);
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists .control-section .active {
+  background: var(--cpi-clr-red-1);
+  color: var(--cpi-clr-wht-1);
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists .control-section .active span {
+  color: var(--cpi-clr-wht-1);
+}
+body main #doFloating #slideshow-opt-floating #control-slideshow-lists .control-section .active .tooltip-button {
+  color: var(--cpi-clr-blk-1);
+}
+body main #doFloating #slideshow-opt-floating .progress-bar-box-group {
+  grid-area: progressBar;
+  display: grid;
+  gap: 0px;
+  position: relative;
+}
+body main #doFloating #slideshow-opt-floating .progress-bar-box-group .progress-bar-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 100;
+  margin: 0px -1em;
+  margin-top: 0px;
+}
+body main #doFloating #slideshow-opt-floating .progress-bar-box-group .progress-bar-box .progress-bar {
+  position: inherit;
+  width: inherit;
+  height: inherit;
+  margin-left: -100%;
+  background: var(--cpi-clr-org-1);
+}
+body main #doFloating #slideshow-opt-floating .progress-bar-box-group .progress-bar-box .progress-bar.active {
+  animation: progressBarFill 20s linear;
+}
+body main #doFloating #slideshow-opt-floating .progress-bar-box-group .progress-bar-box .progress-bar.slow-speed {
+  animation: progressBarFill 30s linear;
+}
+body main #doFloating #slideshow-opt-floating .progress-bar-box-group .progress-bar-box .progress-bar.normal-speed {
+  animation: progressBarFill 20s linear;
+}
+body main #doFloating #slideshow-opt-floating .progress-bar-box-group .progress-bar-box .progress-bar.high-speed {
+  animation: progressBarFill 10s linear;
+}
+body main #doFloating #slideshow-opt-floating .progress-bar-box-group .progress-bar-box.hide {
+  display: none !important;
+}
+@keyframes progressBarFill {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+body main.fixed {
+  grid-template-columns: auto 1fr 0px !important;
+}
+body main.fixed #mainSidebar {
+  position: unset !important;
+}
+body .menu-container {
+  position: relative;
+}
+body .menu-button {
+  padding: 10px 20px;
+  background-color: #1e96fc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+body .menu-button::after {
+  content: "▼";
+  margin-left: 8px;
+  font-size: 10px;
+}
+body .submenu-item i {
+  margin-right: 8px;
+  font-size: 16px;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+body .submenu-item:hover i {
+  color: #1e96fc;
+}
+body .submenu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  min-width: 185px;
+  z-index: 1000;
+  padding: 10px 0;
+  animation: fadeIn 0.25s ease-in-out;
+}
+body .submenu .submenu-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: #6b7280;
+}
+body .submenu a,
+body .submenu button.submenu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #111827;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+body .submenu a:hover,
+body .submenu button.submenu-item:hover {
+  background-color: #f9fafb;
+}
+body .submenu a::before,
+body .submenu button.submenu-item::before {
+  margin-right: 8px;
+  font-size: 10px;
+  color: #6b7280;
+}
+body .hidden {
+  display: none;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+body .table-crud-button {
+  display: flex;
+  gap: 0.5em;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #d1cfd4;
+}
+body .table-crud-button .wrap-btn-list {
+  border-right: 2px solid #d1cfd4;
+  padding-right: 0.5rem;
+}
+body .table-crud-button .title-table {
+  margin: auto;
+  margin-left: 0px;
+  font-size: 1.5em;
+  font-weight: bolder;
+  padding-left: 0.5em;
+}
+body .table-crud-button button {
+  font-size: 1.2em;
+}
+body .table-crud-button button:hover {
+  background: var(--cpi-clr-blu-2);
+  color: var(--cpi-clr-wht-1);
+}
+body .table-crud-button .delete-button:hover {
+  background: var(--cpi-clr-red-1) !important;
+  color: var(--cpi-clr-wht-1);
+}
+body .table-container {
+  background: white;
+  padding: 0.8rem 0px;
+  height: -moz-max-content;
+  height: max-content;
+  max-height: 82vh;
+  border-radius: 0.5em;
+  padding-top: 0.8rem;
+}
+body table {
+  width: 100%;
+}
+body table tbody tr:hover td {
+  cursor: pointer;
+}
+body table tbody td,
+body table tbody th {
+  border: 0;
+  color: var(--cpi-clr-wht-1);
+  font-size: var(--font-size-normal);
+  border-bottom: 0.2em solid var(--cpi-clr-blk-1);
+  background: white;
+  padding: 0.3em 0.5em;
+  color: #433c50 !important;
+}
+body table thead th,
+body table tfoot th {
+  font-size: var(--font-size-normal);
+  font-weight: bolder;
+  padding: 0.5em;
+  border-bottom: 0 !important;
+  background: #f6f7fb !important;
+  padding-block: 1.176rem;
+  color: #433c50 !important;
+}
+body .dataTables_wrapper thead th {
+  position: sticky !important;
+  top: 0;
+}
+body .dataTables_wrapper tbody tr.selected td {
+  background: var(--main-clr-third) !important;
+  color: var(--cpi-clr-wht-1) !important;
+}
+body .dataTables_wrapper .dataTables_scroll {
+  margin: 0.5em 0px;
+  max-height: 75vh !important;
+  overflow: auto !important;
+}
+body .dataTables_wrapper .dataTables_scroll .dataTables_scrollHead {
+  position: sticky !important;
+  top: -1em !important;
+  z-index: 2 !important;
+}
+body .dataTables_wrapper .dataTables_paginate .pagination li {
+  border: 1px solid var(--cpi-clr-wht-1);
+}
+body .dataTables_wrapper .dataTables_paginate .pagination li a {
+  color: #433c50;
+}
+body .dataTables_wrapper .dataTables_paginate .pagination .active {
+  background: var(--cpi-clr-wht-1);
+}
+body .dataTables_wrapper .dataTables_paginate .pagination .active a {
+  color: white !important;
+}
+body .dataTables_wrapper .dataTables_filter label {
+  color: var(--cpi-clr-wht-1);
+}
+body .required-field {
+  color: var(--cpi-clr-wht-1);
+  padding-bottom: 0.25em;
+  border-bottom: 0.1em solid var(--clr-wht-basic);
+  width: -moz-max-content;
+  width: max-content;
+}
+body .section-no-data {
+  padding: 0.5em 2em;
+  border-radius: 0.25em;
+  background: url(../../assets/svgs/cancel1.svg) no-repeat right bottom;
+  background-size: 250px;
+  background-origin: content-box;
+  background-color: var(--b7-clr-blk-1);
+  height: 300px;
+  color: var(--b7-clr-wht-2);
+  display: grid;
+  place-content: center;
+  gap: 1em;
+}
+body .section-no-data span {
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  margin: auto;
+}
+body .section-no-data span button {
+  height: 100%;
+  padding: 0.2em;
+  font-size: smaller;
+  width: 100%;
+  margin-top: 0.3em;
+}
+body .section-no-data span button:hover {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+body .select2-container--default .select2-selection--single {
+  background: transparent !important;
+  border: 0 !important;
+}
+body .select2-container {
+  width: 100% !important;
+}
+
+body #report-print-temp,
+body #wrap-content-print {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  z-index: -999;
+  height: 100%;
+  display: none;
+}
+body .report-print span,
+body .report-print td,
+body .report-print label,
+body .report-print p {
+  color: black;
+}
+body .report-print h3 {
+  margin: 0;
+  padding: 0;
+}
+body .report-print .tabel-rekap-nilai-lomba td,
+body .report-print .tabel-rekap-nilai-lomba th,
+body .report-print .tabel-rekap-nilai-lomba span,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba td,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba th,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba span,
+body .report-print .tabel-rekap-akhir-nilai-lomba td,
+body .report-print .tabel-rekap-akhir-nilai-lomba th,
+body .report-print .tabel-rekap-akhir-nilai-lomba span {
+  font-size: 8px;
+}
+body .report-print .tabel-rekap-nilai-lomba th,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba th,
+body .report-print .tabel-rekap-akhir-nilai-lomba th {
+  background: #444444 !important;
+  text-align: center;
+  font-weight: bold;
+  color: white !important;
+}
+body .report-print .tabel-rekap-nilai-lomba .col-juri,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-juri,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-juri {
+  text-align: center;
+}
+body .report-print .tabel-rekap-nilai-lomba .col-nilai,
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai,
+body .report-print .tabel-rekap-nilai-lomba .col-total-akhir,
+body .report-print .tabel-rekap-nilai-lomba .col-nilai-pinalti,
+body .report-print .tabel-rekap-nilai-lomba .pengurangan-nilai-total,
+body .report-print .tabel-rekap-nilai-lomba .pengurangan-nilai-field,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-nilai,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-total-akhir,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-nilai-pinalti,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-total,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-field,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-nilai,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-total-akhir,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-nilai-pinalti,
+body .report-print .tabel-rekap-akhir-nilai-lomba .pengurangan-nilai-total,
+body .report-print .tabel-rekap-akhir-nilai-lomba .pengurangan-nilai-field {
+  text-align: center;
+}
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-pinalti,
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-umum,
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-utama,
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-akhir, body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-sub-total,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-pinalti,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-umum,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-utama,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-akhir,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-sub-total,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total {
+  text-align: center;
+  font-weight: 800;
+  vertical-align: middle !important;
+}
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-pinalti,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-pinalti,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti {
+  background: #d62828 !important;
+  color: white !important;
+}
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-akhir,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-akhir,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir {
+  background: #47bb8e !important;
+  color: white !important;
+}
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-umum, body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-sub-total,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-umum,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-sub-total,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total {
+  background: #2200B8 !important;
+  color: white !important;
+}
+body .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-utama,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-utama,
+body .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama {
+  background: #1e96fc !important;
+  color: white !important;
+}
+body .report-print #tabel-rekap-nilai-lomba,
+body .report-print #tabel-rekap-juara-lomba,
+body .report-print .tabel-rekap-nilai-lomba,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba,
+body .report-print .tabel-rekap-akhir-nilai-lomba {
+  border-collapse: collapse;
+}
+body .report-print #tabel-rekap-nilai-lomba .main-rank td,
+body .report-print #tabel-rekap-juara-lomba .main-rank td,
+body .report-print .tabel-rekap-nilai-lomba .main-rank td,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba .main-rank td,
+body .report-print .tabel-rekap-akhir-nilai-lomba .main-rank td {
+  background: #2200b8 !important;
+  color: white !important;
+}
+body .report-print #tabel-rekap-nilai-lomba thead .head-no-peserta,
+body .report-print #tabel-rekap-juara-lomba thead .head-no-peserta,
+body .report-print .tabel-rekap-nilai-lomba thead .head-no-peserta,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba thead .head-no-peserta,
+body .report-print .tabel-rekap-akhir-nilai-lomba thead .head-no-peserta {
+  min-width: 156px;
+  width: 156px;
+}
+body .report-print #tabel-rekap-nilai-lomba thead .head-nama-pangkalan,
+body .report-print #tabel-rekap-juara-lomba thead .head-nama-pangkalan,
+body .report-print .tabel-rekap-nilai-lomba thead .head-nama-pangkalan,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba thead .head-nama-pangkalan,
+body .report-print .tabel-rekap-akhir-nilai-lomba thead .head-nama-pangkalan {
+  min-width: 245px;
+  width: 245px;
+}
+body .report-print #tabel-rekap-nilai-lomba thead .head-regu,
+body .report-print #tabel-rekap-juara-lomba thead .head-regu,
+body .report-print .tabel-rekap-nilai-lomba thead .head-regu,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba thead .head-regu,
+body .report-print .tabel-rekap-akhir-nilai-lomba thead .head-regu {
+  min-width: 150px;
+  width: 150px;
+}
+body .report-print #tabel-rekap-nilai-lomba thead .head-kaegori-penilaian,
+body .report-print #tabel-rekap-juara-lomba thead .head-kaegori-penilaian,
+body .report-print .tabel-rekap-nilai-lomba thead .head-kaegori-penilaian,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba thead .head-kaegori-penilaian,
+body .report-print .tabel-rekap-akhir-nilai-lomba thead .head-kaegori-penilaian {
+  width: 90px;
+  max-width: 90px;
+  font-size: 10px !important;
+  text-align: center;
+  text-transform: uppercase;
+}
+body .report-print #tabel-rekap-nilai-lomba thead .head-mata-lomba,
+body .report-print #tabel-rekap-juara-lomba thead .head-mata-lomba,
+body .report-print .tabel-rekap-nilai-lomba thead .head-mata-lomba,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba thead .head-mata-lomba,
+body .report-print .tabel-rekap-akhir-nilai-lomba thead .head-mata-lomba {
+  width: 35px;
+}
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-1,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-1,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-rank-lomba.rank-1,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-point-lomba.rank-1,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-1,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-1,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-rank-lomba.rank-1,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-point-lomba.rank-1,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-rank-lomba.rank-1,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-point-lomba.rank-1 {
+  background: #47bb8e !important;
+  color: white !important;
+}
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-2,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-2,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-rank-lomba.rank-2,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-point-lomba.rank-2,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-2,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-2,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-rank-lomba.rank-2,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-point-lomba.rank-2,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-rank-lomba.rank-2,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-point-lomba.rank-2 {
+  background: #1e96fc !important;
+  color: white !important;
+}
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-3,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-3,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-rank-lomba.rank-3,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-point-lomba.rank-3,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-3,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-3,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-rank-lomba.rank-3,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-point-lomba.rank-3,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-rank-lomba.rank-3,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-point-lomba.rank-3 {
+  background: #fcbf49 !important;
+  color: white !important;
+}
+body .report-print #tabel-rekap-nilai-lomba tbody .col-value-lomba,
+body .report-print #tabel-rekap-nilai-lomba tbody .col-total-nilai,
+body .report-print #tabel-rekap-nilai-lomba tbody .col-rank,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-nilai-lomba,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-rank-lomba,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-point-lomba,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-total-rank-points,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-total-points-banding,
+body .report-print #tabel-rekap-nilai-lomba tbody .rekap-overall-rank-juara,
+body .report-print #tabel-rekap-juara-lomba tbody .col-value-lomba,
+body .report-print #tabel-rekap-juara-lomba tbody .col-total-nilai,
+body .report-print #tabel-rekap-juara-lomba tbody .col-rank,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-nilai-lomba,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-rank-lomba,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-point-lomba,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-total-rank-points,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-total-points-banding,
+body .report-print #tabel-rekap-juara-lomba tbody .rekap-overall-rank-juara,
+body .report-print .tabel-rekap-nilai-lomba tbody .col-value-lomba,
+body .report-print .tabel-rekap-nilai-lomba tbody .col-total-nilai,
+body .report-print .tabel-rekap-nilai-lomba tbody .col-rank,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-nilai-lomba,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-rank-lomba,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-point-lomba,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-total-rank-points,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-total-points-banding,
+body .report-print .tabel-rekap-nilai-lomba tbody .rekap-overall-rank-juara,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .col-value-lomba,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .col-total-nilai,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .col-rank,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-nilai-lomba,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-rank-lomba,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-point-lomba,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-total-rank-points,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-total-points-banding,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-overall-rank-juara,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .col-value-lomba,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .col-total-nilai,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .col-rank,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-nilai-lomba,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-rank-lomba,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-point-lomba,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-total-rank-points,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-total-points-banding,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .rekap-overall-rank-juara {
+  text-align: center;
+}
+body .report-print #tabel-rekap-nilai-lomba tbody .col-kategori-penilaian,
+body .report-print #tabel-rekap-nilai-lomba tbody .col-nilai-pinalti-lomba,
+body .report-print #tabel-rekap-juara-lomba tbody .col-kategori-penilaian,
+body .report-print #tabel-rekap-juara-lomba tbody .col-nilai-pinalti-lomba,
+body .report-print .tabel-rekap-nilai-lomba tbody .col-kategori-penilaian,
+body .report-print .tabel-rekap-nilai-lomba tbody .col-nilai-pinalti-lomba,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .col-kategori-penilaian,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .col-nilai-pinalti-lomba,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .col-kategori-penilaian,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .col-nilai-pinalti-lomba {
+  text-align: center;
+}
+body .report-print #tabel-rekap-nilai-lomba tbody .col-sub-total,
+body .report-print #tabel-rekap-nilai-lomba tbody .col-nilai-pinalti,
+body .report-print #tabel-rekap-nilai-lomba tbody .col-total-akhir,
+body .report-print #tabel-rekap-juara-lomba tbody .col-sub-total,
+body .report-print #tabel-rekap-juara-lomba tbody .col-nilai-pinalti,
+body .report-print #tabel-rekap-juara-lomba tbody .col-total-akhir,
+body .report-print .tabel-rekap-nilai-lomba tbody .col-sub-total,
+body .report-print .tabel-rekap-nilai-lomba tbody .col-nilai-pinalti,
+body .report-print .tabel-rekap-nilai-lomba tbody .col-total-akhir,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .col-sub-total,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .col-nilai-pinalti,
+body .report-print .tabel-rekap-pengurangan-nilai-lomba tbody .col-total-akhir,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .col-sub-total,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .col-nilai-pinalti,
+body .report-print .tabel-rekap-akhir-nilai-lomba tbody .col-total-akhir {
+  text-align: center;
+}
+body .report-print .tabel-rekap-juara-lomba-print td,
+body .report-print .tabel-rekap-juara-lomba-print th {
+  font-size: 10px !important;
+}
+body .report-print .tabel-rekap-juara-lomba-print thead tr th {
+  background: #1a237e !important;
+  color: white !important;
+}
+body .report-print .tabel-rekap-juara-lomba-print tbody .rekap-nilai-lomba,
+body .report-print .tabel-rekap-juara-lomba-print tbody .rekap-total-rank-points,
+body .report-print .tabel-rekap-juara-lomba-print tbody .rekap-total-points-banding,
+body .report-print .tabel-rekap-juara-lomba-print tbody .rekap-point-lomba,
+body .report-print .tabel-rekap-juara-lomba-print tbody .rekap-rank-lomba,
+body .report-print .tabel-rekap-juara-lomba-print tbody .rekap-nilai-lomba {
+  text-align: center !important;
+}
+body .report-print .tabel-rekap-juara-lomba-print tbody tr:nth-child(odd) {
+  background-color: white;
+}
+body .report-print .tabel-rekap-juara-lomba-print tbody tr:nth-child(even) {
+  background-color: #dfe4ff;
+}
+body .report-print .category-header td {
+  background: #444444 !important;
+  text-align: center;
+  font-weight: bold;
+  color: white !important;
+}
+body .report-print td,
+body .report-print th,
+body .report-print p,
+body .report-print label,
+body .report-print option,
+body .report-print select,
+body .report-print span {
+  font-size: 11px;
+  color: black;
+}
+body .report-print table {
+  border-collapse: collapse;
+  width: 100% !important;
+}
+body .report-print table th {
+  background: white;
+}
+body .report-print table td {
+  background: white !important;
+}
+body .report-print table td,
+body .report-print table th {
+  color: black !important;
+  background: white;
+  border: 0.5px solid black;
+  padding: 3px;
+  background: transparent !important;
+}
+body .report-print table td:hover,
+body .report-print table th:hover {
+  background: transparent;
+}
+body .report-print table tr:hover td {
+  background: white !important;
+}
+body .report-print .check {
+  background: black !important;
+  color: white !important;
+}
+
+#modal-content-lembar-jawaban-print .modal-content, #modal-content-report-juara-print .modal-content {
+  max-height: 85vh;
+  background: #d1d1d1 !important;
+}
+#modal-content-lembar-jawaban-print .modal-content #wrap-content-print-preview, #modal-content-report-juara-print .modal-content #wrap-content-print-preview {
+  display: grid;
+  gap: 1rem;
+}
+#modal-content-lembar-jawaban-print .modal-content #wrap-content-print-preview .report-print, #modal-content-report-juara-print .modal-content #wrap-content-print-preview .report-print {
+  height: unset !important;
+  min-height: 1005px !important;
+}
+#modal-content-lembar-jawaban-print .modal-content #wrap-content-print-preview .report-print td,
+#modal-content-lembar-jawaban-print .modal-content #wrap-content-print-preview .report-print th,
+#modal-content-lembar-jawaban-print .modal-content #wrap-content-print-preview .report-print span, #modal-content-report-juara-print .modal-content #wrap-content-print-preview .report-print td,
+#modal-content-report-juara-print .modal-content #wrap-content-print-preview .report-print th,
+#modal-content-report-juara-print .modal-content #wrap-content-print-preview .report-print span {
+  font-size: 11px;
+}
+#modal-content-lembar-jawaban-print .modal-content #wrap-content-print-preview .landscape, #modal-content-report-juara-print .modal-content #wrap-content-print-preview .landscape {
+  min-height: unset !important;
+  height: 600px !important;
+}
+
+#modal-camera-scan-qrcode .modal-head {
+  justify-content: center !important;
+}
+#modal-camera-scan-qrcode .modal-content {
+  background: black !important;
+}
+#modal-camera-scan-qrcode .modal-content #qr-reader {
+  width: 300px;
+  height: auto;
+}
+#modal-camera-scan-qrcode .modal-foot button {
+  padding: 1rem;
+}
+#modal-camera-scan-qrcode .modal-foot button:nth-child(even) {
+  border-left: 3px solid var(--ptch-clr-blk-3);
+}
+
+@media (max-width: 1024px) {
+  body #tooltip-sidebar {
+    display: none !important;
+  }
+  body main.fixed {
+    grid-template-columns: 1fr !important;
+  }
+  body main.fixed #mainSidebar {
+    position: fixed !important;
+  }
+  body main {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "mainHeader" "mainContent" "mainContent" "mainSlidebar";
+  }
+  body main #mainSidebar.active {
+    width: 16em !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+  }
+  body main #mainSidebar {
+    max-width: 0;
+    overflow: hidden;
+    z-index: 99;
+    position: fixed !important;
+  }
+  body main #mainSidebar #welcome-title {
+    display: none;
+  }
+  body main #mainSidebar .header-sidebar {
+    justify-content: space-around !important;
+  }
+  body main #mainSidebar .header-sidebar button {
+    display: block !important;
+  }
+  body main #mainSidebar #sidebar-close {
+    display: block !important;
+    margin-left: auto;
+  }
+  body main #mainSidebar #sidebar-close i {
+    color: var(--main-clr-blk-3) !important;
+    font-size: 30px !important;
+  }
+  body main #mainSidebar .expanded-sidebar {
+    display: block !important;
+  }
+  body main #mainSidebar #toggle-sidebar {
+    display: none !important;
+  }
+  body main #mainSidebar #logout-button {
+    margin-bottom: 1rem !important;
+  }
+  body main #mainSidebar #shortcut-menu #favorite-list-menu,
+  body main #mainSidebar #shortcut-menu #gallery-shortcut,
+  body main #mainSidebar #shortcut-menu #jemari-shortcut {
+    gap: 0.5em;
+    margin: 0;
+    margin-left: 0.5em !important;
+    padding: 0.5em 0.1em;
+    height: 3em;
+    display: grid;
+    grid-template-columns: 3em 1fr;
+  }
+  body main #mainSidebar #shortcut-menu #favorite-list-menu img,
+  body main #mainSidebar #shortcut-menu #gallery-shortcut img,
+  body main #mainSidebar #shortcut-menu #jemari-shortcut img {
+    width: 5em;
+  }
+  body main #mainSidebar #shortcut-menu #favorite-list-menu span,
+  body main #mainSidebar #shortcut-menu #gallery-shortcut span,
+  body main #mainSidebar #shortcut-menu #jemari-shortcut span {
+    display: block;
+  }
+  body main #mainSidebar #nav-main-menu .wrap-sub-menu {
+    position: unset;
+    z-index: unset;
+    left: 0px;
+    top: 0px;
+    background: unset;
+    margin-left: 3.5em;
+    box-shadow: unset;
+    padding-bottom: 1em;
+  }
+  body main #mainSidebar #nav-main-menu .wrap-sub-menu .sub-menu {
+    left: unset;
+  }
+  body main #mainSidebar #nav-main-menu .wrap-sub-menu .sub-menu.active {
+    left: unset;
+  }
+  body main #mainSidebar #nav-main-menu #favorite-list-menu .title-menu {
+    display: none !important;
+  }
+  body main #mainSidebar .main-menu.folder {
+    grid-template-columns: 50px 1fr max-content;
+  }
+  body main #mainSidebar .main-menu.folder .dropdown-up {
+    display: none !important;
+  }
+  body main #mainSidebar .main-menu.folder .dropdown-down {
+    display: block !important;
+  }
+  body main #mainSidebar .main-menu.folder.open .dropdown-up {
+    display: block !important;
+  }
+  body main #mainSidebar .main-menu.folder.open .dropdown-down {
+    display: none !important;
+  }
+  body main #mainSidebar .centerized-sidebar {
+    margin: unset !important;
+  }
+  body main #mainSidebar .expanded-sidebar {
+    display: block !important;
+  }
+  body main #mainSidebar .user-info {
+    padding-left: 1em;
+  }
+  body main #mainSidebar .main-menu {
+    margin-left: 0.5em !important;
+  }
+  body main #mainSidebar .title-wrap-sub-menu {
+    display: none;
+  }
+  body main #mainSidebar .wrap-sub-menu {
+    position: unset !important;
+    z-index: unset !important;
+    left: 0px !important;
+    top: 0px !important;
+    background: unset !important;
+    margin-left: 3.5em !important;
+    box-shadow: unset !important;
+    padding-bottom: 1em !important;
+  }
+  body main #mainSidebar .wrap-sub-menu .sub-menu {
+    left: unset !important;
+  }
+  body main #mainSidebar .wrap-sub-menu .sub-menu.active {
+    left: unset !important;
+  }
+  body main #mainHeader .wrap-title-navheader {
+    display: none !important;
+  }
+  body main #mainHeader #nav-toggle-menu {
+    background: transparent;
+    font-size: 35px;
+    color: var(--jr-clr-blk-1);
+    padding: 0 !important;
+    background: transparent;
+    display: grid !important;
+    margin-right: auto !important;
+  }
+  body main #mainHeader #title-content-header {
+    font-size: var(--font-size-normal) !important;
+  }
+  body main #mainHeader #nav-toggle-menu {
+    background: transparent;
+    font-size: 35px;
+    color: var(--jr-clr-blk-1);
+    padding: 0 !important;
+    background: transparent;
+    display: grid !important;
+  }
+  body main #mainContent .content-wrap span,
+  body main #mainContent .content-wrap button,
+  body main #mainContent .content-wrap label,
+  body main #mainContent .content-wrap h1 {
+    font-size: var(--font-size-small) !important;
+  }
+  body main #mainContent .content-wrap .head-tite-menu,
+  body main #mainContent .content-wrap #welcome-title {
+    font-size: var(--font-size-normal) !important;
+  }
+  body main #mainContent .content-wrap #gallery-category .content-all-category,
+  body main #mainContent .content-wrap #gallery-category .content-all-files,
+  body main #mainContent .content-wrap #folder-branch .content-all-category,
+  body main #mainContent .content-wrap #folder-branch .content-all-files,
+  body main #mainContent .content-wrap #gallery-files .content-all-category,
+  body main #mainContent .content-wrap #gallery-files .content-all-files {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    gap: 0.5rem !important;
+  }
+  body main #doModal {
+    left: -200%;
+  }
+  body main #doModal button,
+  body main #doModal input,
+  body main #doModal label,
+  body main #doModal h1,
+  body main #doModal span {
+    font-size: var(--font-size-rem-small) !important;
+  }
+}
+@media (max-width: 768px) {
+  #modal-camera-scan-qrcode {
+    width: 90%;
+  }
+  #modal-camera-scan-qrcode .modal-content {
+    background: black !important;
+    justify-content: center;
+  }
+}/*# sourceMappingURL=doCss.css.map */

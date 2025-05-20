@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kirim WhatsApp ke Nomor Tertentu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      margin-top: 100px;
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      width: 300px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1ebe5d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Kirim Pesan ke WhatsApp</h1>
+    <p id="message">Halo, ini pesan dari website kami. Semoga harimu menyenangkan!</p>
+    <button onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
+  </div>
+
+  <script>
+    function sendToWhatsApp() {
+      const phoneNumber = "6281398175897"; // Nomor WhatsApp (ganti sesuai kebutuhan)
+      const message = document.getElementById("message").innerText;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+</body>
+</html>

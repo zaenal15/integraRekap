@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Input Sub Point Penilaian</title>
+  <style>
+    /* Reset default margin/padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #4CAF50;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    select {
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .button-group {
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .sub-point-item {
+      margin-bottom: 20px;
+    }
+
+    .sub-point-item input[type="text"] {
+      width: calc(100% - 120px);
+      display: inline-block;
+    }
+
+    .sub-point-item button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .sub-point-item button:hover {
+      background-color: #c0392b;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Form Input Sub Point Penilaian</h1>
+
+    <form id="subPointForm">
+      <!-- Kategori Sub Point Input -->
+      <div class="form-group">
+        <label for="kategoriSubPoint">Kategori Sub Point:</label>
+        <input type="text" id="kategoriSubPoint" name="kategoriSubPoint" placeholder="Masukkan Nama Kategori Sub Point" required>
+      </div>
+
+      <!-- Sub Point Input -->
+      <div id="subPointContainer">
+        <div class="sub-point-item">
+          <label for="subPoint">Sub Point:</label>
+          <input type="text" name="subPoint[]" placeholder="Masukkan Sub Point" required>
+          <button type="button" class="removeBtn">Hapus</button>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" id="addSubPointBtn" class="btn">Tambah Sub Point</button>
+        <button type="submit" class="btn">Kirim</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function tes(){
+
+        data = [
+        {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "PBB",
+            "kategori_sub_point_id": "4",
+            "nama_kategori_sub_point": "tes",
+            "nama_sub_point": "tes123"
+        },
+        {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "PBB",
+            "kategori_sub_point_id": "5",
+            "nama_kategori_sub_point": "saas12322332",
+            "nama_sub_point": ""
+        },
+        {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "PBB",
+            "kategori_sub_point_id": "32",
+            "nama_kategori_sub_point": "tes56",
+            "nama_sub_point": "p001"
+        },
+        {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "PBB",
+            "kategori_sub_point_id": "33",
+            "nama_kategori_sub_point": "point 1",
+            "nama_sub_point": ""
+        },
+        {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "PBB",
+            "kategori_sub_point_id": "36",
+            "nama_kategori_sub_point": "Jalan Ditempat",
+            "nama_sub_point": "Jalan 1"
+        },
+        {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "PBB",
+            "kategori_sub_point_id": "36",
+            "nama_kategori_sub_point": "Jalan Ditempat",
+            "nama_sub_point": "Jalan 2"
+        },
+        {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "PBB",
+            "kategori_sub_point_id": "36",
+            "nama_kategori_sub_point": "Jalan Ditempat",
+            "nama_sub_point": "Jalan 3"
+        },
+        {
+            "nama_lomba": "LKBBT",
+            "nama_kategori": "DANTON",
+            "kategori_sub_point_id": "35",
+            "nama_kategori_sub_point": "asas",
+            "nama_sub_point": "jjlk"
+        }
+    ]
+    const filteredData = data.filter(item => item.nama_kategori === "PBB" & item.kategori_sub_point_id === '36');
+    console.log('filteredData', filteredData)
+    }
+  </script>
+</body>
+
+</html>

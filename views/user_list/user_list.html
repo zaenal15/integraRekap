@@ -1,0 +1,76 @@
+<section class="content-wrap">
+  <section class="zoomContent" id="group-lists-box">
+    <div id="group-lists"></div>
+    <div id="group-filter"></div>
+  </section>
+  <section class="zoomContent" id="user-lists"></section>
+  <section class="zoomContent" id="user-lists-no-data">
+    <span>There are no user in this group position. <br> <button id="add-new-user" onclick="openModal(modals[0])">Add user</button> </span>
+  </section>
+</section>
+
+<section class="modal modal-sm" id="modal-add-user">
+  <section class="modal-head">
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </section>
+  <section class="modal-content">
+    <span class="modal-title"><i class="fa fa-plus-circle"></i> Add New User</span>
+    <div class="form-section" id="user-add-info">
+      <div class="form-input basic-flex-reverse">
+        <label>Full Name : </label>
+        <input id="new-name-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Username : </label>
+        <input id="new-username-field" onchange="checkUsername(this, 'username', 'add')">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Email </label>
+        <input id="new-email-field" onchange="checkUsername(this, 'email', 'add')">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Position : </label>
+        <select id="new-position-field"></select>
+      </div>
+    </div>
+  </section>
+  <section class="modal-foot">
+    <button class="update" id="add-user" onclick="addNewUser()" ><i class="fa fa-plus"></i> Add User</button>
+  </section>
+</section>
+
+<section class="modal modal-sm" id="modal-add-group">
+  <section class="modal-head">
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </section>
+  <section class="modal-content">
+    <span class="modal-title"><i class="fa fa-plus-circle"></i> Add New Group</span>
+    <div class="form-section" id="group-add-info">
+      <div class="form-input basic-flex-reverse">
+        <label>Group Name </label>
+        <input id="new-group-field">
+      </div>
+    </div>
+  </section>
+  <section class="modal-foot">
+    <button class="add" id="add-group" onclick="addNewGroup()" ><i class="fa fa-plus"></i> Add Group</button>
+  </section>
+</section>
+
+<section class="modal modal-sm" id="modal-rename-group">
+  <section class="modal-head">
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </section>
+  <section class="modal-content">
+    <span class="modal-title"><i class="fa fa-pencil-alt"></i> Rename Group</span>
+    <div class="form-section" id="group-rename-info">
+      <div class="form-input basic-flex-reverse">
+        <label>New Group Name </label>
+        <input id="new-group-name-field">
+      </div>
+    </div>
+  </section>
+  <section class="modal-foot">
+    <button class="add" id="rename-group" onclick="renameGroup()" ><i class="fa fa-plus"></i> Rename Group</button>
+  </section>
+</section>

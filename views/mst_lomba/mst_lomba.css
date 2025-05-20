@@ -1,0 +1,67 @@
+body #title-content-header {
+  display: block !important;
+}
+body .content-wrap {
+  padding: 0.5rem 1rem;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-add-kaegori-lomba-form {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: 0.5rem;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-add-kaegori-lomba-form h3 {
+  margin-bottom: 0.5rem;
+  margin-top: 0.15rem;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-add-kaegori-lomba-form button {
+  font-size: var(--font-size-medium);
+  background: #2200B8;
+  color: white;
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+body #modal-update-kategori-lomba .modal-content h3 {
+  margin: 0;
+  border-top: 5px solid #e5e7eb;
+  padding-top: 1rem;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category {
+  display: grid;
+  gap: 0.5rem;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content {
+  display: grid;
+  grid-template-columns: 1fr max-content max-content;
+  background: #f9fafb;
+  gap: 0.3rem;
+  padding: 0.5em;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content input {
+  background: transparent !important;
+  border: 0 !important;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content #update-kategori-lomba-btn {
+  display: none;
+  font-size: 17px;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content button {
+  background: transparent;
+  color: #6d6d6d;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content button:hover {
+  color: #433c50 !important;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content.active input {
+  display: block !important;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content.active label {
+  display: none !important;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content.active #update-kategori-lomba-btn {
+  display: block !important;
+}
+body #modal-update-kategori-lomba .modal-content #wrap-content-list-category .box-category-content.active #edit-kategori-lomba-btn {
+  display: none !important;
+}/*# sourceMappingURL=mst_lomba.css.map */

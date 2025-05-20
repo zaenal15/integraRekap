@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload Penilaian</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+
+    .upload-box {
+      background: white;
+      max-width: 750px;
+      margin: auto;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .select-btn {
+      padding: 10px 18px;
+      background: #4b4fed;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      flex-grow: 1;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    #camera-container {
+      display: none;
+      margin-bottom: 15px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    #cameraSnapshot {
+      display: none;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    #preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .preview-item {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+    }
+
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .remove-preview {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .upload-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .status-message {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .status-message.success { color: green; }
+    .status-message.error { color: red; }
+  </style>
+</head>
+<body>
+
+<div class="upload-box">
+  <h2>Upload Penilaian Peserta</h2>
+
+  <input type="hidden" id="peserta_id" value="123" />
+  <input type="hidden" id="lomba_id" value="456" />
+  <input type="file" id="penilaian_foto" multiple accept="image/*" hidden />
+
+  <div class="button-row">
+    <button class="select-btn" onclick="document.getElementById('penilaian_foto').click()">📁 Pilih Gambar</button>
+    <button class="select-btn" onclick="startCamera()">📷 Kamera</button>
+  </div>
+
+  <!-- Kamera -->
+  <div id="camera-container">
+    <video id="camera" autoplay playsinline></video>
+
+    <div class="control-row">
+      <button id="captureBtn" class="select-btn">📸 Ambil Foto</button>
+      <button class="select-btn" onclick="switchCamera()">🔄 Ganti Kamera</button>
+      <button class="select-btn" onclick="stopCamera()">🛑 Stop Kamera</button>
+    </div>
+
+    <img id="cameraSnapshot" />
+
+    <div class="control-row">
+      <button id="addToUploadBtn" class="select-btn" style="display:none;">➕ Tambah ke Upload</button>
+      <button id="retakeBtn" class="select-btn" style="display:none;">🔁 Ambil Ulang</button>
+    </div>
+  </div>
+
+  <!-- Preview Upload -->
+  <div id="preview"></div>
+
+  <!-- Upload -->
+  <button class="upload-btn" id="uploadBtn">Upload Semua</button>
+  <div class="status-message" id="uploadStatus"></div>
+</div>
+
+<script>
+  let selectedFiles = [];
+  let stream = null;
+  let usingBackCamera = true;
+  let tempCapturedBlob = null;
+
+  const fileInput = document.getElementById('penilaian_foto');
+  const preview = document.getElementById('preview');
+  const video = document.getElementById('camera');
+  const snapshotImg = document.getElementById('cameraSnapshot');
+  const addToUploadBtn = document.getElementById('addToUploadBtn');
+  const retakeBtn = document.getElementById('retakeBtn');
+  const cameraContainer = document.getElementById('camera-container');
+  const status = document.getElementById('uploadStatus');
+
+  function renderPreview(file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const item = document.createElement('div');
+      item.className = 'preview-item';
+
+      const img = document.createElement('img');
+      img.src = e.target.result;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'remove-preview';
+      removeBtn.innerText = '×';
+      removeBtn.onclick = () => {
+        selectedFiles = selectedFiles.filter(f => f !== file);
+        item.remove();
+      };
+
+      item.appendChild(img);
+      item.appendChild(removeBtn);
+      preview.appendChild(item);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function handleFiles(files) {
+    Array.from(files).forEach(file => {
+      if (file.size > 3 * 1024 * 1024) {
+        const warn = document.createElement('p');
+        warn.className = 'status-message error';
+        warn.textContent = `${file.name} terlalu besar (>3MB).`;
+        preview.appendChild(warn);
+        return;
+      }
+      if (selectedFiles.find(f => f.name === file.name && f.size === file.size)) return;
+      selectedFiles.push(file);
+      renderPreview(file);
+    });
+  }
+
+  fileInput.addEventListener('change', () => {
+    handleFiles(fileInput.files);
+    fileInput.value = '';
+  });
+
+  async function startCamera() {
+    try {
+      stopCamera(); // Matikan dulu jika ada stream sebelumnya
+      const constraints = { video: { facingMode: usingBackCamera ? "environment" : "user" } };
+      stream = await navigator.mediaDevices.getUserMedia(constraints);
+      video.srcObject = stream;
+      cameraContainer.style.display = 'block';
+      video.style.display = 'block';
+      snapshotImg.style.display = 'none';
+      addToUploadBtn.style.display = 'none';
+      retakeBtn.style.display = 'none';
+    } catch (err) {
+      alert('Tidak bisa mengakses kamera: ' + err.message);
+    }
+  }
+
+  function stopCamera() {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      stream = null;
+    }
+    video.srcObject = null;
+    video.style.display = 'none';
+  }
+
+  function switchCamera() {
+    usingBackCamera = !usingBackCamera;
+    startCamera();
+  }
+
+  document.getElementById('captureBtn').addEventListener('click', () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0);
+
+    canvas.toBlob(blob => {
+      tempCapturedBlob = blob;
+      snapshotImg.src = URL.createObjectURL(blob);
+      snapshotImg.style.display = 'block';
+      addToUploadBtn.style.display = 'inline-block';
+      retakeBtn.style.display = 'inline-block';
+      stopCamera(); // Kamera mati setelah ambil foto
+    }, 'image/jpeg');
+  });
+
+  addToUploadBtn.addEventListener('click', () => {
+    if (tempCapturedBlob) {
+      const file = new File([tempCapturedBlob], `kamera-${Date.now()}.jpg`, { type: 'image/jpeg' });
+      selectedFiles.push(file);
+      renderPreview(file);
+      snapshotImg.style.display = 'none';
+      addToUploadBtn.style.display = 'none';
+      retakeBtn.style.display = 'none';
+      cameraContainer.style.display = 'none';
+      tempCapturedBlob = null;
+    }
+  });
+
+  retakeBtn.addEventListener('click', () => {
+    snapshotImg.style.display = 'none';
+    addToUploadBtn.style.display = 'none';
+    retakeBtn.style.display = 'none';
+    tempCapturedBlob = null;
+    startCamera();
+  });
+
+  document.getElementById('uploadBtn').addEventListener('click', async () => {
+    if (selectedFiles.length === 0) {
+      status.className = 'status-message error';
+      status.textContent = 'Tidak ada file yang dipilih.';
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('peserta_id', document.getElementById('peserta_id').value);
+    formData.append('lomba_id', document.getElementById('lomba_id').value);
+    selectedFiles.forEach(file => formData.append('penilaian_foto', file));
+
+    status.className = 'status-message';
+    status.textContent = '⏳ Mengupload...';
+
+    try {
+      const response = await fetch('/upload_penilaian', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+
+      if (data.result === 'success') {
+        status.className = 'status-message success';
+        status.innerHTML = '✅ Upload berhasil:<br>' + data.uploaded.join('<br>');
+        preview.innerHTML = '';
+        selectedFiles = [];
+      } else {
+        status.className = 'status-message error';
+        status.textContent = 'Upload gagal.';
+      }
+    } catch (err) {
+      status.className = 'status-message error';
+      status.textContent = 'Gagal menghubungi server.';
+    }
+  });
+</script>
+
+</body>
+</html>

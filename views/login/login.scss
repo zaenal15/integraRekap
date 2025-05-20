@@ -1,0 +1,259 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url(../../assets/font/Poppins/Poppins-Regular.ttf);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  margin: 0;
+  padding: 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    border-radius: 10px;
+    cursor: pointer;
+    border: unset;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+#main-login {
+  height: 100vh;
+
+  #login-field {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    height: 100%;
+
+    .wrap-img {
+      background: #f7f7f7;
+      display: grid;
+
+      img {
+        margin: auto;
+        max-width: 389px;
+      }
+    }
+
+    #wrap-content-login-form {
+      display: grid;
+
+      #login-section {
+        margin: auto;
+        display: grid;
+        gap: 0.5rem;
+        padding: 1rem;
+        h2 {
+          margin: 0;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    #title-form {
+      display: grid;
+
+      span {
+        font-size: 2em;
+        color: var(--main-clr-third);
+        font-weight: bolder;
+        margin-top: 0.5em;
+      }
+
+      h2,
+      h5 {
+        font-size: 5em;
+        margin: 0px;
+        margin-bottom: -0.3em;
+        color: var(--main-clr-wht-1);
+        line-height: 1.5em;
+      }
+
+      h5 {
+        font-size: 1.5em;
+      }
+    }
+
+    #login-section {
+      .form-input {
+        display: grid;
+        gap: 0.2em;
+        border-radius: 8px;
+        background: #f9fafb;
+        padding: 0.5em;
+        border: 1px solid #d1d5db;
+        cursor: pointer !important;
+        cursor: pointer !important;
+
+        label,
+        input {
+          cursor: pointer !important;
+          background: transparent !important;
+          border: 0px !important;
+          font-size: var(--font-size-normal);
+          padding: 0px;
+
+          &:focus,
+          &:focus-visible {
+            outline: none;
+            outline-color: transparent !important;
+          }
+        }
+
+        label {
+          font-size: var(--font-size-small);
+        }
+      }
+
+      #button-login-section {
+        display: flex;
+        gap: 1em;
+
+        #btn-login,
+        #btn-login-guest {
+          border: unset;
+          cursor: pointer;
+          min-width: 400px;
+          background: #2200b8;
+          padding: 0.7rem;
+          border-radius: 5px;
+          color: var(--main-clr-wht-1);
+          font-size: var(--font-size-medium);
+          transition: 0.3s;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  #login-img {
+    grid-area: img;
+    background: var(--main-clr-blk-1);
+    height: max-content;
+    margin: auto;
+    height: 50%;
+    z-index: 3;
+    display: flex;
+    border-left: 0.5em solid var(--main-clr-wht-1);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: var(--main-clr-primary);
+      top: -3em;
+      left: -3.5em;
+      z-index: 2;
+    }
+
+    img {
+      margin: auto;
+      margin-bottom: 1em;
+      width: 20em;
+      padding: 0px 7em;
+      left: 0em;
+      position: relative;
+    }
+  }
+
+}
+.img-content-logo{
+  display: grid;
+  gap: 0.5rem;
+  grid-template-rows: max-content max-content;
+  justify-content: center;
+  text-align: center;
+  margin-top: 1rem;
+}
+.password-field {
+        position: relative;
+
+        input {
+            width: 30rem;
+            height: 4em;
+            padding: 1em;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.5);
+            font-size: 1rem;
+            letter-spacing: 1px;
+
+            &::placeholder {
+                color: #000000;
+                font-weight: bold;
+            }
+        }
+
+        #toggler {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+    }
+@media (max-width: 768px) {
+  body {
+    #main-login {
+      #login-field {
+        grid-template-columns: 1fr;
+        position: relative;
+        display: grid;
+        justify-content: center;
+
+        img {
+          width: 90% !important;
+        }
+        .img-content-logo{
+          img{
+            width: 57px !important;
+          }
+          .siqia-logo{
+            width: 70px !important;
+          }
+        }
+      }
+
+      #wrap-content-login-form {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        #login-section {
+          background: #ffffffab;
+          padding: 1rem;
+          border-radius: 8px;
+          width: 80%;
+
+          h2 {
+            font-size: 20px;
+          }
+
+          #btn-login {
+            min-width: unset !important;
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}

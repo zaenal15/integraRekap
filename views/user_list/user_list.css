@@ -1,0 +1,439 @@
+body .content-wrap {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 0em;
+}
+body .content-wrap #group-lists-box {
+  display: flex;
+  gap: 1em;
+  padding: 1em;
+  border-bottom: 0.2em solid var(--b7-clr-wht-1);
+  padding-bottom: 0.5em;
+}
+body .content-wrap #group-lists-box #group-lists {
+  display: flex;
+  overflow: auto;
+  max-width: 1000px;
+  gap: 0.5em;
+  padding-bottom: 0.5em;
+}
+body .content-wrap #group-lists-box #group-lists button {
+  min-width: 100px;
+}
+body .content-wrap #group-lists-box #group-filter {
+  display: flex;
+  gap: 0px;
+  overflow: hidden;
+  margin-left: auto;
+  height: -moz-max-content;
+  height: max-content;
+  border-radius: 0.25em;
+  border: 0.1em solid var(--b7-clr-wht-1);
+}
+body .content-wrap #group-lists-box #group-filter button, body .content-wrap #group-lists-box #group-filter input {
+  padding: 0.3em 0.5em;
+  border-radius: 0px;
+  border: unset;
+}
+body .content-wrap #group-lists-box #group-filter button {
+  width: 50px;
+}
+body .content-wrap #group-lists-box .search-user {
+  width: 300px;
+  height: -moz-max-content;
+  height: max-content;
+  background: var(--b7-clr-blk-2);
+  color: var(--b7-clr-wht-1);
+  border-left: 0.3em solid transparent;
+  font-size: var(--font-size-normal);
+  margin-left: auto;
+}
+body .content-wrap #group-lists-box .search-user:hover, body .content-wrap #group-lists-box .search-user:focus, body .content-wrap #group-lists-box .search-user:focus-within {
+  border-left: 0.3em solid var(--b7-clr-org-1);
+}
+body .content-wrap #group-lists-box button {
+  background: var(--b7-clr-blk-3);
+  color: var(--b7-clr-wht-1);
+  border: 0.1em solid var(--b7-clr-wht-1);
+  height: -moz-max-content;
+  height: max-content;
+  font-size: var(--font-size-normal);
+}
+body .content-wrap #group-lists-box .group-button {
+  background: var(--b7-clr-blk-2);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #group-lists-box .group-button:hover {
+  background: var(--b7-clr-wht-2);
+  color: var(--b7-clr-blk-1);
+  box-shadow: var(--main-neon-wht-light);
+}
+body .content-wrap #group-lists-box #add-group-button:hover {
+  background: var(--b7-clr-blu-2);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #group-lists-box #remove-group-button:hover {
+  background: var(--b7-clr-blu-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #group-lists-box #rename-group-button:hover {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #group-lists-box .active {
+  background: var(--b7-clr-wht-2);
+  color: var(--b7-clr-blk-1);
+  box-shadow: var(--main-neon-wht-light);
+}
+body .content-wrap #user-lists {
+  display: grid;
+  gap: 1em;
+  padding: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-rows: repeat(auto-fit, 350px);
+  overflow: auto;
+  height: 85vh;
+}
+body .content-wrap #user-lists .user-card.active {
+  box-shadow: var(--main-neon-wht-medium);
+  border: 0.2em solid var(--b7-clr-wht-1);
+  grid-column: span 2;
+  overflow: hidden;
+}
+body .content-wrap #user-lists .user-card.active .user-section {
+  border-radius: 0;
+  background: var(--b7-clr-blu-3);
+}
+body .content-wrap #user-lists .user-card.active .user-section .user-name {
+  text-shadow: var(--main-neon-wht-light);
+}
+body .content-wrap #user-lists .user-card.blocked {
+  border: 0.2em solid var(--b7-clr-blu-1) !important;
+}
+body .content-wrap #user-lists .user-card.blocked .user-section {
+  background: var(--b7-clr-blk-1) !important;
+  border-right: 0.2em solid var(--b7-clr-blu-1) !important;
+}
+body .content-wrap #user-lists .user-card.blocked .user-update-info {
+  pointer-events: none;
+}
+body .content-wrap #user-lists .user-card.inactive .user-section {
+  border-radius: 0;
+  background: var(--b7-clr-org-1) !important;
+}
+body .content-wrap #user-lists .user-card {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 0.2em solid transparent;
+  transition: all var(--speed-faster) ease-in-out;
+  height: 350px;
+}
+body .content-wrap #user-lists .user-card:hover {
+  box-shadow: var(--main-neon-wht-medium);
+  border: 0.2em solid var(--b7-clr-wht-1);
+}
+body .content-wrap #user-lists .user-card:hover .user-section {
+  background: var(--b7-clr-blu-2);
+}
+body .content-wrap #user-lists .user-card:hover .user-section .user-name {
+  text-shadow: var(--main-neon-wht-light);
+}
+body .content-wrap #user-lists .user-card:hover .user-section.add-user {
+  background: var(--b7-clr-org-1);
+}
+body .content-wrap #user-lists .user-card .user-section {
+  border-radius: 1em;
+  padding: 1em;
+  background: var(--b7-clr-blu-1);
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 1em;
+  width: calc(100% - 1em);
+}
+body .content-wrap #user-lists .user-card .user-section .user-name {
+  font-size: var(--font-size-medium);
+  font-weight: bolder;
+  margin: auto;
+}
+body .content-wrap #user-lists .user-card .user-section .user-photo {
+  width: 14em;
+  height: 13em;
+  margin: auto 0px;
+  border-radius: 50%;
+  margin: auto 0px;
+}
+body .content-wrap #user-lists .user-card .user-section .user-info {
+  width: calc(100% - 0em);
+  padding-top: 1em;
+  border-top: 0.2em solid var(--b7-clr-wht-1);
+  display: grid;
+  gap: 0.5em;
+  font-size: var(--font-size-normal);
+  margin-top: 0px;
+  margin-left: unset;
+}
+body .content-wrap #user-lists .user-card .user-section .user-info #add-user-button {
+  font-size: var(--font-size-medium);
+  margin: auto 0px;
+}
+body .content-wrap #user-lists .user-card .user-section .user-info label, body .content-wrap #user-lists .user-card .user-section .user-info span {
+  color: var(--b7-clr-wht-1);
+  font-size: var(--font-size-small);
+}
+body .content-wrap #user-lists .user-card .user-section.add-user {
+  background: var(--b7-clr-blk-3);
+}
+body .content-wrap #user-lists .user-card .user-section.add-user:hover {
+  background: var(--b7-clr-blu-2);
+}
+body .content-wrap #user-lists .user-card .user-detail {
+  display: none;
+  transition: all var(--speed-faster) ease-in-out;
+  min-width: 200px;
+  grid-template-rows: max-content 1fr max-content;
+  border-left: 0.2em solid var(--b7-clr-wht-1);
+}
+body .content-wrap #user-lists .user-card .user-detail .user-act {
+  display: flex;
+  overflow: hidden;
+  gap: 0em;
+  border-bottom: 0.2em solid var(--b7-clr-wht-1);
+}
+body .content-wrap #user-lists .user-card .user-detail .user-act button {
+  width: 100%;
+  border-radius: 0px;
+  background: var(--b7-clr-blu-2);
+  color: var(--b7-clr-wht-1);
+  font-weight: bolder;
+  font-size: var(--font-size-normal);
+  padding: 0.5em 1em;
+}
+body .content-wrap #user-lists .user-card .user-detail .user-act button:hover {
+  background: var(--b7-clr-org-1);
+}
+body .content-wrap #user-lists .user-card .user-detail .user-act .active {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #user-lists .user-card .user-detail .user-update-info, body .content-wrap #user-lists .user-card .user-detail .user-update-password {
+  background: var(--b7-clr-blk-1);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-height: 260px;
+  overflow: auto;
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input {
+  display: grid;
+  gap: 0.5em;
+  background: var(--b7-clr-blk-3);
+  padding: 0.5em;
+  border-left: 0.3em solid transparent;
+  cursor: pointer !important;
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input:hover, body .content-wrap #user-lists .user-card .user-detail .form-input:focus, body .content-wrap #user-lists .user-card .user-detail .form-input:focus-within {
+  text-shadow: var(--main-neon-wht-medium);
+  border-left: 0.3em solid var(--b7-clr-org-1);
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input label, body .content-wrap #user-lists .user-card .user-detail .form-input input, body .content-wrap #user-lists .user-card .user-detail .form-input select {
+  cursor: pointer !important;
+  color: var(--b7-clr-wht-1);
+  background: transparent !important;
+  border: 0px !important;
+  font-size: var(--font-size-normal);
+  padding: 0px;
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input label option, body .content-wrap #user-lists .user-card .user-detail .form-input input option, body .content-wrap #user-lists .user-card .user-detail .form-input select option {
+  color: var(--b7-clr-blk-1);
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input label:focus, body .content-wrap #user-lists .user-card .user-detail .form-input label:focus-visible, body .content-wrap #user-lists .user-card .user-detail .form-input input:focus, body .content-wrap #user-lists .user-card .user-detail .form-input input:focus-visible, body .content-wrap #user-lists .user-card .user-detail .form-input select:focus, body .content-wrap #user-lists .user-card .user-detail .form-input select:focus-visible {
+  outline: none;
+  outline-color: transparent !important;
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input label {
+  font-size: var(--font-size-small);
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input button {
+  width: 100%;
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input button:hover {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #user-lists .user-card .user-detail .form-input button.active {
+  background: var(--b7-clr-blu-1);
+}
+body .content-wrap #user-lists .user-card .user-detail .update-user-button {
+  width: 100%;
+  border-radius: 0px;
+  background: var(--b7-clr-blu-2);
+  color: var(--b7-clr-wht-1);
+  font-weight: bolder;
+  font-size: var(--font-size-normal);
+  padding: 0.5em;
+  position: sticky;
+  bottom: 0px;
+}
+body .content-wrap #user-lists .user-card .user-detail .update-user-button:hover {
+  background: var(--b7-clr-org-1);
+}
+body .content-wrap #user-lists-no-data {
+  padding: 0.5em 2em;
+  border-radius: 0.25em;
+  background: url(../../assets/svgs/cancel1.svg) no-repeat right bottom;
+  background-size: 250px;
+  background-origin: content-box;
+  background-color: var(--b7-clr-blk-1);
+  height: 300px;
+  color: var(--b7-clr-wht-2);
+  display: grid;
+  place-content: center;
+  gap: 1em;
+}
+body .content-wrap #user-lists-no-data span {
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  margin: auto;
+}
+body .content-wrap #user-lists-no-data span button {
+  height: 100%;
+  padding: 0.2em;
+  font-size: smaller;
+  width: 100%;
+  margin-top: 0.3em;
+}
+body .content-wrap #user-lists-no-data span button:hover {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+body #doModal .modal-title {
+  padding-top: 0px !important;
+}
+
+body.white-theme .content-wrap #user-lists-no-data {
+  background: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap #group-lists {
+  border-color: var(--b7-clr-blu-1);
+}
+body.white-theme .content-wrap #group-lists #add-group-button:hover {
+  background: var(--b7-clr-org-1) !important;
+  color: white !important;
+}
+body.white-theme .content-wrap #group-lists .search-user {
+  background: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap #group-lists .group-button {
+  background: var(--b7-clr-blu-1) !important;
+  color: white !important;
+}
+body.white-theme .content-wrap #group-lists .group-button:hover {
+  background: var(--b7-clr-org-1) !important;
+}
+body.white-theme .content-wrap #group-lists .group-button.active {
+  background: var(--b7-clr-org-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card {
+  border: 5px solid var(--b7-clr-blu-1);
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section {
+  background: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section span, body.white-theme .content-wrap #user-lists .user-card .user-section label {
+  color: var(--b7-clr-blk-2) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section .user-info {
+  border-color: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section:hover {
+  background: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section:hover span, body.white-theme .content-wrap #user-lists .user-card .user-section:hover label {
+  color: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section:hover .user-info {
+  border-color: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section.add-user {
+  background: var(--b7-clr-blu-2) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section.add-user .user-info {
+  border-color: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card .user-section.add-user:hover {
+  background: var(--b7-clr-org-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card.active, body.white-theme .content-wrap #user-lists .user-card.inactive {
+  border: 5px solid var(--b7-clr-blu-1);
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-section span, body.white-theme .content-wrap #user-lists .user-card.active .user-section label, body.white-theme .content-wrap #user-lists .user-card.inactive .user-section span, body.white-theme .content-wrap #user-lists .user-card.inactive .user-section label {
+  color: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-section .user-info, body.white-theme .content-wrap #user-lists .user-card.inactive .user-section .user-info {
+  border-color: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-update-info, body.white-theme .content-wrap #user-lists .user-card.inactive .user-update-info {
+  background: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-update-info .form-input, body.white-theme .content-wrap #user-lists .user-card.inactive .user-update-info .form-input {
+  background: var(--b7-clr-gry-4) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-update-info .form-input label, body.white-theme .content-wrap #user-lists .user-card.active .user-update-info .form-input input, body.white-theme .content-wrap #user-lists .user-card.active .user-update-info .form-input select, body.white-theme .content-wrap #user-lists .user-card.inactive .user-update-info .form-input label, body.white-theme .content-wrap #user-lists .user-card.inactive .user-update-info .form-input input, body.white-theme .content-wrap #user-lists .user-card.inactive .user-update-info .form-input select {
+  color: var(--b7-clr-blk-2) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-update-info .form-input .status-user, body.white-theme .content-wrap #user-lists .user-card.inactive .user-update-info .form-input .status-user {
+  background: var(--mtb-clr-gry-3);
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-update-info .form-input .status-user:hover, body.white-theme .content-wrap #user-lists .user-card.inactive .user-update-info .form-input .status-user:hover {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-update-info .form-input .status-user.active, body.white-theme .content-wrap #user-lists .user-card.inactive .user-update-info .form-input .status-user.active {
+  background: var(--b7-clr-blu-1);
+}
+body.white-theme .content-wrap #user-lists .user-card.active .user-section, body.white-theme .content-wrap #user-lists .user-card.inactive .user-section {
+  background: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap #user-lists .user-card.inactive .user-section {
+  background: var(--b7-clr-org-1) !important;
+}
+body.white-theme #doModal #group-add-info, body.white-theme #doModal #user-add-info {
+  background: white !important;
+}
+body.white-theme #doModal #group-add-info h2, body.white-theme #doModal #user-add-info h2 {
+  color: var(--mtb-clr-blk-2) !important;
+  border-color: var(--mtb-clr-blk-2) !important;
+}
+body.white-theme #doModal #group-add-info .form-input, body.white-theme #doModal #user-add-info .form-input {
+  background: var(--b7-clr-wht-2) !important;
+}
+body.white-theme #doModal #group-add-info .form-input input, body.white-theme #doModal #group-add-info .form-input label, body.white-theme #doModal #group-add-info .form-input select, body.white-theme #doModal #user-add-info .form-input input, body.white-theme #doModal #user-add-info .form-input label, body.white-theme #doModal #user-add-info .form-input select {
+  color: var(--mtb-clr-blk-2) !important;
+}
+
+@media screen and (max-device-width: 1500px) {
+  body #mainContent .content-wrap button, body #mainContent .content-wrap span, body #mainContent .content-wrap input, body #mainContent .content-wrap label {
+    font-size: small !important;
+  }
+  body #mainContent .content-wrap .user-card {
+    min-height: 300px !important;
+    grid-template-columns: unset !important;
+  }
+  body #mainContent .content-wrap .user-card .user-section {
+    width: auto !important;
+  }
+  body #mainContent .content-wrap .user-card .user-section .user-photo {
+    margin: auto !important;
+    max-width: 200px !important;
+  }
+  body #mainContent .content-wrap #user-lists .user-card.active {
+    grid-template-columns: max-content 1fr !important;
+  }
+  body #doModal button, body #doModal span, body #doModal label, body #doModal .user-info {
+    font-size: medium !important;
+  }
+}/*# sourceMappingURL=user_list.css.map */

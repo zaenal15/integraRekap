@@ -1,0 +1,1498 @@
+body #title-content-header {
+  display: block !important;
+}
+body .content-wrap {
+  padding: 0.5rem 1rem;
+}
+body .content-wrap #formulir-penilaian-token {
+  grid-template-rows: 1fr !important;
+  place-content: center;
+  align-items: center;
+}
+body .content-wrap #formulir-penilaian-token .no-data-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  align-items: center;
+}
+body .content-wrap #formulir-penilaian-token .no-data-content h3 {
+  margin-bottom: 0.5rem !important;
+}
+body .content-wrap #formulir-penilaian-token .no-data-content .form-input {
+  height: 30px;
+}
+body .content-wrap #formulir-penilaian-token .no-data-content .form-input input {
+  text-align: center;
+}
+body .content-wrap #formulir-penilaian-token .no-data-content #show-report {
+  padding: 1rem;
+  font-size: medium;
+  border-radius: 8px;
+  background: #2200b8;
+  color: white;
+}
+body .content-wrap #rekap-lembar-peserta {
+  display: grid;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  right: 0;
+  grid-template-rows: max-content 1fr !important;
+}
+body .content-wrap #rekap-lembar-peserta .row-content {
+  overflow: auto;
+  border-radius: 0 !important;
+  height: unset !important;
+  max-height: unset !important;
+}
+body .content-wrap #rekap-lembar-peserta .row-content #table-mata-lomba-section {
+  margin: 0rem !important;
+  overflow: unset !important;
+  border-radius: 0 !important;
+  height: unset !important;
+  max-height: unset !important;
+  padding: 0 !important;
+}
+body .content-wrap #rekap-content-section,
+body .content-wrap #rekap-lembar-peserta,
+body .content-wrap #formulir-penilaian-token {
+  display: none;
+  height: 100%;
+}
+body .content-wrap #rekap-content-section .box-info,
+body .content-wrap #rekap-lembar-peserta .box-info,
+body .content-wrap #formulir-penilaian-token .box-info {
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #d1cfd4;
+  border-radius: 6px;
+}
+body .content-wrap #rekap-content-section .box-info .box-persentase-rekap,
+body .content-wrap #rekap-lembar-peserta .box-info .box-persentase-rekap,
+body .content-wrap #formulir-penilaian-token .box-info .box-persentase-rekap {
+  display: grid;
+  grid-template-columns: 45px 1fr max-content;
+  gap: 0.5rem;
+  align-items: center;
+  overflow: hidden;
+}
+body .content-wrap #rekap-content-section .box-info .box-persentase-rekap .persentase-text,
+body .content-wrap #rekap-lembar-peserta .box-info .box-persentase-rekap .persentase-text,
+body .content-wrap #formulir-penilaian-token .box-info .box-persentase-rekap .persentase-text {
+  display: grid;
+  background: #eeeaff;
+  padding: 0.5rem;
+  font-weight: bold;
+  color: #2200B8;
+  text-align: center;
+}
+body .content-wrap #rekap-content-section .box-info .box-persentase-rekap .total-rekap-text,
+body .content-wrap #rekap-lembar-peserta .box-info .box-persentase-rekap .total-rekap-text,
+body .content-wrap #formulir-penilaian-token .box-info .box-persentase-rekap .total-rekap-text {
+  padding: 0.5rem;
+}
+body .content-wrap #rekap-content-section .box-info .box-persentase-rekap .lomba-text,
+body .content-wrap #rekap-lembar-peserta .box-info .box-persentase-rekap .lomba-text,
+body .content-wrap #formulir-penilaian-token .box-info .box-persentase-rekap .lomba-text {
+  padding: 0.5rem 0;
+}
+body .content-wrap #rekap-content-section .box-info .box-persentase-rekap label,
+body .content-wrap #rekap-lembar-peserta .box-info .box-persentase-rekap label,
+body .content-wrap #formulir-penilaian-token .box-info .box-persentase-rekap label {
+  font-style: unset !important;
+  font-size: 12px;
+}
+body .content-wrap #rekap-content-section .box-info .box-persentase-rekap span,
+body .content-wrap #rekap-lembar-peserta .box-info .box-persentase-rekap span,
+body .content-wrap #formulir-penilaian-token .box-info .box-persentase-rekap span {
+  font-weight: bold;
+  font-size: 14px;
+}
+body .content-wrap #rekap-content-section .box-info .icon-box,
+body .content-wrap #rekap-lembar-peserta .box-info .icon-box,
+body .content-wrap #formulir-penilaian-token .box-info .icon-box {
+  font-size: 16px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  border-radius: 100px;
+  display: grid;
+}
+body .content-wrap #rekap-content-section .box-info .label-ok,
+body .content-wrap #rekap-lembar-peserta .box-info .label-ok,
+body .content-wrap #formulir-penilaian-token .box-info .label-ok {
+  color: #1C9B6F;
+  background: #E4F8F1;
+}
+body .content-wrap #rekap-content-section .box-info .label-not-ok,
+body .content-wrap #rekap-lembar-peserta .box-info .label-not-ok,
+body .content-wrap #formulir-penilaian-token .box-info .label-not-ok {
+  background: #FADCDC;
+  color: var(--ptch-clr-red-1);
+}
+body .content-wrap #rekap-content-section .box-info .label-duration,
+body .content-wrap #rekap-lembar-peserta .box-info .label-duration,
+body .content-wrap #formulir-penilaian-token .box-info .label-duration {
+  color: #39a1ea;
+  background: #DAEDFB;
+}
+body .content-wrap #rekap-content-section .box-info .label-man-power,
+body .content-wrap #rekap-lembar-peserta .box-info .label-man-power,
+body .content-wrap #formulir-penilaian-token .box-info .label-man-power {
+  color: #1392a2;
+  background: #DAF7FB;
+}
+body .content-wrap #rekap-content-section .btn-header-peserta,
+body .content-wrap #rekap-lembar-peserta .btn-header-peserta,
+body .content-wrap #formulir-penilaian-token .btn-header-peserta {
+  margin-left: auto;
+  display: flex;
+  height: 100%;
+  gap: 0.5rem;
+}
+body .content-wrap #rekap-content-section #print-lembar-nilai-peserta,
+body .content-wrap #rekap-lembar-peserta #print-lembar-nilai-peserta,
+body .content-wrap #formulir-penilaian-token #print-lembar-nilai-peserta {
+  background: #1e96fc;
+  color: white;
+  font-weight: bold;
+}
+body .content-wrap #rekap-content-section #print-lembar-nilai-peserta:hover,
+body .content-wrap #rekap-lembar-peserta #print-lembar-nilai-peserta:hover,
+body .content-wrap #formulir-penilaian-token #print-lembar-nilai-peserta:hover {
+  background: #2200B8 !important;
+}
+body .content-wrap #rekap-content-section #btn-modal-arsip-nilai,
+body .content-wrap #rekap-lembar-peserta #btn-modal-arsip-nilai,
+body .content-wrap #formulir-penilaian-token #btn-modal-arsip-nilai {
+  background: #2200b8;
+  color: white;
+  font-weight: bold;
+}
+body .content-wrap #rekap-content-section #btn-modal-arsip-nilai span,
+body .content-wrap #rekap-lembar-peserta #btn-modal-arsip-nilai span,
+body .content-wrap #formulir-penilaian-token #btn-modal-arsip-nilai span {
+  color: white;
+}
+body .content-wrap #rekap-content-section #btn-modal-arsip-nilai:hover,
+body .content-wrap #rekap-lembar-peserta #btn-modal-arsip-nilai:hover,
+body .content-wrap #formulir-penilaian-token #btn-modal-arsip-nilai:hover {
+  background: #2200B8 !important;
+}
+body .content-wrap #rekap-content-section #wrap-header-info,
+body .content-wrap #rekap-lembar-peserta #wrap-header-info,
+body .content-wrap #formulir-penilaian-token #wrap-header-info {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: 1rem;
+  padding: 0.5em;
+}
+body .content-wrap #rekap-content-section #wrap-header-info #wrap-legend-rekap,
+body .content-wrap #rekap-lembar-peserta #wrap-header-info #wrap-legend-rekap,
+body .content-wrap #formulir-penilaian-token #wrap-header-info #wrap-legend-rekap {
+  margin-left: auto;
+}
+body .content-wrap #rekap-content-section #wrap-header-info #total-persentase-rekap,
+body .content-wrap #rekap-lembar-peserta #wrap-header-info #total-persentase-rekap,
+body .content-wrap #formulir-penilaian-token #wrap-header-info #total-persentase-rekap {
+  width: 300px;
+}
+body .content-wrap #rekap-content-section #wrap-header-info #total-persentase-rekap .box-persentase-rekap,
+body .content-wrap #rekap-lembar-peserta #wrap-header-info #total-persentase-rekap .box-persentase-rekap,
+body .content-wrap #formulir-penilaian-token #wrap-header-info #total-persentase-rekap .box-persentase-rekap {
+  grid-template-columns: 45px 1fr max-content max-content;
+  height: 100%;
+}
+body .content-wrap #rekap-content-section #wrap-header-info #total-persentase-rekap .box-persentase-rekap .progress-bar-content #progress-count,
+body .content-wrap #rekap-lembar-peserta #wrap-header-info #total-persentase-rekap .box-persentase-rekap .progress-bar-content #progress-count,
+body .content-wrap #formulir-penilaian-token #wrap-header-info #total-persentase-rekap .box-persentase-rekap .progress-bar-content #progress-count {
+  justify-content: space-between;
+}
+body .content-wrap #rekap-content-section #wrap-header-info #total-persentase-rekap .box-persentase-rekap .total-rekap-text,
+body .content-wrap #rekap-lembar-peserta #wrap-header-info #total-persentase-rekap .box-persentase-rekap .total-rekap-text,
+body .content-wrap #formulir-penilaian-token #wrap-header-info #total-persentase-rekap .box-persentase-rekap .total-rekap-text {
+  font-size: 17px;
+}
+body .content-wrap #rekap-content-section #wrap-header-info #total-persentase-rekap .box-persentase-rekap .persentase-text,
+body .content-wrap #rekap-lembar-peserta #wrap-header-info #total-persentase-rekap .box-persentase-rekap .persentase-text,
+body .content-wrap #formulir-penilaian-token #wrap-header-info #total-persentase-rekap .box-persentase-rekap .persentase-text {
+  height: 100%;
+  align-items: center;
+  font-size: 20px;
+}
+body .content-wrap #rekap-content-section #wrap-header-info #total-persentase-rekap .box-persentase-rekap button,
+body .content-wrap #rekap-lembar-peserta #wrap-header-info #total-persentase-rekap .box-persentase-rekap button,
+body .content-wrap #formulir-penilaian-token #wrap-header-info #total-persentase-rekap .box-persentase-rekap button {
+  height: 100%;
+}
+body .content-wrap #rekap-content-section #wrap-progress-rekap,
+body .content-wrap #rekap-lembar-peserta #wrap-progress-rekap,
+body .content-wrap #formulir-penilaian-token #wrap-progress-rekap {
+  padding: 0.5em;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3px;
+  display: none;
+  margin-top: 0.5em;
+  border-top: 1px solid #d1cfd4;
+}
+body .content-wrap #rekap-content-section #wrap-progress-rekap.active,
+body .content-wrap #rekap-lembar-peserta #wrap-progress-rekap.active,
+body .content-wrap #formulir-penilaian-token #wrap-progress-rekap.active {
+  display: grid !important;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section {
+  overflow: auto;
+  border-radius: 0 !important;
+  max-height: 60vh !important;
+  padding: 0.5rem !important;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap {
+  border-bottom: 5px solid #2200b8;
+  padding: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap h3,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap h3,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap h3 {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  gap: 1rem;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir {
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: max-content;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-total-akhir,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-pinalti,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-umum,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-utama, body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-sub-total,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-total-akhir,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-pinalti,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-umum,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-utama,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-sub-total,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-total-akhir,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-pinalti,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-umum,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-point-utama,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-sub-total {
+  background: #f6f7fb !important;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir, body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total {
+  text-align: center;
+  font-weight: 800;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti {
+  background: #d62828 !important;
+  color: white !important;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir {
+  background: #47bb8e !important;
+  color: white !important;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum, body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total {
+  background: #2200B8 !important;
+  color: white !important;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .content-nilai-rekap-akhir .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama {
+  background: #1e96fc !important;
+  color: white !important;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .head-juri,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .head-total,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .head-juri,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .head-total,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .head-juri,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .head-total {
+  text-align: center !important;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .col-total,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .col-juri,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .col-total,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .col-juri,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .col-total,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-nilai-lomba .col-juri {
+  text-align: center;
+  font-weight: 800;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-nilai,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-footer-nilai,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-total-akhir,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-nilai-pinalti,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-nilai,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-footer-nilai,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-total-akhir,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-nilai-pinalti,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-nilai,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-footer-nilai,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-total-akhir,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-akhir-nilai-lomba .col-nilai-pinalti {
+  text-align: center;
+  font-weight: 800;
+}
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-total,
+body .content-wrap #rekap-content-section #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-field,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-total,
+body .content-wrap #rekap-lembar-peserta #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-field,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-total,
+body .content-wrap #formulir-penilaian-token #table-mata-lomba-section .wrap-lembar-rekap .content-tb-lembar-rekap .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-field {
+  text-align: center;
+  font-weight: 800;
+}
+body .content-wrap #wrap-filter-rekap {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+body .content-wrap .icon-menu {
+  width: 35px;
+  height: 35px;
+  color: #2200B8;
+  border-color: #2200B8;
+  background: #eeeaff;
+  display: grid;
+  border-radius: 5px;
+  place-items: center;
+  font-size: 18px;
+}
+body .content-wrap .filter-icon {
+  display: grid !important;
+  grid-template-columns: max-content 1fr;
+  background: var(--ptch-clr-wht-1) !important;
+  grid-template-rows: max-content max-content;
+  border-left: 2px solid #2200B8;
+  row-gap: 2px;
+  grid-template-areas: "icon label" "icon select";
+}
+body .content-wrap .filter-icon label {
+  grid-area: label;
+  font-weight: bold;
+}
+body .content-wrap .filter-icon select {
+  grid-area: select;
+  font-size: 12px;
+}
+body .content-wrap .filter-icon .icon-menu {
+  grid-area: icon;
+}
+body .content-wrap .table-container {
+  padding: 0 !important;
+}
+body .content-wrap #tabel-rekap-nilai-lomba,
+body .content-wrap #tabel-rekap-juara-lomba,
+body .content-wrap .tabel-rekap-nilai-lomba,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba {
+  border-collapse: collapse;
+}
+body .content-wrap #tabel-rekap-nilai-lomba .category-header td,
+body .content-wrap #tabel-rekap-juara-lomba .category-header td,
+body .content-wrap .tabel-rekap-nilai-lomba .category-header td,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba .category-header td,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba .category-header td {
+  background: #EFEBFF !important;
+}
+body .content-wrap #tabel-rekap-nilai-lomba th,
+body .content-wrap #tabel-rekap-nilai-lomba td,
+body .content-wrap #tabel-rekap-juara-lomba th,
+body .content-wrap #tabel-rekap-juara-lomba td,
+body .content-wrap .tabel-rekap-nilai-lomba th,
+body .content-wrap .tabel-rekap-nilai-lomba td,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba th,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba td,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba th,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba td {
+  border: 1px solid #e0e0e0 !important;
+  padding: 3px;
+  font-size: 12px !important;
+}
+body .content-wrap #tabel-rekap-nilai-lomba .main-rank td,
+body .content-wrap #tabel-rekap-juara-lomba .main-rank td,
+body .content-wrap .tabel-rekap-nilai-lomba .main-rank td,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba .main-rank td,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba .main-rank td {
+  background: #2200b8 !important;
+  color: white !important;
+}
+body .content-wrap #tabel-rekap-nilai-lomba thead .head-no-peserta,
+body .content-wrap #tabel-rekap-juara-lomba thead .head-no-peserta,
+body .content-wrap .tabel-rekap-nilai-lomba thead .head-no-peserta,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba thead .head-no-peserta,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba thead .head-no-peserta {
+  min-width: 156px;
+  width: 156px;
+}
+body .content-wrap #tabel-rekap-nilai-lomba thead .head-nama-pangkalan,
+body .content-wrap #tabel-rekap-juara-lomba thead .head-nama-pangkalan,
+body .content-wrap .tabel-rekap-nilai-lomba thead .head-nama-pangkalan,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba thead .head-nama-pangkalan,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba thead .head-nama-pangkalan {
+  min-width: 245px;
+  width: 245px;
+}
+body .content-wrap #tabel-rekap-nilai-lomba thead .head-regu,
+body .content-wrap #tabel-rekap-juara-lomba thead .head-regu,
+body .content-wrap .tabel-rekap-nilai-lomba thead .head-regu,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba thead .head-regu,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba thead .head-regu {
+  min-width: 150px;
+  width: 150px;
+}
+body .content-wrap #tabel-rekap-nilai-lomba thead .head-kaegori-penilaian,
+body .content-wrap #tabel-rekap-juara-lomba thead .head-kaegori-penilaian,
+body .content-wrap .tabel-rekap-nilai-lomba thead .head-kaegori-penilaian,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba thead .head-kaegori-penilaian,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba thead .head-kaegori-penilaian {
+  width: 90px;
+  max-width: 90px;
+  font-size: 10px !important;
+  text-align: center;
+  text-transform: uppercase;
+}
+body .content-wrap #tabel-rekap-nilai-lomba thead .head-mata-lomba,
+body .content-wrap #tabel-rekap-juara-lomba thead .head-mata-lomba,
+body .content-wrap .tabel-rekap-nilai-lomba thead .head-mata-lomba,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba thead .head-mata-lomba,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba thead .head-mata-lomba {
+  width: 35px;
+}
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-1,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-1,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-rank-lomba.rank-1,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-point-lomba.rank-1,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-1,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-1,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-rank-lomba.rank-1,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-point-lomba.rank-1,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-rank-lomba.rank-1,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-point-lomba.rank-1 {
+  background: #47bb8e !important;
+  color: white !important;
+}
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-2,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-2,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-rank-lomba.rank-2,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-point-lomba.rank-2,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-2,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-2,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-rank-lomba.rank-2,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-point-lomba.rank-2,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-rank-lomba.rank-2,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-point-lomba.rank-2 {
+  background: #1e96fc !important;
+  color: white !important;
+}
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-3,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-3,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-rank-lomba.rank-3,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-point-lomba.rank-3,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-rank-lomba.rank-3,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-point-lomba.rank-3,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-rank-lomba.rank-3,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-point-lomba.rank-3,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-rank-lomba.rank-3,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-point-lomba.rank-3 {
+  background: #fcbf49 !important;
+  color: white !important;
+}
+body .content-wrap #tabel-rekap-nilai-lomba tbody .col-value-lomba,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .col-total-nilai,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .col-rank,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-nilai-lomba,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-rank-lomba,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-point-lomba,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-total-rank-points,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-total-points-banding,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .rekap-overall-rank-juara,
+body .content-wrap #tabel-rekap-juara-lomba tbody .col-value-lomba,
+body .content-wrap #tabel-rekap-juara-lomba tbody .col-total-nilai,
+body .content-wrap #tabel-rekap-juara-lomba tbody .col-rank,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-nilai-lomba,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-rank-lomba,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-point-lomba,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-total-rank-points,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-total-points-banding,
+body .content-wrap #tabel-rekap-juara-lomba tbody .rekap-overall-rank-juara,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .col-value-lomba,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .col-total-nilai,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .col-rank,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-nilai-lomba,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-rank-lomba,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-point-lomba,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-total-rank-points,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-total-points-banding,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .rekap-overall-rank-juara,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .col-value-lomba,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .col-total-nilai,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .col-rank,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-nilai-lomba,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-rank-lomba,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-point-lomba,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-total-rank-points,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-total-points-banding,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .rekap-overall-rank-juara,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .col-value-lomba,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .col-total-nilai,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .col-rank,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-nilai-lomba,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-rank-lomba,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-point-lomba,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-total-rank-points,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-total-points-banding,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .rekap-overall-rank-juara {
+  text-align: center;
+}
+body .content-wrap #tabel-rekap-nilai-lomba tbody .col-kategori-penilaian,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .col-nilai-pinalti-lomba,
+body .content-wrap #tabel-rekap-juara-lomba tbody .col-kategori-penilaian,
+body .content-wrap #tabel-rekap-juara-lomba tbody .col-nilai-pinalti-lomba,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .col-kategori-penilaian,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .col-nilai-pinalti-lomba,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .col-kategori-penilaian,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .col-nilai-pinalti-lomba,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .col-kategori-penilaian,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .col-nilai-pinalti-lomba {
+  text-align: center;
+}
+body .content-wrap #tabel-rekap-nilai-lomba tbody .col-sub-total,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .col-nilai-pinalti,
+body .content-wrap #tabel-rekap-nilai-lomba tbody .col-total-akhir,
+body .content-wrap #tabel-rekap-juara-lomba tbody .col-sub-total,
+body .content-wrap #tabel-rekap-juara-lomba tbody .col-nilai-pinalti,
+body .content-wrap #tabel-rekap-juara-lomba tbody .col-total-akhir,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .col-sub-total,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .col-nilai-pinalti,
+body .content-wrap .tabel-rekap-nilai-lomba tbody .col-total-akhir,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .col-sub-total,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .col-nilai-pinalti,
+body .content-wrap .tabel-rekap-pengurangan-nilai-lomba tbody .col-total-akhir,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .col-sub-total,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .col-nilai-pinalti,
+body .content-wrap .tabel-rekap-akhir-nilai-lomba tbody .col-total-akhir {
+  text-align: center;
+}
+body .content-wrap .nilai-belum-diberikan i {
+  color: #fcbf49;
+}
+body .content-wrap .tidak-ikut-lomba i {
+  color: #d62828;
+}
+body .content-wrap #wrap-lembar-jawaban {
+  height: 100%;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban {
+  background: #2200B8;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  border-bottom: 1px solid #a3aed0;
+  padding: 0.5rem;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban .wrap-setting-rekap {
+  margin-left: auto;
+  height: 100%;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban .wrap-setting-rekap button {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban .wrap-setting-rekap #btn-kategori-juara {
+  background: #1e96fc !important;
+  color: white;
+  font-weight: bold;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban h2 {
+  color: white;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban i {
+  font-size: 19px;
+  color: white;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban .btn-rekap-lomba {
+  display: flex;
+  border-radius: 7px;
+  overflow: hidden;
+  padding: 0.4rem;
+  background: #16007A;
+  color: white;
+  align-items: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban .btn-rekap-lomba button {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0.5rem;
+  border-radius: 7px !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-header-lembar-jawaban .btn-rekap-lomba .active {
+  background: #1e96fc !important;
+  color: white;
+  font-weight: bold;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara.active {
+  grid-template-columns: 250px 200px 1fr;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian.active .peserta-list,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara.active .peserta-list {
+  display: block;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-content-body-rekap {
+  display: grid;
+  display: grid;
+  overflow: auto;
+  position: relative;
+  height: 100%;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-content-body-rekap .show {
+  display: grid !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara {
+  grid-template-columns: 300px 1fr !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara {
+  grid-template-columns: 250px 1fr;
+  background: white;
+  display: none;
+  border-radius: 0 0 8px 8px;
+  height: 100%;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar {
+  border-right: 1px solid #a3aed0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar h2,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar h2 {
+  background: #EFEBFF;
+  border-bottom: 1px solid #a3aed0;
+  padding: 0.5rem;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .lomba-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .lomba-header {
+  padding-left: 1rem !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .kategori-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .kategori-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .kategori-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .kategori-header {
+  background: #efebff;
+  padding: 0.3rem;
+  padding-left: 1rem;
+  border-bottom: 1px solid #a3aed0;
+  border-top: 1px solid #a3aed0;
+  cursor: pointer;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .lomba-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .kategori-juara-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .lomba-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .kategori-juara-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .lomba-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .kategori-juara-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .lomba-header,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .kategori-juara-header {
+  font-size: var(--font-size-medium);
+  padding: 0.5rem 1rem;
+  padding-left: 2rem;
+  cursor: pointer;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .lomba-header:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .kategori-juara-header:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .lomba-header:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .kategori-juara-header:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .lomba-header:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .kategori-juara-header:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .lomba-header:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .kategori-juara-header:hover {
+  background: #e1d9ff;
+  color: #2200b8;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .lomba-header:hover span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .lomba-header:hover i,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .kategori-juara-header:hover span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .kategori-juara-header:hover i,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .lomba-header:hover span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .lomba-header:hover i,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .kategori-juara-header:hover span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .kategori-juara-header:hover i,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .lomba-header:hover span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .lomba-header:hover i,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .kategori-juara-header:hover span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .kategori-juara-header:hover i,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .lomba-header:hover span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .lomba-header:hover i,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .kategori-juara-header:hover span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .kategori-juara-header:hover i {
+  color: #2200b8;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .lomba-header.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .kategori-juara-header.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .lomba-header.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .kategori-juara-header.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .lomba-header.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .kategori-juara-header.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .lomba-header.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .kategori-juara-header.active {
+  background: #e1d9ff;
+  color: #2200b8;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .lomba-header.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .lomba-header.active i,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .kategori-juara-header.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #lomba-container .kategori-juara-header.active i,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .lomba-header.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .lomba-header.active i,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .kategori-juara-header.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .sidebar #kategori-juara-container .kategori-juara-header.active i,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .lomba-header.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .lomba-header.active i,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .kategori-juara-header.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #lomba-container .kategori-juara-header.active i,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .lomba-header.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .lomba-header.active i,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .kategori-juara-header.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .sidebar #kategori-juara-container .kategori-juara-header.active i {
+  color: #2200b8;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai.active {
+  display: block !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai {
+  top: 0;
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  z-index: 2;
+  background: white;
+  border-right: 1px solid #a3aed0;
+  padding: 0.5rem;
+  padding-top: 0 !important;
+  overflow: auto;
+  display: none;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #header-pengurangan-nilai,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #header-pengurangan-nilai {
+  background: white;
+  position: sticky;
+  top: 0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #header-pengurangan-nilai h3,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #header-pengurangan-nilai h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists {
+  display: grid;
+  gap: 0.5rem;
+  grid-auto-rows: max-content;
+  overflow: auto;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point {
+  border: 1px solid #a3aed0;
+  border-radius: 8px;
+  overflow: hidden;
+  display: grid;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background: #efebff;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point .total-pengurangan-kategori,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point .total-pengurangan-kategori {
+  margin-left: auto;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point .btn-edit-sub-point,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point .btn-edit-sub-point {
+  margin-left: auto;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point span {
+  padding: 0.8rem;
+  font-weight: bold;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point button,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point button {
+  height: 100%;
+  min-width: 50px;
+  background: #d1d5db;
+  border-radius: 0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point button:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point button:hover {
+  background: #47bb8e;
+  color: white;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point .btn-delete-sub-point,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .header-sub-point .btn-delete-sub-point {
+  margin-left: auto;
+  border-right: 1.5px solid #a3aed0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  grid-auto-rows: max-content;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list .sub-point-content,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list .sub-point-content {
+  padding: 0.5em;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 12px !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list .box-category-content,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list .box-category-content {
+  display: grid;
+  background: white;
+  gap: 0.3rem;
+  padding: 0.5em;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list .box-category-content.active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list .box-category-content.active {
+  border-color: #2200b8 !important;
+  background: #2200b8 !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list .box-category-content.active span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .sub-point-list .box-category-content.active span {
+  color: white !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .form-input,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .form-input {
+  grid-template-columns: 1fr max-content;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .form-input button,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara #wrap-pengurangan-nilai #content-pengurangan-nilai-lists .box-sub-point .form-input button {
+  height: 40px;
+  width: 40px;
+  font-size: 18px;
+  background: #47bb8e;
+  color: white;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .peserta-list,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .peserta-list {
+  border-right: 1px solid #a3aed0;
+  display: none;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .peserta-list h2,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .peserta-list h2 {
+  background: #EFEBFF;
+  border-bottom: 2px solid #a3aed0;
+  padding: 0.5rem;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .peserta-list #peserta-list-container,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .peserta-list #peserta-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .peserta-list #peserta-list-container button,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .peserta-list #peserta-list-container button {
+  text-align: left;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .peserta-list #peserta-list-container button:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .peserta-list #peserta-list-container button:hover {
+  background: #2200b8 !important;
+  font-weight: 700;
+  color: white !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .peserta-list #peserta-list-container .active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .peserta-list #peserta-list-container .active {
+  background: #2200b8 !important;
+  font-weight: 700;
+  color: white !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban {
+  display: grid;
+  overflow: auto;
+  position: relative;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section {
+  display: grid;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  right: 0;
+  grid-template-rows: max-content 1fr;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-header-info-rekap,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-header-info-rekap {
+  display: grid;
+  grid-template-columns: 1fr 160px 0.6fr max-content;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #a3aed0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-header-info-rekap #btn-save-nilai,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-header-info-rekap #btn-save-nilai {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  background: #47bb8e !important;
+  color: white !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-header-info-rekap #btn-save-nilai span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-header-info-rekap #btn-save-nilai span {
+  font-size: 9px;
+  color: white;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-header-info-rekap .filter-icon,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-header-info-rekap .filter-icon {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-header-info-rekap .filter-icon .icon-menu,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-header-info-rekap .filter-icon .icon-menu {
+  width: 23px;
+  height: 23px;
+  font-size: 12px;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr max-content;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  position: sticky;
+  bottom: 0;
+  min-height: 50px;
+  border-top: 2px solid #f0f0f0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 170px;
+  border-radius: 8px;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian .box-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian .box-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian .box-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian .box-total {
+  display: grid;
+  align-items: center;
+  gap: 3px;
+  grid-template-columns: 90px 1fr;
+  border: 1.5px solid #d1d5db;
+  border-radius: 5px;
+  overflow: hidden;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian .box-total span,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian .box-total span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian .box-total span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian .box-total span {
+  font-size: 12px;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian .box-total .title-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian .box-total .title-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian .box-total .title-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian .box-total .title-total {
+  background: #47bb8e !important;
+  color: white;
+  padding: 2px;
+  text-align: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian .box-total .value-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian .box-total .value-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-kategori-penilaian #total-akhir-penilaian .box-total .value-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap #info-total-akhir-penilaian #total-akhir-penilaian .box-total .value-total {
+  font-weight: 700;
+  text-align: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section #wrap-footer-info-rekap .wrap-footer-info-content,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section #wrap-footer-info-rekap .wrap-footer-info-content {
+  display: flex !important;
+  flex-direction: column;
+  min-width: 100px;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container {
+  overflow: auto;
+  border-radius: 0 !important;
+  height: unset !important;
+  max-height: unset !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container .category-header td,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container .category-header td {
+  background: #f0f0f0 !important;
+  border-bottom: 2px solid #a3aed0;
+  border-top: 2px solid #a3aed0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container .category-header .head-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container .category-header .head-juri,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container .category-header .head-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container .category-header .head-juri {
+  text-align: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container #sub-point-table-list td,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container #sub-point-table-list th,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container #sub-point-table-list td,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container #sub-point-table-list th {
+  padding: 5px !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container #sub-point-table-list .done,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container #sub-point-table-list .done {
+  background: #47bb8e !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container #sub-point-table-list .done input,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container #sub-point-table-list .done input {
+  color: white !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container #sub-point-table-list .col-juri input,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container #sub-point-table-list .col-juri input {
+  text-align: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban .detail-section .table-container #sub-point-table-list .col-total,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban .detail-section .table-container #sub-point-table-list .col-total {
+  text-align: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian {
+  display: grid;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  grid-template-rows: max-content 1fr;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian {
+  border-bottom: 1px solid #a3aed0;
+  display: flex;
+  position: sticky;
+  background: white;
+  top: 0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian button,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian button {
+  background: transparent;
+  font-size: var(--font-size-normal);
+  color: #929292;
+  padding: 0.8rem;
+  border-radius: 0 !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian button:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian button:hover {
+  color: #47bb8e;
+  border-bottom: 2px solid #47bb8e;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian .active,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian .active {
+  color: #47bb8e;
+  border-bottom: 2px solid #47bb8e;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian #category-penilaian-list,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian #category-penilaian-list {
+  margin-left: auto;
+  background: #efebff;
+  color: #353535;
+  border-left: 1px solid #a3aed0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian #add-category-sub-nilai,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #header-formulir-penilaian #add-category-sub-nilai {
+  background: #efebff;
+  border-left: 1px solid #a3aed0;
+  color: #353535;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point {
+  margin: 1rem;
+  border: 1px solid #a3aed0;
+  border-radius: 8px;
+  overflow: hidden;
+  display: grid;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background: #efebff;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point span,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point span {
+  padding: 0.8rem;
+  font-weight: bold;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point button,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point button {
+  height: 100%;
+  min-width: 50px;
+  background: #d1d5db;
+  border-radius: 0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point button:hover,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point button:hover {
+  background: #47bb8e;
+  color: white;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point .btn-delete-sub-point,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .header-sub-point .btn-delete-sub-point {
+  margin-left: auto;
+  border-right: 1.5px solid #a3aed0;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .sub-point-list,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .sub-point-list {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.8rem;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .sub-point-list .sub-point-content,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian #wrap-sub-point-content .box-sub-point .sub-point-list .sub-point-content {
+  padding: 0.5em;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 12px !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian thead th,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian thead th {
+  border-right: 0 !important;
+  border-left: 0 !important;
+  background: transparent !important;
+  border-bottom: 3px solid #a3aed0 !important;
+  padding: 0.5rem !important;
+  text-align: left;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian thead .head-regu,
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian thead .head-lomba,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian thead .head-regu,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian thead .head-lomba {
+  max-width: 80px;
+  width: 80px;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian thead .head-pangkalan,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian thead .head-pangkalan {
+  max-width: 130px;
+  width: 130px;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian thead .head-peserta,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian thead .head-peserta {
+  max-width: 150px;
+  width: 150px;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian thead .head-act,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian thead .head-act {
+  max-width: 30px;
+  width: 30px;
+  text-align: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian tbody td,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian tbody td {
+  background: transparent;
+  color: #232323 !important;
+  border-bottom: 1px solid #a3aed0 !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian tbody .col-action,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian tbody .col-action {
+  text-align: center;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian tbody tr:hover td,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian tbody tr:hover td {
+  background: #f0f0f0 !important;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian .no-data-content,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian .no-data-content {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian .no-data-content img,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian .no-data-content img {
+  width: 32%;
+  margin: 0 auto;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian .no-data-content h3,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian .no-data-content h3 {
+  font-size: 25px;
+  margin-bottom: 0.5rem;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .content-lembar-jawaban #detail-formulir-penilaian .no-data-content .btn-category-list,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .content-lembar-jawaban #detail-formulir-penilaian .no-data-content .btn-category-list {
+  margin: 0 auto;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: larger;
+  background: #2200b8;
+  color: white;
+}
+body .content-wrap #wrap-lembar-jawaban #wrap-body-lembar-penilaian .no-data-content,
+body .content-wrap #wrap-lembar-jawaban #wrap-rekap-juara .no-data-content {
+  grid-row: span 2;
+}
+body .content-wrap #report-print-temp .report-print .tabel-rekap-nilai-lomba td, body .content-wrap #report-print-temp .report-print .tabel-rekap-nilai-lomba th, body .content-wrap #report-print-temp .report-print .tabel-rekap-pengurangan-nilai-lomba td, body .content-wrap #report-print-temp .report-print .tabel-rekap-pengurangan-nilai-lomba th, body .content-wrap #report-print-temp .report-print .tabel-rekap-akhir-nilai-lomba td, body .content-wrap #report-print-temp .report-print .tabel-rekap-akhir-nilai-lomba th {
+  font-size: 2px !important;
+}
+
+.progress-container {
+  background-color: #f3f3f3;
+  border-radius: 25px;
+  position: relative;
+}
+
+.progress-bar {
+  height: 7px;
+  background-color: #2200B8;
+  border-radius: 25px;
+  width: 0;
+}
+
+#progress-percent {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+}
+
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba td,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba th,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba span,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba td,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba th,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba span,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba td,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba th,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba span {
+  font-size: 8px;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba th,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba th,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba th {
+  background: #444444 !important;
+  text-align: center;
+  font-weight: bold;
+  color: white !important;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-juri,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-juri,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-juri {
+  text-align: center;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-nilai,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-total-akhir,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-nilai-pinalti,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .pengurangan-nilai-total,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .pengurangan-nilai-field,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-nilai,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-total-akhir,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-nilai-pinalti,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-total,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .pengurangan-nilai-field,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-nilai,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-total-akhir,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-nilai-pinalti,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .pengurangan-nilai-total,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .pengurangan-nilai-field {
+  text-align: center;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-pinalti,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-umum,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-utama,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-akhir, #modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-sub-total,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-pinalti,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-umum,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-utama,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-akhir,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-sub-total,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total {
+  text-align: center;
+  font-weight: 800;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-pinalti,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-pinalti,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-pinalti {
+  background: #d62828 !important;
+  color: white !important;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-akhir,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-akhir,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-akhir {
+  background: #47bb8e !important;
+  color: white !important;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-umum, #modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-sub-total,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-umum,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-sub-total,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-umum,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-sub-total {
+  background: #2200B8 !important;
+  color: white !important;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-nilai-lomba .col-footer-nilai-utama,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-pengurangan-nilai-lomba .col-footer-nilai-utama,
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .tabel-rekap-akhir-nilai-lomba .col-footer-nilai-utama {
+  background: #1e96fc !important;
+  color: white !important;
+}
+#modal-content-lembar-jawaban-print #wrap-content-print-preview .report-print .category-header td {
+  background: #444444 !important;
+  text-align: center;
+  font-weight: bold;
+  color: white !important;
+}
+
+@media (max-width: 768px) {
+  body .content-wrap #wrap-lembar-jawaban {
+    height: 100vh !important;
+  }
+  body .content-wrap #wrap-lembar-jawaban #wrap-content-body-rekap #rekap-lembar-peserta #table-rekap-crud {
+    display: flex !important;
+    flex-direction: column-reverse;
+  }
+  body .content-wrap #wrap-lembar-jawaban #wrap-content-body-rekap #rekap-lembar-peserta #table-rekap-crud #print-lembar-nilai-peserta, body .content-wrap #wrap-lembar-jawaban #wrap-content-body-rekap #rekap-lembar-peserta #table-rekap-crud #btn-modal-arsip-nilai {
+    height: 35px;
+    font-size: 14px !important;
+  }
+  body .content-wrap #wrap-lembar-jawaban #wrap-content-body-rekap #rekap-lembar-peserta #table-rekap-crud #wrap-filter-rekap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: unset !important;
+    gap: 0.2rem;
+  }
+  body .content-wrap #wrap-lembar-jawaban #wrap-content-body-rekap #rekap-lembar-peserta .content-tb-lembar-rekap {
+    grid-template-columns: 1fr !important;
+  }
+  body .content-wrap #wrap-lembar-jawaban #wrap-content-body-rekap #formulir-penilaian-token .formulir-penilaian-token img {
+    width: 80% !important;
+  }
+  body #modal-lampiran-lembar-juri {
+    width: 95% !important;
+  }
+  body #modal-lampiran-lembar-juri #wrap-foto-lembar-juri #foto-preview .wrap-img-preview .btn-download {
+    font-size: 12px !important;
+  }
+  body #modal-lampiran-lembar-juri #wrap-foto-lembar-juri #foto-preview .wrap-img-preview .btn-delete {
+    font-size: 16px !important;
+    width: 43px;
+    height: 43px;
+  }
+}
+#modal-lampiran-lembar-juri #foto-preview {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+#modal-lampiran-lembar-juri #foto-preview .wrap-img-preview {
+  position: relative;
+}
+#modal-lampiran-lembar-juri #foto-preview .wrap-img-preview img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 4px;
+  margin: 5px;
+}
+#modal-lampiran-lembar-juri #foto-preview .wrap-img-preview .btn-img-preview {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 1rem;
+}
+#modal-lampiran-lembar-juri #foto-preview .wrap-img-preview .btn-img-preview .btn-download {
+  display: block;
+  text-decoration: unset !important;
+  font-size: 16px;
+  background: #0433a5;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 100px;
+}
+#modal-lampiran-lembar-juri #foto-preview .wrap-img-preview .btn-img-preview .btn-delete {
+  display: block;
+  text-decoration: unset !important;
+  font-size: 16px;
+  background: #d62828;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 100px;
+  width: 55px;
+  height: 55px;
+}/*# sourceMappingURL=lembar_peserta.css.map */

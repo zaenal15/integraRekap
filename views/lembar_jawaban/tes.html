@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .qr-container {
+      margin: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <input type="text" id="text-qr" placeholder="Enter text for QR" />
+    <button id="generate-qr">Generate QR Code</button>
+    <div class="qr-container" id="qr-container"></div>
+  </div>
+
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <script>
+    document.getElementById('generate-qr').addEventListener('click', async function() {
+      const textQr = document.getElementById('text-qr').value;
+      
+      if (!textQr) {
+        alert('Please enter text to generate QR code.');
+        return;
+      }
+
+      // Clear previous QR code
+      document.getElementById('qr-container').innerHTML = '';
+
+      await new Promise((resolve, reject) => {
+        new QRCode(document.getElementById('qr-container'), {
+          text: textQr,
+          width: 80,
+          height: 80,
+          correctLevel: QRCode.CorrectLevel.L,
+        });
+        resolve('QR code generated');
+      });
+
+      alert('QR code has been generated!');
+    });
+  </script>
+
+</body>
+</html>

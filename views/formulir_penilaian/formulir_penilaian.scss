@@ -1,0 +1,544 @@
+body {
+  #title-content-header {
+    display: block !important;
+  }
+
+  .content-wrap {
+    padding: 1rem;
+
+    #wrap-lembar-jawaban {
+      height: 100%;
+      display: grid;
+      grid-template-rows: max-content 1fr;
+
+      #wrap-header-lembar-jawaban {
+        background: #2200b8;
+        padding: 0.5rem;
+        border-radius: 8px 8px 0 0;
+
+        h2 {
+          color: white;
+        }
+      }
+
+      #wrap-body-lembar-jawaban {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        background: white;
+        border-radius: 0 0 8px 8px;
+
+        .sidebar {
+          border-right: 1px solid #a3aed0;
+
+          h2 {
+            background: #EFEBFF;
+            border-bottom: 1px solid #a3aed0;
+            padding: 0.5rem;
+          }
+
+          #lomba-container {
+            .kategori-header {
+              background: #efebff;
+              padding: 0.3rem;
+              padding-left: 1rem;
+              border-bottom: 1px solid #a3aed0;
+              border-top: 1px solid #a3aed0;
+              cursor: pointer;
+            }
+
+            .lomba-header {
+              font-size: var(--font-size-medium);
+              padding: 0.5rem 1rem;
+              padding-left: 2rem;
+              cursor: pointer;
+
+              &:hover {
+                background: #e1d9ff;
+                color: #2200b8;
+
+                span,
+                i {
+                  color: #2200b8;
+                }
+              }
+            }
+
+            .lomba-header.active {
+              background: #e1d9ff;
+              color: #2200b8;
+
+              span,
+              i {
+                color: #2200b8;
+              }
+            }
+          }
+        }
+
+        .content-lembar-jawaban {
+          display: grid;
+          overflow: auto;
+          position: relative;
+
+          #detail-formulir-penilaian {
+            display: grid;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 100%;
+            grid-template-rows: max-content 1fr;
+
+            #header-formulir-penilaian {
+              border-bottom: 1px solid #a3aed0;
+              display: flex;
+              position: sticky;
+              background: white;
+              top: 0;
+
+              button {
+                background: transparent;
+                font-size: var(--font-size-normal);
+                color: #929292;
+                padding: 0.8rem;
+                border-radius: 0 !important;
+
+                &:hover {
+                  color: #47bb8e;
+                  border-bottom: 2px solid #47bb8e;
+                }
+              }
+
+              .active {
+                color: #47bb8e;
+                border-bottom: 2px solid #47bb8e;
+              }
+
+              #category-penilaian-list {
+                margin-left: auto;
+                background: #efebff;
+                color: #353535;
+                border-left: 1px solid #a3aed0;
+              }
+
+              #add-category-sub-nilai {
+                background: #efebff;
+                border-left: 1px solid #a3aed0;
+                color: #353535;
+              }
+            }
+
+            #wrap-sub-point-content {
+              .box-sub-point {
+                margin: 1rem;
+                border: 1px solid #a3aed0;
+                border-radius: 8px;
+                overflow: hidden;
+                display: grid;
+
+                .header-sub-point {
+                  padding: 0;
+                  display: flex;
+                  align-items: center;
+                  background: #efebff;
+
+                  span {
+                    padding: 0.8rem;
+                    font-weight: bold;
+                  }
+
+                  button {
+                    height: 100%;
+                    min-width: 50px;
+                    background: #d1d5db;
+                    border-radius: 0;
+
+                    &:hover {
+                      background: #47bb8e;
+                      color: white;
+                    }
+                  }
+
+                  .btn-delete-sub-point {
+                    margin-left: auto;
+                    border-right: 1.5px solid #a3aed0;
+                  }
+                }
+
+                .sub-point-list {
+                  display: grid;
+                  gap: 0.5rem;
+                  padding: 0.8rem;
+
+                  .sub-point-content {
+                    padding: 0.5em;
+                    border: 1px solid #d1d5db;
+                    border-radius: 5px;
+                    font-size: 12px !important;
+                  }
+                }
+              }
+            }
+
+            thead {
+              th {
+                border-right: 0 !important;
+                border-left: 0 !important;
+                background: transparent !important;
+                border-bottom: 3px solid #a3aed0 !important;
+                padding: 0.5rem !important;
+                text-align: left;
+              }
+
+              .head-regu,
+              .head-lomba {
+                max-width: 80px;
+                width: 80px;
+              }
+
+              .head-pangkalan {
+                max-width: 130px;
+                width: 130px;
+              }
+
+              .head-peserta {
+                max-width: 150px;
+                width: 150px;
+              }
+
+              .head-act {
+                max-width: 30px;
+                width: 30px;
+                text-align: center;
+              }
+            }
+
+            tbody {
+              td {
+                background: transparent;
+                color: #232323 !important;
+                border-bottom: 1px solid #a3aed0 !important;
+              }
+
+              .col-action {
+                text-align: center;
+              }
+
+              tr {
+                &:hover {
+                  td {
+                    background: #f0f0f0 !important;
+                  }
+                }
+              }
+            }
+
+            .no-data-content {
+              display: flex;
+              height: 100%;
+              justify-content: center;
+              text-align: center;
+              flex-direction: column;
+
+              img {
+                width: 32%;
+                margin: 0 auto;
+              }
+
+              h3 {
+                font-size: 25px;
+                margin-bottom: 0.5rem;
+              }
+
+              .btn-category-list {
+                margin: 0 auto;
+                border-radius: 8px;
+                padding: 1rem;
+                font-size: larger;
+                background: #2200b8;
+                color: white;
+              }
+            }
+          }
+        }
+
+        .no-data-content {
+          grid-row: span 2;
+        }
+      }
+    }
+  }
+
+
+  #modal-update-kategori-penilaian,
+  #modal-update-sub-penilaian {
+    .modal-content {
+      #wrap-add-kaegori-lomba-form {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        gap: 0.5rem;
+
+        h3 {
+          margin-bottom: 0.5rem;
+          margin-top: 0.15rem;
+        }
+
+        #add-kategori-penilaian {
+          font-size: var(--font-size-medium);
+          background: #2200B8;
+          color: white;
+          padding: 0.8rem;
+          border-radius: 8px;
+        }
+        
+      }
+      .jenis-nilai{
+        gap: 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        button{
+          border-radius: 0 !important;
+        }
+        
+        #btn-nilai-utama{
+          &:hover{
+            background: #2200B8 !important;
+            color: white !important;
+          }
+        }
+        
+        #btn-nilai-utama.active{
+          background: #2200B8 !important;
+          color: white !important;
+        }
+        #btn-nilai-banding{
+          &:hover{
+            background: #2200B8 !important;
+            color: white !important;
+          }
+        }
+        
+        #btn-nilai-banding.active{
+          background: #2200B8 !important;
+          color: white !important;
+        }
+
+        #btn-nilai-umum{
+          &:hover{
+            background: #47bb8e !important;
+            color: white !important;
+          }
+        }
+        #btn-nilai-umum.active{
+          background: #47bb8e !important;
+          color: white !important;
+        }
+      }
+
+
+      h3 {
+        margin: 0;
+        border-top: 5px solid #e5e7eb;
+        padding-top: 1rem;
+      }
+
+      #wrap-content-list-category,
+      #wrap-content-list-sub-point,
+      #modal-update-sub-penilaian {
+        display: grid;
+        gap: 0.5rem;
+
+        .box-category-content {
+          display: grid;
+          grid-template-columns: 1fr max-content max-content max-content;
+          background: #f9fafb;
+          gap: 0.3rem;
+          padding: 0.5em;
+          border: 1px solid #d1d5db;
+          border-radius: 8px;
+
+          input {
+            background: transparent !important;
+            border: 0 !important;
+          }
+
+          .jenis-nilai{
+            button{
+              background: #f0f0f0;
+                border: 1px solid #d1d5db;
+            }
+          }
+
+          #update-kategori-lomba-btn {
+            display: none;
+            font-size: 17px;
+          }
+
+          button {
+            background: transparent;
+            color: #6d6d6d;
+
+            &:hover {
+              color: #433c50;
+            }
+          }
+        }
+
+        .box-category-content.active {
+          input {
+            display: block !important;
+          }
+
+          label {
+            display: none !important;
+          }
+
+          #update-kategori-lomba-btn {
+            display: block !important;
+          }
+
+          #edit-kategori-lomba-btn {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+
+  #modal-update-sub-penilaian {
+    .modal-content {
+      .wrap-header-info-sub-point {
+        display: grid;
+        gap: 0.5rem;
+        border-bottom: 5px solid #e5e7eb;
+        padding-bottom: 1rem;
+
+        #kategori-sub-poit-title {
+
+          #judul-point-penilaian-header-field,
+          #update-kategori-sub-point-btn {
+            display: none;
+          }
+        }
+
+        #kategori-sub-poit-title.active {
+
+          #judul-point-penilaian-header-field,
+          #update-kategori-sub-point-btn {
+            display: block;
+          }
+
+          #judul-point-penilaian-header,
+          #edit-kategori-sub-point-btn {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  #modal-update-kategori-pengurangan {
+    .modal-content {
+      #wrap-content-pengurangan{
+        display: grid;
+        grid-template-columns: 0.7fr 1fr;
+        gap: 0.5rem;
+        #wrap-add-kaegori-lomba-form{
+          display: grid;
+          gap: 0.5rem;
+          grid-template-rows: max-content 300px max-content;
+          button{
+            background: #2200b8;
+            color: white;
+          }
+        }
+        h3{
+          margin-top: 0 !important;
+          background: white;
+          position: sticky;
+          top: 0;
+        }
+        #wrap-content-list-kategori-pengurangan{
+          display: grid;
+          gap: 0.5rem;
+          max-height: 60vh;
+          padding-right: 0.5rem;
+          overflow: auto;
+          .box-sub-point {
+            border: 1px solid #a3aed0;
+            border-radius: 8px;
+            overflow: hidden;
+            display: grid;
+           
+    
+            .header-sub-point {
+              padding: 0;
+              display: flex;
+              align-items: center;
+              background: #efebff;
+    
+              .btn-edit-sub-point{
+                margin-left: auto;
+              }
+    
+              span {
+                padding: 0.8rem;
+                font-weight: bold;
+              }
+    
+              button {
+                height: 100%;
+                min-width: 50px;
+                background: #d1d5db;
+                border-radius: 0;
+    
+                &:hover {
+                  background: #47bb8e;
+                  color: white;
+                }
+              }
+    
+              .btn-delete-sub-point {
+                margin-left: auto;
+                border-right: 1.5px solid #a3aed0;
+              }
+            }
+    
+            .sub-point-list {
+              display: grid;
+              gap: 0.5rem;
+              padding: 0.8rem;
+              min-height: 100px;
+              grid-auto-rows: max-content;
+              .sub-point-content {
+                padding: 0.5em;
+                border: 1px solid #d1d5db;
+                border-radius: 5px;
+                font-size: 12px !important;
+              }
+
+              .box-category-content{
+                display: grid;
+                background: #f9fafb;
+                gap: 0.3rem;
+                padding: 0.5em;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                align-items: center;
+                cursor: pointer;
+              }
+
+              .box-category-content.active{
+                border-color: #2200b8 !important;
+                background: #2200b8 !important;
+                span{
+                  color: white !important;
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,278 @@
+{{define "home_page"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.RAP • Jasa Raharja</title>
+  <!-- Favicons -->
+</head>
+<body >
+  <section style="display: none;" id="user-info">
+    <input type="text" id="user-Id" value="{{.Id}}">
+    <input type="text" id="user-Name" value="{{.Name}}">
+    <input type="text" id="user-Username" value="{{.Username}}">
+    <input type="text" id="user-Email" value="{{.Email}}">
+    <input type="text" id="user-Group_position" value="{{.Group_position}}">
+    <input type="text" id="user-Branch_code" value="{{.Branch_code}}">
+    <input type="text" id="user-Position_name" value="{{.Position_name}}">
+    <input type="text" id="user-Branch_name" value="{{.Branch_name}}">
+    <input type="text" id="menu-redirect" value="{{.Menu}}">
+  </section>
+  <div class="container content-wrap">
+		<section class="loaderSection" style="display: none;">
+      <div>
+        <img class="imgJrap" src="../../assets/images/jrap1.png" alt="">
+        <img src="../../assets/images/jrap2.png" alt="">
+      </div>
+    </section>
+    <!-- HEADER -->
+    <div class="container-header">
+      <div class="container">
+        <button onclick="navToggler()" style="display: none;" class="nav-toggler">
+          <i class='bx bx-menu'></i>
+        </button>
+        <div class="logo-jrap" onclick="openELIB()" title="CMS">
+          <img src="../../assets/images/logo3.png" alt="">
+        </div>
+        <div class="wrap-menu">
+          <button id="cms-homepage" class="btn-menu menu-list gallery_dashboard" onclick="openELIB()">CMS</button>
+          <button value="dokumen_pustaka" class="btn-menu active" onclick="changeActiveMenu(this)">Dokumen Pustaka</button>
+          <!-- <button value="dokumen_pustaka" class="btn-menu active" onclick="changeActiveMenu(this)">Library</button> -->
+          <button value="e_resource" class="btn-menu" onclick="changeActiveMenu(this)">E-Resource</button>
+          <button value="secure" class="btn-menu" onclick="changeActiveMenu(this)">Majalah Secure</button>
+          <button value="gallery" class="btn-menu" onclick="openGalleryHomePage()">Gallery</button>
+          <button value="faq" class="btn-menu" onclick="changeActiveMenu(this)">FAQ</button>
+          <div class="dropdown">
+            <button class="btn-menu dropbtn" onclick="toggleDropdown()">Arsip Dokumen <i class="fa fa-chevron-down" style="font-size: 10px;margin-left: 5px;"></i></button>
+            <div class="dropdown-content">
+              <a data-value="dokumen_pustaka" onclick="changeActiveMenu(this)">Arsip Dokumen Pustaka Favorit</a>
+              <a data-value="e_resource" onclick="changeActiveMenu(this)">Arsip E-Resource Favorit</a>
+              <!-- <a data-value="arsip_gallery_favorit" onclick="changeActiveMenu(this)">Arsip Galeri Favorit</a>
+              <a data-value="arsip_history" onclick="changeActiveMenu(this)">Arsip History</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="info-login"></div>
+        <div class="logo-jr">
+          <img src="../../assets/images/H Colour.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- DOKUMEN PUSTAKA & E-RESOURCE -->
+    <div id="general-section" class="container-body" style="display: none;">
+      <!-- CONTENT HIGHLIGHT -->
+      <div class="content-highlight">
+        <div class="container-card-highlight" style="display: none;"></div>
+        <section class="zoomContent show" id="file-folder-no-data">
+          <section class="no-data-content">
+            <img src="../../assets/images/logo4.png" style="width: 20%;height: unset !important;opacity: 0.1;">
+            <span>Sorry, no data available</span>
+          </section>
+        </section>
+      </div>
+      <!-- FILTER CATEGORY -->
+      <div class="filter-category">
+        <div id="container-filter-category" class="container-filter-category"></div>
+      </div>
+      <!-- FILTER SEARCH, SORT, YEAR, AND RESET -->
+      <div class="filter-sorting" style="display: none;">
+        <div class="filter-search">
+					<input id="filter-search" class="form-control" type="text" placeholder="Search Document Name & Meta Tag">
+					<button onclick="loadDokumenPustakaEResource()"><i class="fa fa-search"></i></button>
+				</div>
+        <select id="filter-sorting" class="form-control" onchange="loadDokumenPustakaEResource()">
+          <option value="">Sort</option>
+          <option value="date_desc">Newest - Oldest</option>
+          <option value="date_asc">Oldest - Newest</option>
+          <option value="size_desc">Largest - Smallest</option>
+          <option value="size_asc">Smallest - Largest</option>
+        </select>
+
+        <select id="filter-type" class="form-control" onchange="loadDokumenPustakaEResource()">
+          <option value="">Filter Type</option>
+          <option value=".pdf">Portable Document Format (PDF)</option>
+          <option value=".doc">Microsoft Word (.doc)</option>
+          <option value=".docx">Microsoft Word (.docx)</option>
+          <option value=".ppt">Microsoft Power Point (.ppt)</option>
+          <option value=".pptx">Microsoft Power Point (.pptx)</option>
+          <option value=".xls">Microsoft Excel (.xls)</option>
+          <option value=".xlsx">Microsoft Excel (.xlsx)</option>
+        </select>
+        <input id="filter-year" class="form-control" type="number" min="2020" placeholder="Filter Year" onchange="loadDokumenPustakaEResource()">
+        <button id="reset-filter" onclick="resetAllFilter()">Reset</button>
+      </div>
+      <!-- ALL CONTENT -->
+      <div class="content" style="display: none;">
+        <h1 class="content-title">Library</h1>
+        <div class="container-content" style="display: none;"></div>
+        <section class="zoomContent show" id="file-folder-no-data">
+          <section class="no-data-content">
+            <img src="../../assets/images/logo4.png" style="width: 13%;height: unset !important;opacity: 0.1;">
+            <span>Sorry, no data available</span>
+          </section>
+        </section>
+      </div>
+    </div>
+    <div id="detail-section" class="container-body"></div>
+    <div id="faq-section" class="container-body container-faq" style="display: none;">
+      <div class="header-section">
+        <div class="containerFaq">
+          <div class="title-faq">
+            <h1>How can we help you?</h1>
+          </div>
+          <div class="search-faq">
+            <div class="filter-search">
+              <input id="filter-faq" class="form-control" type="text" placeholder="Search...">
+              <button onclick="searchFAQ()"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+          <div class="download-manual-book">
+            <span>Download</span>
+            <a href="#" class="manual-book"><span>Manual Book</span> <i class="fa fa-download"></i></a>
+          </div>
+          <div class="icon-faq">
+            <img src="../../assets/icons/faq-gambar.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="faq-section"></div>
+    </div>
+    <div id="secure-section" class="container-body secure-section" style="display: none;">
+      <section class="secure-header">
+        <img src="../../assets/images/logo-long-SR-ex.png" alt="">
+      </section>
+
+      <div class="container">
+        <!-- Filter Tahun -->
+        <label for="yearFilter">Year :</label>
+        <select id="yearFilter"></select>
+        <!-- Container untuk kartu majalah -->
+        <div id="magazineContainer" class="magazine-grid"></div>
+      </div>
+    </div>
+    <div id="arsip-section" class="container-body" style="display: none;"></div>
+    <!-- FOOTER -->
+    <div style="display: none;" class="container-footer">
+      <div class="wrap-footer">
+        <div class="footer-desc">
+          <img src="../../assets/images/logo3.png" alt="">
+          <span>
+            JRAP adalah Website untuk pengelolaan dokumen / buku, laporan, menampilkan jurnal/majalah, media video ataupun gambar, serta materi publikasi lainnya, sehingga mempermudah proses dokumentasi serta proses pencarian dokumentasi dan sebagai media interaksi antar internal dan public.
+          </span>
+        </div>
+        <div class="footer-social-media">
+          <h1>Social Media</h1>
+          <div>
+            <i class="bx bxl-instagram" style="color: #ee2a7b;"></i>
+            <span>pt_jasaraharja</span>
+          </div>
+          <div>
+            <i class="bx bxl-twitter" style="color: #03a9f4;"></i>
+            <span>@pt_jasaraharja</span>
+          </div>
+          <div>
+            <i class="bx bxl-facebook" style="color: #1877f2;"></i>
+            <span>Jasa Raharja</span>
+          </div>
+          <div>
+            <i class="bx bxl-youtube" style="color: #ff0000;"></i>
+            <span>Jasa Raharja Official</span>
+          </div>
+        </div>
+        <div class="footer-call">
+          <h1>Hubungi Kami</h1>
+          <div>
+            <i class="bx bx-envelope" style="color: #1d49e4;"></i>
+            <span>pusat@jasaraharja.co.id</span>
+          </div>
+          <div>
+            <i class="bx bx-phone" style="color: #1d49e4;"></i>
+            <span>1500020</span>
+          </div>
+          <div>
+            <i class="bx bx-chat" style="color: #1d49e4;"></i>
+            <span>081210500500</span>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <span>Copyright © <b id="copyright-year"></b> — J.RAP dari PT Jasa Raharja</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="footer-content">
+      <section class="wrap-footer-content">
+        <section class="about-footer">
+          <img src="../../assets/images/logo3.png" alt="">
+          <p>J.RAP is a website for managing documents/books, reports, displaying journals/magazines, video or image media, and other publication materials, thus facilitating the documentation process and the documentation search process and as a medium for interaction between internal and public.</p>
+        </section>
+
+        <section class="sosmed-footer">
+          <h4>Social Media</h4>
+          <section class="box-sosmed">
+            <a href="https://www.instagram.com/pt_jasaraharja/" target="_blank">
+              <img src="../../assets/images/Instagram_icon.png" alt="">
+              <span>pt_jasaraharja</span>
+            </a>
+          </section>
+          <section class="box-sosmed">
+            <a href="https://www.instagram.com/pt_jasaraharja/" target="_blank">
+              <img src="../../assets/images/twiter_icon.png" alt="">
+              <span>@pt_jasaraharja</span>
+            </a>
+          </section>
+          <section class="box-sosmed">
+            <a href="https://www.instagram.com/pt_jasaraharja/" target="_blank">
+              <img src="../../assets/images/fb_icon.png" alt="">
+              <span>Jasa Raharja</span>
+            </a>
+          </section>
+          <section class="box-sosmed">
+            <a href="https://www.instagram.com/pt_jasaraharja/" target="_blank">
+              <img src="../../assets/images/youtube_icon.png" alt="">
+              <span>Jasa Raharja Official</span>
+            </a>
+          </section>
+        </section>
+        
+        <section class="contact-footer">
+          <h4>Contact us</h4>
+          <section class="box-contact">
+            <i class='bx bxs-envelope' ></i>
+            <span>pusat@jasaraharja.co.id</span>
+          </section>
+          <section class="box-contact">
+            <i class='bx bxs-phone'></i>
+            <span>pusat@jasaraharja.co.id</span>
+          </section>
+          <section class="box-contact">
+            <i style="color: #b5b5c3;" class="bi bi-chat-fill"></i>
+            <span>081210500500</span>
+          </section>
+        </section>
+      </section>
+
+      <section class="footer-copyright">
+        <span class="text-footer">Copyright © 2024 — J.RAP dari PT Jasa Raharja <span class="tooltip-footer">Made by Yuan</span></span>
+      </section>
+    </section>
+  </div>
+
+  <section class="zoomContent" id="doModal">
+    <section class="modal default-modal" id="modal-share-files">
+      <section class="modal-head">
+        <button class="modal-close" id="modal-close-share-files" onclick="closeModals(this)"><span>Share</span><i class='bx bx-x'></i></button>
+      </section>
+      <section class="modal-content"></section>
+      <section class="modal-foot">
+        <button class="button-set" id="preview-share"><i class="fa fa-eye"></i> Preview</button>
+      </section>
+    </section>
+  </section>
+</body>
+</html>
+
+{{end}}

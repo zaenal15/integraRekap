@@ -1,0 +1,41 @@
+<section class="content-wrap">
+  <div class="table-container">
+    <section class="table-crud-button" id="table-customer-crud">
+      <span class="title-table">List Pangkalan</span>
+      <button id="add-customer" onclick="updatePangkalanModal('add')"><i class="fa fa-plus-square"></i> Add</button>
+      <button id="update-customer" onclick="updatePangkalanModal('update')"><i class="fas fa-pencil-alt"></i> Update</button>
+      <button class="delete-button" id="delete-customer" onclick="deletePangkalan()"><i class="fa fa-trash"></i> Delete</button>
+    </section>
+    <div id="pangkalan-layout-section">
+      <div id="table-pangkalan-section" class="table-container">
+        <table id="table-pangkalan">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="modal modal-sm modal-master" id="modal-update-pangkalan">
+  <section class="modal-head">
+    <h2>Tambah Pangkalan</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+  <section class="modal-content">
+    <div style="display: none;" class="form-input basic-flex-reverse">
+      <label>Id Pangkalan : </label>
+      <input id="id-pangkalan-field" hidden>
+    </div>
+    <div class="modal-master-info" id="pangkalan-update-info" style="display: flex;">
+      <div class="form-input basic-flex-reverse">
+        <label>Nama Pangkalan : </label>
+        <input id="nama-pangkalan-field" placeholder="Masukkan Nama Pangkalan" required>
+      </div>
+    </div>
+  </section>
+  <section class="modal-foot">
+    <button id="add-pangkalan-btn" class="add" onclick="updatePangkalan('add')"><i class="fa fa-plus"></i> Tambah</button>
+    <button id="update-pangkalan-btn" class="update" onclick="updatePangkalan('update')"><i class="fas fa-pencil-alt"></i> Perbarui</button>
+  </section>
+</section>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Nilai Lomba Berdasarkan Kategori</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Report Nilai Lomba Berdasarkan Kategori</h2>
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">No Peserta</th>
+                <th rowspan="2">Nama Pangkalan</th>
+                <th rowspan="2">Regu</th>
+                <th colspan="3">Kategori A</th>
+                <th colspan="3">Kategori B</th>
+                <th colspan="3">Kategori C</th>
+                <th rowspan="2">Total Nilai</th>
+            </tr>
+            <tr>
+                <th>Lomba 1</th>
+                <th>Lomba 2</th>
+                <th>Lomba 3</th>
+                <th>Lomba 1</th>
+                <th>Lomba 2</th>
+                <th>Lomba 3</th>
+                <th>Lomba 1</th>
+                <th>Lomba 2</th>
+                <th>Lomba 3</th>
+            </tr>
+        </thead>
+        <tbody id="data-lomba">
+            <!-- Data akan dimasukkan di sini menggunakan JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Data yang diterima (seharusnya ini datang dari server via AJAX)
+    const laporanData = [
+        {
+            kategori: "A",
+            lomba1: 90,
+            lomba2: 80,
+            lomba3: 85,
+            no_peserta: "001",
+            nama_pangkalan: "Pangkalan A",
+            regu: "A"
+        },
+        {
+            kategori: "B",
+            lomba1: 75,
+            lomba2: 88,
+            lomba3: 91,
+            no_peserta: "001",
+            nama_pangkalan: "Pangkalan A",
+            regu: "A"
+        },
+        {
+            kategori: "C",
+            lomba1: 85,
+            lomba2: 80,
+            lomba3: 90,
+            no_peserta: "001",
+            nama_pangkalan: "Pangkalan A",
+            regu: "A"
+        },
+        {
+            kategori: "A",
+            lomba1: 95,
+            lomba2: 82,
+            lomba3: 88,
+            no_peserta: "002",
+            nama_pangkalan: "Pangkalan B",
+            regu: "B"
+        },
+        {
+            kategori: "B",
+            lomba1: 80,
+            lomba2: 85,
+            lomba3: 90,
+            no_peserta: "002",
+            nama_pangkalan: "Pangkalan B",
+            regu: "B"
+        },
+        {
+            kategori: "C",
+            lomba1: 78,
+            lomba2: 85,
+            lomba3: 92,
+            no_peserta: "002",
+            nama_pangkalan: "Pangkalan B",
+            regu: "B"
+        }
+    ];
+
+    // Menampilkan data ke dalam tabel
+    const tableBody = document.getElementById("data-lomba");
+    const participants = {};
+
+    laporanData.forEach(item => {
+        const key = `${item.no_peserta}-${item.nama_pangkalan}-${item.regu}`;
+        
+        if (!participants[key]) {
+            participants[key] = {
+                no_peserta: item.no_peserta,
+                nama_pangkalan: item.nama_pangkalan,
+                regu: item.regu,
+                total_nilai: 0,
+                lomba: {
+                    A: { lomba1: 0, lomba2: 0, lomba3: 0 },
+                    B: { lomba1: 0, lomba2: 0, lomba3: 0 },
+                    C: { lomba1: 0, lomba2: 0, lomba3: 0 }
+                }
+            };
+        }
+
+        // Menambahkan nilai lomba untuk kategori yang sesuai
+        participants[key].lomba[item.kategori].lomba1 = item.lomba1;
+        participants[key].lomba[item.kategori].lomba2 = item.lomba2;
+        participants[key].lomba[item.kategori].lomba3 = item.lomba3;
+
+        // Menambahkan total nilai
+        participants[key].total_nilai += item.lomba1 + item.lomba2 + item.lomba3;
+    });
+
+    // Membuat baris tabel berdasarkan data peserta
+    Object.values(participants).forEach(item => {
+        const row = document.createElement("tr");
+        
+        row.innerHTML = `
+            <td>${item.no_peserta}</td>
+            <td>${item.nama_pangkalan}</td>
+            <td>${item.regu}</td>
+            <td>${item.lomba.A.lomba1}</td>
+            <td>${item.lomba.A.lomba2}</td>
+            <td>${item.lomba.A.lomba3}</td>
+            <td>${item.lomba.B.lomba1}</td>
+            <td>${item.lomba.B.lomba2}</td>
+            <td>${item.lomba.B.lomba3}</td>
+            <td>${item.lomba.C.lomba1}</td>
+            <td>${item.lomba.C.lomba2}</td>
+            <td>${item.lomba.C.lomba3}</td>
+            <td>${item.total_nilai}</td>
+        `;
+        
+        tableBody.appendChild(row);
+    });
+</script>
+
+</body>
+</html>

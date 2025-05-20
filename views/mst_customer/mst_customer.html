@@ -1,0 +1,91 @@
+<section class="content-wrap">
+  <div class="table-container">
+    <section class="table-crud-button" id="table-customer-crud">
+      <span class="title-table">Customer Lists</span>
+      <button class="button-set layout-customer" id="layout-customer-grid" value="grid"><i class="fas fa-th"></i> Grid</button>
+      <button class="button-set layout-customer active" id="layout-customer-table" value="table"><i class="fas fa-table"></i> Table</button>
+      <button id="add-customer" onclick="updateCustomerModal('add')"><i class="fa fa-plus-square"></i> Add</button>
+      <button id="update-customer" onclick="updateCustomerModal('update')"><i class="fas fa-pencil-alt"></i> Update</button>
+      <button class="delete-button" id="delete-customer" onclick="deleteCustomer()"><i class="fa fa-trash"></i> Delete</button>
+    </section>
+    <div id="customer-layout-section">
+      <div id="table-customer-section" class="table-container">
+        <table id="table-customer">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div id="grid-customer"></div>
+    </div>
+  </div>
+</section>
+
+<section class="modal modal-sm modal-master" id="modal-update-customer">
+  <section class="modal-head">
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </section>
+  <section class="modal-content">
+    <div class="modal-master-info" id="customer-update-info" style="display: flex;">
+      <h2>Add Customer</h2>
+      <div class="form-input basic-flex-reverse">
+        <label>Customer Code : </label>
+        <input id="customer-id-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Customer Name : </label>
+        <input id="customer-name-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Customer Alias : </label>
+        <input id="customer-alias-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Customer Type : </label>
+        <select id="customer-type-field">
+          <option value="domestic">Domestic</option>
+          <option value="non-domestic">Non Domestic</option>
+        </select>
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Customer Country : </label>
+        <select id="customer-country-field"></select>
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Address : </label>
+        <input id="customer-address-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Number Phone : </label>
+        <input id="customer-phone-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Fax Number: </label>
+        <input id="customer-fax-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Npwp Number : </label>
+        <input id="npwp-number-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Customer Npwp16 : </label>
+        <input id="customer-npwp-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Website : </label>
+        <input id="customer-website-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>PIC Customer : </label>
+        <input id="customer-pic-field">
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Email : </label>
+        <input id="customer-email-field">
+      </div>
+    </div>
+  </section>
+  <section class="modal-foot">
+    <button class="update" id="update-customer-act" onclick="updateCustomer('update')" ><i class="fas fa-pencil-alt"></i> Update Customer</button>
+    <button class="add" id="add-customer-act" onclick="updateCustomer('add')" ><i class="fa fa-plus"></i> Add Customer</button>
+  </section>
+</section>

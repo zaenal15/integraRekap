@@ -1,0 +1,107 @@
+{{define "index"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntegraRekap</title>
+  <link rel="icon" type="image/x-icon" href="../../assets/logo/favicon.png">
+  <link rel="stylesheet" href="../../assets/css/doRoot.css">
+  <link rel="stylesheet" href="../../assets/css/doMainCss.css">
+  <link rel="stylesheet" href="../../assets/css/doCss.css">
+  <link rel="stylesheet" href="../../assets/plugins/font-awesome/css/all.min.css">
+</head> 
+<body class="">
+  <main class="fixed">
+    <section style="display: none;" id="user-info">
+      <input type="text" id="user-Id" value="{{.Id}}">
+      <input type="text" id="user-Name" value="{{.Name}}">
+      <input type="text" id="user-Username" value="{{.Username}}">
+      <input type="text" id="user-Email" value="{{.Email}}">
+      <input type="text" id="user-Group_position" value="{{.Group_position}}">
+      <input type="text" id="user-Branch_code" value="{{.Branch_code}}">
+      <input type="text" id="user-Position_name" value="{{.Position_name}}">
+      <input type="text" id="user-Branch_name" value="{{.Branch_name}}">
+    </section>
+    <section class="expand" id="mainSidebar"></section>
+    <section id="mainHeader"></section>
+    <section id="mainContent"></section>
+    <section id="mainSlideBar"></section>
+    <section id="doLoader"></section>
+    <section class="zoomContent" id="doModal" onclick="triggerClickModal()">
+      <!-- MODAL FOR KEEP LOGIN --ir -->
+      <section class="modal modal-sm default-modal" id="modal-keep-login">
+        <section class="modal-content">
+          <img src="/assets/svgs/confirm1.svg" alt="">
+          <span id="title-keep-login">Do you want to stay logged in?</span>
+          <span id="timer-keep-login">You'll be automatically logout from the app in <b>10</b> second(s).</span>
+          <button onclick="keepLogin()" id="button-keep-login">Yes, stay logged in</button>
+        </section>
+      </section>
+
+      <!-- MODAL FOR VERIFY PASSWORD --ir -->
+      <section class="modal modal-sm default-modal" id="modal-verify-password">
+        <section class="modal-head">
+          <button class="modal-close" onclick="closeModal()">Close</button>
+        </section>
+        <section class="modal-content">
+          <span id="modal-verify-password-info"></span>
+          <div class="form-pass form-input basic-flex-reverse"><label>Password : </label><input onchange="checkPass(this, this.value, 'individual')" id="set-user-password" type="password"><button class="see-pass" onmousedown="seePassIndividualHandler(this, 'see')" onmouseup="seePassIndividualHandler(this, 'hide')" value=""hide><i class="fa fa-eye-slash"></i></button></div>
+        </section>
+        <section class="modal-foot">
+          <button id="verify-password" value="nothing" onclick="verifyPassword(this, this.value)"><i class="fa fa-pencil-alt"></i> Verify</button>
+        </section>
+      </section>
+
+      <!-- MODAL FOR CHANGE CURRENT USER'S PASSWORD --ir -->
+      <section class="modal modal-sm default-modal" id="modal-change-password">
+        <section class="modal-head">
+          <button class="modal-close" id="modal-close-set-change-password" onclick="closeModal()">Close</button>
+        </section>
+        <section class="modal-content">
+          <div data-section="password" class="user-update-section user-update-password" style="display: flex;">
+            <span id="change-pass-username"></span>
+            <div class="form-pass form-input basic-flex-reverse"><label>Old Password : </label><input onchange="checkPass(this, this.value, 'individual')" id="set-user-old-password" type="password"><button class="see-pass" onmousedown="seePassIndividualHandler(this, 'see')" onmouseup="seePassIndividualHandler(this, 'hide')" value=""hide><i class="fa fa-eye-slash"></i></button></div>
+            <div class="form-pass form-input basic-flex-reverse"><label>New Password : </label><input onchange="checkPassStd(this, this.value)" id="set-user-new-password" type="password"><button class="see-pass" onmousedown="seePassIndividualHandler(this, 'see')" onmouseup="seePassIndividualHandler(this, 'hide')" value=""hide><i class="fa fa-eye-slash"></i></button></div>
+            <div class="form-pass form-input basic-flex-reverse"><label>Retype New Password : </label><input onchange="checkPassStd(this, this.value)" id="set-user-retype-password" type="password"><button class="see-pass" onmousedown="seePassIndividualHandler(this, 'see')" onmouseup="seePassIndividualHandler(this, 'hide')" value=""hide><i class="fa fa-eye-slash"></i></button></div>
+          </div>
+        </section>
+        <section class="modal-foot">
+          <button class="modal-submit" id="set-change-password-button" onclick="changePassIndividualHandler(this.value)">Change Password</button>
+        </section>
+      </section>
+    </section>
+    <section id="focusOverlay"></section>
+    <section id="doFloating"></section>
+    <span id="tooltip-sidebar"></span>
+  </main>
+</body>
+<!-- jQuery HARUS lebih dulu -->
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+
+<!-- Kemudian config.js -->
+<script src="/assets/js/config.min.js"></script>
+
+<!-- Baru script lain seperti doMainJs.js -->
+<script>
+  const scripts = [
+    AppConfig.getScriptPath("doMainJs.js"),
+    AppConfig.getScriptPath("plugins/html5-qrcode/html5-qrcode.min.js")
+  ];
+
+  scripts.forEach(src => {
+    const s = document.createElement("script");
+    s.src = src;
+    s.defer = true;
+    document.head.appendChild(s);
+  });
+</script>
+
+
+
+</html>   
+
+
+{{end}}

@@ -1,0 +1,96 @@
+body{
+  .content-wrap{
+    display: grid;
+    grid-template-rows: max-content;
+    gap: 2em;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "title-filter"
+      "room"
+    ;
+    gap: .5em;
+
+    #log-trail-title-filter{
+      grid-area: title-filter;
+      display: flex;
+      gap: 1em;
+      margin: 1em;
+      margin-bottom: .5em;
+      #log-trail-title{
+        margin: 0px;
+        margin-left: 0px;
+        font-size: var(--font-size-large);
+        margin: auto 0px;
+        padding-left: .5em;
+      }
+      #log-trail-filter{
+        margin-left: auto;
+        display: flex;
+        gap: .5em;
+        input{
+          font-size: var(--font-size-normal);
+          border: 2px solid var(--jr-clr-wht-1);
+        }
+      }
+    }
+
+    .table-container{
+      max-height: 85vh !important;
+      .dataTables_wrapper{
+        .dataTables_scroll{
+          max-height: 80vh !important;
+          .dataTables_scrollBody{
+            max-height: 75vh !important;
+          }
+        }
+      }
+    }
+    
+    #table-trail-section{
+      grid-area: room;
+      padding-top: 1em;
+      border-top: .5em solid var(--wki-clr-red-1);
+    }
+
+    table {
+      width: 100% !important;
+      th,
+      td {
+        color: var(--enk-clr-wht-1);
+      }
+      th {
+        border-bottom: 0.2em solid var(--enk-clr-wht-1);
+      }
+      td {
+        border-bottom: 0.1em solid var(--enk-clr-wht-1);
+        font-size: 1em;
+      }
+      // .head-acctname,
+      // .col-acctname,
+      // .head-subapplication,
+      // .col-subapplication {
+      //   min-width: 200px;
+      // }
+      .col-log_date, .head-log_date{
+        min-width: 150px;
+      }
+      thead {
+        color: var(--enk-clr-wht-1);
+        th {
+          position: sticky;
+          top: 0;
+          background: var(--enk-clr-blu-1);
+        }
+      }
+    }
+
+    // table{
+    //   .col-log_date{
+    //     min-width: 250px !important;
+    //   }
+    //   .col-menu, .col-name{
+    //     min-width: 150px !important;
+    //   }
+    // }
+  }
+}

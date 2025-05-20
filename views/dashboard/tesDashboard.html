@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fb;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #2c3e50;
+      color: white;
+      padding-top: 20px;
+    }
+
+    .sidebar a {
+      color: white;
+      display: block;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .sidebar a:hover {
+      background-color: #34495e;
+    }
+
+    /* Dashboard container */
+    .dashboard-container {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 23%;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card h3 {
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    .stat-card p {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .charts {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .chart {
+      width: 48%;
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .chart canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+
+    .overview-cards {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .overview-card {
+      background: linear-gradient(to right, #9c27b0, #e91e63);
+      padding: 20px;
+      color: white;
+      border-radius: 10px;
+      width: 30%;
+      text-align: center;
+    }
+
+    .overview-card h4 {
+      margin: 0;
+    }
+
+    .overview-card p {
+      font-size: 20px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .actions {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .actions button {
+      background-color: #2980b9;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .actions button:hover {
+      background-color: #3498db;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2 style="color: white; text-align: center;">Concurred</h2>
+    <a href="#">Overview</a>
+    <a href="#">Opportunities</a>
+    <a href="#">My Competitors</a>
+    <a href="#">Briefs</a>
+    <a href="#">Saved</a>
+    <a href="#">Settings</a>
+    <a href="#">Log Out</a>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard-container">
+    <header>
+      <h1>Project Statistics</h1>
+      <div>
+        <span>Boro Team</span>
+        <button>Settings</button>
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats-container">
+      <div class="stat-card">
+        <h3>Total Visits</h3>
+        <p>42.43M</p>
+      </div>
+      <div class="stat-card">
+        <h3>Bounce Rate</h3>
+        <p>42.34%</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total Monthly Visits</h3>
+        <p>326.60K</p>
+      </div>
+      <div class="stat-card">
+        <h3>Avg. Visit Duration</h3>
+        <p>00:03:27</p>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts">
+      <div class="chart">
+        <canvas id="trafficChart"></canvas>
+      </div>
+      <div class="chart">
+        <canvas id="categoryChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Overview Cards -->
+    <div class="overview-cards">
+      <div class="overview-card">
+        <h4>Bounce Rate</h4>
+        <p>42.34%</p>
+      </div>
+      <div class="overview-card">
+        <h4>Pages per Visit</h4>
+        <p>2.34</p>
+      </div>
+      <div class="overview-card">
+        <h4>Monthly Visits</h4>
+        <p>326.60K</p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button>Start Scanning QR</button>
+      <button>Download Report</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Example Data for Charts
+    const trafficData = {
+      labels: ['Direct', 'Search'],
+      datasets: [{
+        data: [50, 50],
+        backgroundColor: ['#2980b9', '#8e44ad']
+      }]
+    };
+
+    const categoryData = {
+      labels: ['Regu A', 'Regu B', 'Regu C'],
+      datasets: [{
+        label: 'Lomba Scores',
+        data: [75, 60, 90],
+        backgroundColor: '#3498db'
+      }]
+    };
+
+    // Traffic Chart
+    const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+    new Chart(trafficCtx, {
+      type: 'pie',
+      data: trafficData
+    });
+
+    // Category Chart
+    const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+    new Chart(categoryCtx, {
+      type: 'bar',
+      data: categoryData
+    });
+  </script>
+</body>
+</html>

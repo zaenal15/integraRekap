@@ -1,0 +1,464 @@
+#floor-opt-dashboard {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body .content-wrap {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 1em;
+}
+body .content-wrap #group-lists-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 1em;
+  border-bottom: 0.2em solid var(--b7-clr-wht-1);
+  padding-bottom: 0.5em;
+}
+body .content-wrap #group-lists-box #group-lists {
+  display: flex;
+  overflow: auto;
+  max-width: 1000px;
+  gap: 0.5em;
+  padding-bottom: 0.5em;
+}
+body .content-wrap #group-lists-box #group-lists button {
+  min-width: 100px;
+}
+body .content-wrap #group-lists-box #group-filter {
+  display: flex;
+  gap: 0px;
+  overflow: hidden;
+  margin-left: auto;
+  height: -moz-max-content;
+  height: max-content;
+  border-radius: 0.25em;
+  border: 0.1em solid var(--b7-clr-wht-1);
+}
+body .content-wrap #group-lists-box #group-filter button, body .content-wrap #group-lists-box #group-filter input {
+  padding: 0.3em 0.5em;
+  border-radius: 0px;
+  border: unset;
+}
+body .content-wrap #group-lists-box #group-filter button {
+  width: 50px;
+}
+body .content-wrap #group-lists-box .search-menu {
+  width: 300px;
+  height: -moz-max-content;
+  height: max-content;
+  background: var(--b7-clr-blk-2);
+  color: var(--b7-clr-wht-1);
+  border-left: 0.3em solid transparent;
+  height: calc(100% - 0.7em);
+  font-size: var(--font-size-normal);
+  margin-left: auto;
+}
+body .content-wrap #group-lists-box .search-menu:hover, body .content-wrap #group-lists-box .search-menu:focus, body .content-wrap #group-lists-box .search-menu:focus-within {
+  border-left: 0.3em solid var(--b7-clr-org-1);
+}
+body .content-wrap #group-lists-box .group-button, body .content-wrap #group-lists-box #add-group-button {
+  background: var(--b7-clr-blk-2);
+  color: var(--b7-clr-wht-1);
+  border: 0.1em solid var(--b7-clr-wht-1);
+  min-width: 200px;
+  height: -moz-max-content;
+  height: max-content;
+  font-size: var(--font-size-normal);
+}
+body .content-wrap #group-lists-box .group-button:hover, body .content-wrap #group-lists-box #add-group-button:hover {
+  background: var(--b7-clr-wht-2);
+  color: var(--b7-clr-blk-1);
+  box-shadow: var(--b7-neon-wht-light);
+}
+body .content-wrap #group-lists-box #add-group-button {
+  background: var(--b7-clr-blu-2);
+}
+body .content-wrap #group-lists-box .active {
+  background: var(--b7-clr-wht-2);
+  color: var(--b7-clr-blk-1);
+  box-shadow: var(--b7-neon-wht-light);
+}
+body .content-wrap #menu-lists {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fit, 350px);
+  height: -moz-max-content;
+  height: max-content;
+  padding: 0px 1em;
+}
+body .content-wrap #menu-lists .menu-card.active {
+  grid-template-columns: max-content 1fr;
+  width: unset;
+  transition: all var(--speed-fast) ease-in-out;
+  box-shadow: var(--b7-neon-wht-medium);
+  border: 0.2em solid var(--b7-clr-wht-1);
+  grid-column: span 5;
+  overflow: hidden;
+}
+body .content-wrap #menu-lists .menu-card.active .menu-section {
+  border-radius: 0;
+  background: var(--b7-clr-blu-1);
+}
+body .content-wrap #menu-lists .menu-card {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 1em;
+  border: 0.2em solid transparent;
+  transition: all var(--speed-faster) ease-in-out;
+  min-height: 300px;
+  place-content: center;
+}
+body .content-wrap #menu-lists .menu-card:hover {
+  box-shadow: var(--b7-neon-wht-medium);
+  border: 0.2em solid var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists .menu-card:hover .menu-section {
+  background: var(--b7-clr-blu-2);
+}
+body .content-wrap #menu-lists .menu-card:hover .menu-section.add-menu {
+  background: var(--b7-clr-org-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-section {
+  transition: all var(--speed-faster) ease-in-out;
+  padding: 1em;
+  background: var(--b7-clr-blu-3);
+  border-radius: 1em;
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: 1fr 150px;
+  gap: 1em;
+  height: 300px;
+  width: 200px;
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-photo {
+  width: 150px;
+  margin: auto;
+  margin-bottom: 2em;
+  padding-top: 2em;
+  height: 150px;
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info {
+  width: 100%;
+  display: grid;
+  gap: 0.5em;
+  font-size: var(--font-size-normal);
+  margin-top: 0px;
+  margin-bottom: auto;
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info #add-menu-button {
+  font-size: var(--font-size-medium);
+  margin: auto 0px;
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info label, body .content-wrap #menu-lists .menu-card .menu-section .menu-info span {
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info .menu-info-title {
+  color: var(--b7-clr-wht-1);
+  font-size: var(--font-size-medium);
+  margin: auto;
+  text-align: center;
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info .menu-info-children, body .content-wrap #menu-lists .menu-card .menu-section .menu-info .menu-info-allow {
+  background-color: var(--b7-clr-wht-2);
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 0.2em;
+  margin: auto;
+  padding: 0.1em 0.5em;
+  color: var(--b7-clr-blk-1);
+  font-weight: bolder;
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info .menu-info-allow {
+  font-weight: bolder;
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info .menu-info-allow:has(i.fa-check-circle) {
+  background: var(--b7-clr-grn-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info .menu-info-allow:has(i.fa-info-circle) {
+  background: var(--b7-clr-ylw-1);
+  color: var(--b7-clr-blk-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-section .menu-info .menu-info-allow:has(i.fa-exclamation-triangle) {
+  background: var(--b7-clr-blu-2);
+}
+body .content-wrap #menu-lists .menu-card .menu-section.add-menu {
+  background: var(--b7-clr-blu-2);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail {
+  display: none;
+  transition: all var(--speed-faster) ease-in-out;
+  min-width: 200px;
+  grid-template-rows: 1fr;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-act {
+  display: flex;
+  overflow: hidden;
+  gap: 0em;
+  border-bottom: 0.2em solid var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-act button {
+  width: 100%;
+  border-radius: 0px;
+  background: var(--b7-clr-blu-2);
+  color: var(--b7-clr-wht-1);
+  font-weight: bolder;
+  font-size: var(--font-size-normal);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-act button:hover {
+  background: var(--b7-clr-org-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-act .active {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists {
+  background: var(--b7-clr-blk-1);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table thead td {
+  text-align: center;
+  font-size: var(--font-size-normal);
+  margin-bottom: 0.5em;
+  border-bottom: 0.2em solid var(--b7-clr-wht-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr td {
+  background: transparent;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr td button {
+  font-weight: bolder;
+  font-size: var(--font-size-normal);
+  width: 100%;
+  font-weight: bolder;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr td .child-title {
+  background: var(--b7-clr-wht-2);
+  color: var(--b7-clr-blk-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr td .child-title:hover {
+  background: var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr td .child-act {
+  background: var(--b7-clr-blu-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr td .child-act:hover {
+  background: var(--b7-clr-wht-2);
+  color: var(--b7-clr-blk-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr td .child-act.deny {
+  background: var(--b7-clr-org-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr .col-title-child {
+  width: 200px;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr .col-act-child {
+  width: 50px;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .menu-children-lists .menu-children-table tbody tr:hover td {
+  background: transparent !important;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .form-input {
+  display: grid;
+  gap: 0.5em;
+  background: var(--b7-clr-blk-3);
+  padding: 0.5em;
+  border-left: 0.3em solid transparent;
+  cursor: pointer !important;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .form-input:hover, body .content-wrap #menu-lists .menu-card .menu-detail .form-input:focus, body .content-wrap #menu-lists .menu-card .menu-detail .form-input:focus-within {
+  text-shadow: var(--b7-neon-wht-medium);
+  border-left: 0.3em solid var(--b7-clr-org-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .form-input label, body .content-wrap #menu-lists .menu-card .menu-detail .form-input input, body .content-wrap #menu-lists .menu-card .menu-detail .form-input select {
+  cursor: pointer !important;
+  color: var(--b7-clr-wht-1);
+  background: transparent !important;
+  border: 0px !important;
+  font-size: var(--font-size-normal);
+  padding: 0px;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .form-input label option, body .content-wrap #menu-lists .menu-card .menu-detail .form-input input option, body .content-wrap #menu-lists .menu-card .menu-detail .form-input select option {
+  color: var(--b7-clr-blk-1);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .form-input label:focus, body .content-wrap #menu-lists .menu-card .menu-detail .form-input label:focus-visible, body .content-wrap #menu-lists .menu-card .menu-detail .form-input input:focus, body .content-wrap #menu-lists .menu-card .menu-detail .form-input input:focus-visible, body .content-wrap #menu-lists .menu-card .menu-detail .form-input select:focus, body .content-wrap #menu-lists .menu-card .menu-detail .form-input select:focus-visible {
+  outline: none;
+  outline-color: transparent !important;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .form-input label {
+  font-size: var(--font-size-normal);
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .form-input button {
+  width: 100%;
+}
+body .content-wrap #menu-lists .menu-card .menu-detail .form-input button:hover {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+body .content-wrap #menu-lists-no-data {
+  padding: 0.5em 2em;
+  border-radius: 0.25em;
+  background: url(../../assets/svgs/cancel1.svg) no-repeat right bottom;
+  background-size: 250px;
+  background-origin: content-box;
+  background-color: var(--ahm-clr-blk-1);
+  height: 300px;
+  color: var(--ahm-clr-wht-2);
+  display: grid;
+  place-content: center;
+  gap: 1em;
+}
+body .content-wrap #menu-lists-no-data span {
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  margin: auto;
+}
+body .content-wrap #menu-lists-no-data span button {
+  height: 100%;
+  padding: 0.2em;
+  font-size: smaller;
+  width: 100%;
+  margin-top: 0.3em;
+}
+body .content-wrap #menu-lists-no-data span button:hover {
+  background: var(--ahm-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+
+#doModal #modal-privileged-menu {
+  display: grid;
+}
+#doModal #modal-privileged-menu .modal-content {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(2, max-content);
+  grid-template-rows: repeat(2, max-content);
+  grid-template-areas: "title acts" "img acts";
+}
+#doModal #modal-privileged-menu .modal-content #modal-privileged-menu-img {
+  grid-area: img;
+}
+#doModal #modal-privileged-menu .modal-content #modal-privileged-menu-img .menu-photo {
+  width: 200px;
+  margin: auto 0px;
+  margin-top: 1em;
+  height: 100px;
+}
+#doModal #modal-privileged-menu .modal-content #modal-privileged-menu-title {
+  grid-area: title;
+  margin: 0px auto;
+}
+#doModal #modal-privileged-menu .modal-content #modal-privileged-menu-title .menu-info-title {
+  color: var(--b7-clr-wht-1);
+  font-size: var(--font-size-medium);
+  margin: auto;
+  text-align: center;
+  padding: 0.1em 1em;
+  border-radius: 0.25em;
+  background: var(--b7-clr-blu-1);
+}
+#doModal #modal-privileged-menu .modal-content #modal-privileged-menu-acts {
+  grid-area: acts;
+  display: grid;
+  gap: 0.5em;
+  grid-template-columns: repeat(3, max-content);
+}
+#doModal #modal-privileged-menu .modal-content #modal-privileged-menu-acts button {
+  background: var(--b7-clr-blu-1);
+  color: var(--b7-clr-wht-1);
+  width: 22 0px;
+  font-size: var(--font-size-normal);
+}
+#doModal #modal-privileged-menu .modal-content #modal-privileged-menu-acts button:hover {
+  background: var(--ahm-clr-wht-1);
+  color: var(--b7-clr-blk-1);
+}
+#doModal #modal-privileged-menu .modal-content #modal-privileged-menu-acts .deny {
+  background: var(--b7-clr-org-1);
+  color: var(--b7-clr-wht-1);
+}
+#doModal #modal-privileged-menu .modal-foot #change-privileged-menu {
+  background: var(--b7-clr-wht-2);
+  color: var(--b7-clr-blk-1);
+  font-size: var(--font-size-medium);
+}
+#doModal #modal-privileged-menu .modal-foot #change-privileged-menu:hover {
+  background: var(--b7-clr-blu-1);
+  color: var(--b7-clr-wht-1);
+}
+
+body.white-theme .content-wrap #group-lists {
+  border-color: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap #group-lists input {
+  background: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap #group-lists button {
+  background: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap #group-lists button:hover {
+  background: var(--b7-clr-org-1) !important;
+  color: white !important;
+}
+body.white-theme .content-wrap #group-lists button.active {
+  background: var(--b7-clr-org-1) !important;
+  color: white !important;
+}
+body.white-theme .content-wrap .menu-card {
+  border: 5px solid var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap .menu-card .menu-section {
+  background: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap .menu-card .menu-section .menu-info-title {
+  color: var(--b7-clr-blk-2) !important;
+}
+body.white-theme .content-wrap .menu-card .menu-children-lists {
+  background: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap .menu-card .menu-children-lists .menu-children-table thead tr:hover td {
+  background: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap .menu-card .menu-children-lists .menu-children-table thead td {
+  background: var(--b7-clr-wht-1) !important;
+  border-color: var(--b7-clr-wht-1) !important;
+  border-bottom: 0.2em solid var(--b7-clr-blu-1) !important;
+  padding: 0.3em !important;
+  color: var(--b7-clr-blk-2) !important;
+}
+body.white-theme .content-wrap .menu-card .menu-children-lists .menu-children-table tbody td {
+  background: var(--b7-clr-wht-1) !important;
+  border: 0 !important;
+  padding: 0.3em 0.5em !important;
+}
+body.white-theme .content-wrap .menu-card .menu-children-lists .menu-children-table button:hover {
+  background: var(--b7-clr-org-1) !important;
+  color: var(--b7-clr-wht-1) !important;
+}
+body.white-theme .content-wrap .menu-card.active .menu-section {
+  background: var(--b7-clr-blu-1) !important;
+}
+body.white-theme .content-wrap .menu-card.active .menu-section .menu-info-title {
+  color: var(--b7-clr-wht-1) !important;
+}
+body.white-theme #mainContent .content-wrap .menu-card table td {
+  background: var(--b7-clr-wht-1) !important;
+}
+
+@media screen and (max-device-width: 1500px) {
+  body #mainContent .content-wrap button, body #mainContent .content-wrap td, body #mainContent .content-wrap th {
+    font-size: medium !important;
+  }
+  body #doModal button, body #doModal span, body #doModal label, body #doModal .user-info {
+    font-size: medium !important;
+  }
+}/*# sourceMappingURL=user_menu.css.map */

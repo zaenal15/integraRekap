@@ -1,0 +1,98 @@
+<section id="header-slidebar">
+  <span id="slidebar-title">Notifications</span>
+  <section class="user-info" id="user-info-slidebar">
+    <button onclick="showSlidebar()" class="user-info-notification" id="slidebar-user-info-notification"><i class="fa fa-arrow-circle-left"></i></button>
+    <span class="user-info-name" id="slidebar-user-info-name"></span>
+    <img class="user-info-img" id="slidebar-user-info-img" src="/assets/icons/user-male.svg" alt="">
+  </section>
+</section>
+
+<!-- ALERTS SECTION ON SLIDEBAR --ir -->
+<section class="slidebar-main-section" id="alert-slidebar-section">
+  <div id="alert-slidebar-count-filter">
+    <section id="alert-slidebar-count">0 Notifications</section>
+  </div>
+  <section class="zoomContent" id="alert-slidebar-no-data">
+    <span>All good, there are no alerts..</span>
+  </section>
+  <section id="alert-slidebar-lists">
+  </section>
+</section>
+
+<!-- LOGS SECTION ON SLIDEBAR --ir -->
+<section class="slidebar-main-section" id="log-slidebar-section">
+  <div id="log-slidebar-count-filter">
+    <section id="log-slidebar-count">0 activities</section>
+  </div>
+  <section class="zoomContent" id="log-slidebar-no-data">
+    <span>There are no activities.</span>
+  </section>
+  <section id="log-slidebar-lists">
+  </section>
+</section>
+
+<!-- SETTINGS SECTION ON SLIDEBAR --ir -->
+<section class="slidebar-main-section" id="setting-slidebar-section">
+  <!-- SECTION FOR GENERAL SETTINGS --ir -->
+  <section class="all-settings-section" id="general-settings-section">
+    <label class="setting-title" id="general-settings-title"><i class="fas fa-cog"></i> General Settings</label>
+    <section class="setting-field" id="timer-session-setting">
+      <label for="timer-session">Timer before auto logout</label>
+      <input type="number" id="timer-session" min="1" onchange="changeTimerSession(this, 'timer')">
+      <label for="timer-session">minute(s)</label>
+    </section>
+    <section class="setting-field" id="countdown-session-setting">
+      <label for="countdown-session">Countdown before auto logout</label>
+      <input type="number" id="countdown-session" min="1" onchange="changeTimerSession(this, 'countdown')">
+      <label for="countdown-session">second(s)</label>
+    </section>
+    <section class="setting-field" id="running-text-setting">
+      <label for="running-text">Running text on main dashboard</label>
+      <textarea rows="4" type="number" id="running-text"></textarea>
+      <button class="button-set" id="update-running-text" onclick="changeRunningText(this)">Change</button>
+    </section>
+    <section class="setting-field" id="default-password-setting">
+      <label for="change-password-default-button">Default Password for all users</label>
+      <button class="button-set" value="change-password-default" onclick="openVerifyPassword(this, this.value)" id="change-password-default-button"><i class="fa fa-pencil-alt"></i> Change</button>
+    </section>
+    <section class="setting-field" id="delete-log-trail-setting">
+      <label for="delete-log-trail-button">Delete log trail past <input id="delete-log-trail-interval" type="number"> month(s)</label>
+      <button class="button-set" onclick="deleteLogTrail(this)" id="delete-log-trail-button"><i class="fa fa-trash-alt"></i> Delete</button>
+    </section>
+  </section>
+  
+  <!-- SECTION FOR USER SETTINGS --ir -->
+  <section class="all-settings-section" id="user-settings-section">
+    <label class="setting-title" id="user-settings-title"><i class="fas fa-user-cog"></i> User Settings</label>
+    <section class="setting-field" id="slideshow-opt-setting">
+      <label for="slideshow-opt-setting">Default Dashboard Slideshow Options</label>
+      <div class="opt-group" id="opt-slideshow-opts">
+        <button onclick="changeDefaultSlideshow(this, this.value)" class="button-set opt-slideshow-setting" value="carousel">Carousel</button>
+        <button onclick="changeDefaultSlideshow(this, this.value)" class="button-set opt-slideshow-setting" value="fade">Fade</button>
+        <button onclick="changeDefaultSlideshow(this, this.value)" class="button-set opt-slideshow-setting" value="none">None</button>
+      </div>
+    </section>
+    <section class="setting-field" id="theme-opt-setting">
+      <label for="theme-opt-setting">Default Theme Options</label>
+      <div class="opt-group" id="opt-theme-opts">
+        <button onclick="changeUserOptSetting(this, this.value, 'theme')" data-class="opt-theme-setting" class="button-set opt-theme-setting" value="dark"><i class="fa fa-moon"></i> Dark</button>
+        <button onclick="changeUserOptSetting(this, this.value, 'theme')" data-class="opt-theme-setting" class="button-set opt-theme-setting" value="light"><i class="fa fa-sun"></i> Light</button>
+      </div>
+    </section>
+    <section class="setting-field" id="sidebar-opt-setting">
+      <label for="sidebar-opt-setting">Sidebar Mode Options</label>
+      <div class="opt-group" id="opt-sidebar-opts">
+        <button onclick="changeUserOptSetting(this, this.value, 'sidebar')" data-class="opt-sidebar-setting" class="button-set opt-sidebar-setting" value="expand"><i class="fas fa-expand-arrows-alt"></i> Expand</button>
+        <button onclick="changeUserOptSetting(this, this.value, 'sidebar')" data-class="opt-sidebar-setting" class="button-set opt-sidebar-setting" value="shrink"><i class="fas fa-compress-arrows-alt"></i> Shrink</button>
+        <button onclick="changeUserOptSetting(this, this.value, 'sidebar')" data-class="opt-sidebar-setting" class="button-set opt-sidebar-setting" value="fixed"><i class="bx bxs-book-content"></i> Fixed</button>
+      </div>
+    </section>
+    <section class="setting-field" id="chart-opt-setting">
+      <label for="chart-opt-setting">Type Chart Options</label>
+      <div class="opt-group" id="opt-sidebar-opts">
+        <button onclick="changeUserOptSetting(this, this.value, 'type_chart')" data-class="opt-sidebar-setting" class="button-set opt-chart-setting" value="bar"><i class="fas fa-chart-bar"></i> Bar</button>
+        <button onclick="changeUserOptSetting(this, this.value, 'type_chart')" data-class="opt-chart-setting" class="button-set opt-sidebar-setting" value="line"><i class="fas fa-chart-line"></i> Line</button>
+      </div>
+    </section>
+  </section>
+</section>

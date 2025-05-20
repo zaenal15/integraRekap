@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Token List - LSC 2025</title>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 24px;
+    }
+
+    .token-wrapper {
+      background-color: #fff;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .token-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .token-header h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .export-btn {
+      background-color: #198754;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .export-btn i {
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    thead {
+      background-color: #f2f2f2;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    td .btn-group {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    td .btn-group button {
+      border: 1px solid #dee2e6;
+      background-color: white;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    td .btn-group button:hover {
+      background-color: #f0f0f0;
+    }
+
+    td .btn-group button i {
+      font-size: 16px;
+    }
+
+    .text-primary {
+      color: #0d6efd;
+      font-weight: 600;
+    }
+
+    .text-success {
+      color: #198754;
+    }
+
+    .text-muted {
+      color: #6c757d;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="token-wrapper">
+    <div class="token-header">
+      <h4><i class="bi bi-clipboard-data"></i> Token List</h4>
+      <button class="export-btn" onclick="printExcelSalesList()">
+        <i class="bi bi-file-earmark-excel"></i> Export Excel
+      </button>
+    </div>
+
+    <table id="tabel-token-peserta">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>No Peserta</th>
+          <th>No WhatsApp</th>
+          <th>Token</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody id="token-body"></tbody>
+    </table>
+  </div>
+
+  <!-- Tabel dummy untuk export -->
+  <table id="wrap-tabel-print" style="display:none;">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const pesertaList = [
+      { id: 14, no: 1, noPeserta: 'Labs-G-001', noWa: '6289527221222', token: 'RRVHB4H3' },
+      { id: 15, no: 2, noPeserta: 'Labs-G-002', noWa: '6289527221222', token: 'YO8QBZ3X' },
+      { id: 16, no: 3, noPeserta: 'Labs-G-003', noWa: '6289527221222', token: '10ZSSLW0' },
+      { id: 17, no: 4, noPeserta: 'Labs-G-004', noWa: '6289527221222', token: 'A0VOXVM6' },
+      { id: 18, no: 5, noPeserta: 'Labs-G-005', noWa: '6289527221222', token: 'LEOUTHL3' },
+    ];
+
+    const tbody = document.getElementById("token-body");
+
+    pesertaList.forEach(peserta => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${peserta.no}</td>
+        <td class="fw-semibold text-primary">${peserta.noPeserta}</td>
+        <td class="text-success">${peserta.noWa}</td>
+        <td class="text-uppercase text-muted" id="token-${peserta.id}">${peserta.token}</td>
+        <td class="text-center">
+          <div class="btn-group btn-group-sm">
+            <button class="btn btn-outline-secondary" onclick="generateToken(${peserta.id})" title="Generate"><i class="bi bi-shuffle"></i></button>
+            <button class="btn btn-outline-primary" onclick="saveTokenPeserta(${peserta.id})" title="Save"><i class="bi bi-save2"></i></button>
+            <button class="btn btn-outline-success" onclick="sendToWhatsApp(${peserta.id})" title="Kirim WA"><i class="bi bi-whatsapp"></i></button>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    function generateToken(id) {
+      const token = Math.random().toString(36).substring(2, 10).toUpperCase();
+      document.getElementById(`token-${id}`).innerText = token;
+    }
+
+    function saveTokenPeserta(id) {
+      const token = document.getElementById(`token-${id}`).innerText;
+      alert(`Token ${token} berhasil disimpan untuk peserta ID ${id}`);
+      // Lakukan AJAX save di sini
+    }
+
+    function sendToWhatsApp(id) {
+      const peserta = pesertaList.find(p => p.id === id);
+      const token = document.getElementById(`token-${id}`).innerText;
+      const message = encodeURIComponent(`Halo Kak!\n\nBerikut adalah token Anda untuk melihat hasil penilaian:\n\n🆔 No Peserta: ${peserta.noPeserta}\n🔐 Token Nilai: ${token}\n\nTerima kasih.\nPanitia LSC 2025`);
+      const waLink = `https://wa.me/${peserta.noWa}?text=${message}`;
+      window.open(waLink, '_blank');
+    }
+
+    
+  </script>
+
+</body>
+</html>

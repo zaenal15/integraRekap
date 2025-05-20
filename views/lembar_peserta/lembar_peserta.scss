@@ -1,0 +1,1393 @@
+body {
+  #title-content-header {
+    display: block !important;
+  }
+
+  .content-wrap {
+    padding: 0.5rem 1rem;
+
+    #formulir-penilaian-token {
+      grid-template-rows: 1fr !important;
+      place-content: center;
+      align-items: center;
+
+      .no-data-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 1rem;
+        align-items: center;
+
+        h3 {
+          margin-bottom: 0.5rem !important;
+        }
+
+        .form-input {
+          height: 30px;
+
+          input {
+            text-align: center;
+          }
+        }
+
+        #show-report {
+          padding: 1rem;
+          font-size: medium;
+          border-radius: 8px;
+          background: #2200b8;
+          color: white;
+        }
+      }
+    }
+
+    #rekap-lembar-peserta {
+      display: grid;
+      position: absolute;
+      height: 100%;
+      left: 0;
+      right: 0;
+      grid-template-rows: max-content 1fr !important;
+
+      .row-content {
+        overflow: auto;
+        border-radius: 0 !important;
+        height: unset !important;
+        max-height: unset !important;
+
+        #table-mata-lomba-section {
+          margin: 0rem !important;
+          overflow: unset !important;
+          border-radius: 0 !important;
+          height: unset !important;
+          max-height: unset !important;
+          padding: 0 !important;
+        }
+      }
+    }
+
+    #rekap-content-section,
+    #rekap-lembar-peserta,
+    #formulir-penilaian-token {
+      display: none;
+      height: 100%;
+
+      .box-info {
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #d1cfd4;
+        border-radius: 6px;
+
+
+        .box-persentase-rekap {
+          display: grid;
+          grid-template-columns: 45px 1fr max-content;
+          gap: 0.5rem;
+          align-items: center;
+          overflow: hidden;
+
+          .persentase-text {
+            display: grid;
+            background: #eeeaff;
+            padding: 0.5rem;
+            font-weight: bold;
+            color: #2200B8;
+            text-align: center;
+          }
+
+          .total-rekap-text {
+            padding: 0.5rem;
+          }
+
+          .lomba-text {
+            padding: 0.5rem 0;
+          }
+
+          label {
+            font-style: unset !important;
+            font-size: 12px;
+          }
+
+          span {
+            font-weight: bold;
+            font-size: 14px;
+          }
+        }
+
+        .icon-box {
+          font-size: 16px;
+          width: 20px;
+          height: 20px;
+          display: grid;
+          place-items: center;
+          padding: 5px;
+          border-radius: 100px;
+          display: grid;
+        }
+
+        .label-ok {
+          color: #1C9B6F;
+          background: #E4F8F1;
+        }
+
+        .label-not-ok {
+          background: #FADCDC;
+          color: var(--ptch-clr-red-1);
+        }
+
+        .label-duration {
+          color: #39a1ea;
+          background: #DAEDFB;
+        }
+
+        .label-man-power {
+          color: #1392a2;
+          background: #DAF7FB;
+        }
+      }
+
+      .btn-header-peserta{
+        margin-left: auto;
+        display: flex;
+        height: 100%;
+        gap: 0.5rem;
+      }
+
+      #print-lembar-nilai-peserta {
+        background: #1e96fc;
+        color: white;
+        font-weight: bold;
+
+        &:hover {
+          background: #2200B8 !important;
+        }
+      }
+      
+      #btn-modal-arsip-nilai{
+        background: #2200b8;
+        color: white;
+        font-weight: bold;
+        span{
+          color: white;
+        }
+  
+        &:hover {
+          background: #2200B8 !important;
+        }
+
+      }
+
+      #wrap-header-info {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        gap: 1rem;
+        padding: 0.5em;
+
+        #wrap-legend-rekap {
+          margin-left: auto;
+        }
+
+        #total-persentase-rekap {
+          width: 300px;
+
+          .box-persentase-rekap {
+            grid-template-columns: 45px 1fr max-content max-content;
+            height: 100%;
+
+            .progress-bar-content {
+              #progress-count {
+                justify-content: space-between;
+              }
+            }
+
+
+            .total-rekap-text {
+              font-size: 17px;
+            }
+
+
+            .persentase-text {
+              height: 100%;
+              align-items: center;
+              font-size: 20px;
+            }
+
+            button {
+              height: 100%;
+            }
+          }
+        }
+
+      }
+
+      #wrap-progress-rekap {
+        padding: 0.5em;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 3px;
+        display: none;
+        margin-top: 0.5em;
+        border-top: 1px solid #d1cfd4;
+      }
+
+      #wrap-progress-rekap.active {
+        display: grid !important;
+      }
+
+      #table-mata-lomba-section {
+        overflow: auto;
+        border-radius: 0 !important;
+        max-height: 60vh !important;
+        padding: 0.5rem !important;
+
+        .wrap-lembar-rekap {
+          border-bottom: 5px solid #2200b8;
+          padding: 0.5rem;
+          padding-bottom: 1rem;
+          margin-bottom: 1rem;
+
+          h3 {
+            margin: 0;
+            margin-bottom: 1rem;
+          }
+
+          .content-tb-lembar-rekap {
+            display: grid;
+            grid-template-columns: 1fr 0.7fr;
+            gap: 1rem;
+
+            .content-nilai-rekap-akhir {
+              display: grid;
+              gap: 1rem;
+              grid-auto-rows: max-content;
+
+              .tabel-rekap-akhir-nilai-lomba {
+
+                .col-footer-total-akhir,
+                .col-footer-point-pinalti,
+                .col-footer-point-umum,
+                .col-footer-point-utama, .col-footer-sub-total{
+                  background: #f6f7fb !important;
+                }
+
+                .col-footer-nilai-pinalti,
+                .col-footer-nilai-umum,
+                .col-footer-nilai-utama,
+                .col-footer-nilai-akhir, .col-footer-nilai-sub-total{
+                  text-align: center;
+                  font-weight: 800;
+                }
+
+                .col-footer-nilai-pinalti {
+                  background: #d62828 !important;
+                  color: white !important;
+                }
+
+                .col-footer-nilai-akhir {
+                  background: #47bb8e !important;
+                  color: white !important;
+                }
+
+                .col-footer-nilai-umum, .col-footer-nilai-sub-total{
+                  background: #2200B8 !important;
+                  color: white !important;
+                }
+
+                .col-footer-nilai-utama {
+                  background: #1e96fc !important;
+                  color: white !important;
+                }
+              }
+
+            }
+
+            .tabel-rekap-nilai-lomba {
+
+              .head-juri,
+              .head-total {
+                text-align: center !important;
+              }
+
+              .col-total,
+              .col-juri {
+                text-align: center;
+                font-weight: 800;
+              }
+            }
+
+            .tabel-rekap-akhir-nilai-lomba {
+
+              .col-nilai,
+              .col-footer-nilai,
+              .col-total-akhir,
+              .col-nilai-pinalti {
+                text-align: center;
+                font-weight: 800;
+              }
+            }
+
+            .tabel-rekap-pengurangan-nilai-lomba {
+
+              .pengurangan-nilai-total,
+              .pengurangan-nilai-field {
+                text-align: center;
+                font-weight: 800;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    #wrap-filter-rekap {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .icon-menu {
+      width: 35px;
+      height: 35px;
+      color: #2200B8;
+      border-color: #2200B8;
+      background: #eeeaff;
+      display: grid;
+      border-radius: 5px;
+      place-items: center;
+      font-size: 18px;
+    }
+
+    .filter-icon {
+      display: grid !important;
+      grid-template-columns: max-content 1fr;
+      background: var(--ptch-clr-wht-1) !important;
+      grid-template-rows: max-content max-content;
+      border-left: 2px solid #2200B8;
+      row-gap: 2px;
+      grid-template-areas:
+        "icon label"
+        "icon select";
+
+      label {
+        grid-area: label;
+        font-weight: bold;
+      }
+
+      select {
+        grid-area: select;
+        font-size: 12px;
+      }
+
+      .icon-menu {
+        grid-area: icon;
+      }
+    }
+
+    .table-container {
+      padding: 0 !important;
+    }
+
+    #tabel-rekap-nilai-lomba,
+    #tabel-rekap-juara-lomba,
+    .tabel-rekap-nilai-lomba,
+    .tabel-rekap-pengurangan-nilai-lomba,
+    .tabel-rekap-akhir-nilai-lomba {
+      border-collapse: collapse;
+
+      .category-header {
+        td {
+          background: #EFEBFF !important;
+        }
+      }
+
+
+
+      th,
+      td {
+        border: 1px solid #e0e0e0 !important;
+        padding: 3px;
+        font-size: 12px !important;
+      }
+
+      .main-rank {
+        td {
+          background: #2200b8 !important;
+          color: white !important;
+        }
+      }
+
+      thead {
+        .head-no-peserta {
+          min-width: 156px;
+          width: 156px;
+        }
+
+        .head-nama-pangkalan {
+          min-width: 245px;
+          width: 245px;
+        }
+
+        .head-regu {
+          min-width: 150px;
+          width: 150px;
+        }
+
+        .head-kaegori-penilaian {
+          width: 90px;
+          max-width: 90px;
+          font-size: 10px !important;
+          text-align: center;
+          text-transform: uppercase;
+        }
+
+        .head-mata-lomba {
+          width: 35px;
+
+          // span {
+          //   white-space: nowrap;
+          //   -ms-writing-mode: tb-lr;
+          //   writing-mode: vertical-lr;
+          //   transform: rotate(180deg);
+          // }
+        }
+      }
+
+      tbody {
+
+        .rekap-rank-lomba.rank-1,
+        .rekap-point-lomba.rank-1 {
+          background: #47bb8e !important;
+          color: white !important;
+        }
+
+        .rekap-rank-lomba.rank-2,
+        .rekap-point-lomba.rank-2 {
+          background: #1e96fc !important;
+          color: white !important;
+        }
+
+        .rekap-rank-lomba.rank-3,
+        .rekap-point-lomba.rank-3 {
+          background: #fcbf49 !important;
+          color: white !important;
+        }
+
+        .col-value-lomba,
+        .col-total-nilai,
+        .col-rank,
+        .rekap-nilai-lomba,
+        .rekap-rank-lomba,
+        .rekap-point-lomba,
+        .rekap-total-rank-points,
+        .rekap-total-points-banding,
+        .rekap-overall-rank-juara {
+          text-align: center;
+        }
+
+        .col-kategori-penilaian,
+        .col-nilai-pinalti-lomba {
+          text-align: center;
+        }
+
+        .col-sub-total,
+        .col-nilai-pinalti,
+        .col-total-akhir {
+          text-align: center;
+        }
+      }
+    }
+
+    .nilai-belum-diberikan {
+      i {
+        color: #fcbf49;
+      }
+    }
+
+    .tidak-ikut-lomba {
+      i {
+        color: #d62828;
+      }
+    }
+
+    #wrap-lembar-jawaban {
+      height: 100%;
+      display: grid;
+      grid-template-rows: max-content 1fr;
+
+      #wrap-header-lembar-jawaban {
+        background: #2200B8;
+        border-radius: 8px 8px 0 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        overflow: hidden;
+        border-bottom: 1px solid #a3aed0;
+        ;
+        padding: 0.5rem;
+
+        .wrap-setting-rekap {
+          margin-left: auto;
+          height: 100%;
+
+          button {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+          }
+
+          #btn-kategori-juara {
+            background: #1e96fc !important;
+            color: white;
+            font-weight: bold;
+          }
+        }
+
+        h2 {
+          color: white;
+        }
+
+        i {
+          font-size: 19px;
+          color: white;
+        }
+
+        .btn-rekap-lomba {
+          display: flex;
+          border-radius: 7px;
+          overflow: hidden;
+          padding: 0.4rem;
+          background: #16007A;
+          color: white;
+          align-items: center;
+
+          button {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0.5rem;
+            border-radius: 7px !important;
+          }
+
+          .active {
+            background: #1e96fc !important;
+            color: white;
+            font-weight: bold;
+          }
+        }
+      }
+
+      #wrap-body-lembar-penilaian.active,
+      #wrap-rekap-juara.active {
+        grid-template-columns: 250px 200px 1fr;
+
+        .peserta-list {
+          display: block;
+        }
+      }
+
+      #wrap-content-body-rekap {
+        display: grid;
+        display: grid;
+        overflow: auto;
+        position: relative;
+        height: 100%;
+
+        .show {
+          display: grid !important;
+        }
+      }
+
+      #wrap-rekap-juara {
+        grid-template-columns: 300px 1fr !important;
+      }
+
+      #wrap-body-lembar-penilaian,
+      #wrap-rekap-juara {
+        grid-template-columns: 250px 1fr;
+        background: white;
+        display: none;
+        border-radius: 0 0 8px 8px;
+        height: 100%;
+
+        .sidebar {
+          border-right: 1px solid #a3aed0;
+
+          h2 {
+            background: #EFEBFF;
+            border-bottom: 1px solid #a3aed0;
+            padding: 0.5rem;
+          }
+
+          #kategori-juara-container {
+            .lomba-header {
+              padding-left: 1rem !important;
+            }
+          }
+
+          #lomba-container,
+          #kategori-juara-container {
+            .kategori-header {
+              background: #efebff;
+              padding: 0.3rem;
+              padding-left: 1rem;
+              border-bottom: 1px solid #a3aed0;
+              border-top: 1px solid #a3aed0;
+              cursor: pointer;
+            }
+
+            .lomba-header,
+            .kategori-juara-header {
+              font-size: var(--font-size-medium);
+              padding: 0.5rem 1rem;
+              padding-left: 2rem;
+              cursor: pointer;
+
+              &:hover {
+                background: #e1d9ff;
+                color: #2200b8;
+
+                span,
+                i {
+                  color: #2200b8;
+                }
+              }
+            }
+
+            .lomba-header.active,
+            .kategori-juara-header.active {
+              background: #e1d9ff;
+              color: #2200b8;
+
+              span,
+              i {
+                color: #2200b8;
+              }
+            }
+          }
+        }
+
+        #wrap-pengurangan-nilai.active {
+          display: block !important;
+        }
+
+        #wrap-pengurangan-nilai {
+          top: 0;
+          position: absolute;
+          bottom: 0;
+          width: 50%;
+          z-index: 2;
+          background: white;
+          border-right: 1px solid #a3aed0;
+          padding: 0.5rem;
+          padding-top: 0 !important;
+          overflow: auto;
+          display: none;
+
+          #header-pengurangan-nilai {
+            background: white;
+            position: sticky;
+            top: 0;
+
+            h3 {
+              margin-top: 0;
+              margin-bottom: 0.5rem;
+            }
+          }
+
+          #content-pengurangan-nilai-lists {
+            display: grid;
+            gap: 0.5rem;
+            grid-auto-rows: max-content;
+            overflow: auto;
+
+            .box-sub-point {
+              border: 1px solid #a3aed0;
+              border-radius: 8px;
+              overflow: hidden;
+              display: grid;
+
+
+              .header-sub-point {
+                padding: 0;
+                display: flex;
+                align-items: center;
+                background: #efebff;
+
+                .total-pengurangan-kategori {
+                  margin-left: auto;
+                }
+
+                .btn-edit-sub-point {
+                  margin-left: auto;
+                }
+
+                span {
+                  padding: 0.8rem;
+                  font-weight: bold;
+                }
+
+                button {
+                  height: 100%;
+                  min-width: 50px;
+                  background: #d1d5db;
+                  border-radius: 0;
+
+                  &:hover {
+                    background: #47bb8e;
+                    color: white;
+                  }
+                }
+
+                .btn-delete-sub-point {
+                  margin-left: auto;
+                  border-right: 1.5px solid #a3aed0;
+                }
+              }
+
+              .sub-point-list {
+                display: grid;
+                gap: 0.5rem;
+                padding: 0.8rem;
+                grid-auto-rows: max-content;
+
+                .sub-point-content {
+                  padding: 0.5em;
+                  border: 1px solid #d1d5db;
+                  border-radius: 5px;
+                  font-size: 12px !important;
+                }
+
+                .box-category-content {
+                  display: grid;
+                  background: white;
+                  gap: 0.3rem;
+                  padding: 0.5em;
+                  border: 1px solid #d1d5db;
+                  border-radius: 8px;
+                  align-items: center;
+                  cursor: pointer;
+                }
+
+                .box-category-content.active {
+                  border-color: #2200b8 !important;
+                  background: #2200b8 !important;
+
+                  span {
+                    color: white !important;
+                  }
+                }
+              }
+
+              .form-input {
+                grid-template-columns: 1fr max-content;
+
+                button {
+                  height: 40px;
+                  width: 40px;
+                  font-size: 18px;
+                  background: #47bb8e;
+                  color: white;
+                }
+              }
+            }
+          }
+        }
+
+        .peserta-list {
+          border-right: 1px solid #a3aed0;
+          display: none;
+
+          h2 {
+            background: #EFEBFF;
+            border-bottom: 2px solid #a3aed0;
+            padding: 0.5rem;
+          }
+
+          #peserta-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0.5rem;
+
+            button {
+              text-align: left;
+
+              &:hover {
+                background: #2200b8 !important;
+                font-weight: 700;
+                color: white !important;
+              }
+            }
+
+            .active {
+              background: #2200b8 !important;
+              font-weight: 700;
+              color: white !important;
+            }
+          }
+        }
+
+        .content-lembar-jawaban {
+          display: grid;
+          overflow: auto;
+          position: relative;
+
+          .detail-section {
+            display: grid;
+            position: absolute;
+            height: 100%;
+            left: 0;
+            right: 0;
+            grid-template-rows: max-content 1fr;
+
+            #wrap-header-info-rekap {
+              display: grid;
+              grid-template-columns: 1fr 160px 0.6fr max-content;
+              gap: 0.5rem;
+              padding: 0.5rem;
+              border-bottom: 1px solid #a3aed0;
+
+              #btn-save-nilai {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+                align-items: center;
+                background: #47bb8e !important;
+                color: white !important;
+
+                span {
+                  font-size: 9px;
+                  color: white;
+                }
+              }
+
+              .filter-icon {
+                display: flex !important;
+                flex-direction: row;
+                align-items: center;
+
+                .icon-menu {
+                  width: 23px;
+                  height: 23px;
+                  font-size: 12px;
+                }
+              }
+            }
+
+            #wrap-footer-info-rekap {
+              display: grid;
+              align-items: center;
+              grid-template-columns: 1fr max-content;
+              gap: 0.5rem;
+              padding: 0.5rem;
+              position: sticky;
+              bottom: 0;
+              min-height: 50px;
+              border-top: 2px solid #f0f0f0;
+
+              #info-total-kategori-penilaian,
+              #info-total-akhir-penilaian {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                #total-akhir-penilaian {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 3px;
+                  min-width: 170px;
+                  // border: 1px solid #d1d5db;
+                  // padding: 0.3rem;
+                  // border-left: 2px solid #2200b8;
+                  border-radius: 8px;
+
+                  .box-total {
+                    display: grid;
+                    align-items: center;
+                    gap: 3px;
+                    grid-template-columns: 90px 1fr;
+                    border: 1.5px solid #d1d5db;
+                    border-radius: 5px;
+                    overflow: hidden;
+
+                    span {
+                      font-size: 12px;
+                    }
+
+                    .title-total {
+                      background: #47bb8e !important;
+                      color: white;
+                      padding: 2px;
+                      text-align: center;
+                    }
+
+                    .value-total {
+                      font-weight: 700;
+                      text-align: center;
+                    }
+                  }
+                }
+              }
+
+              .wrap-footer-info-content {
+                display: flex !important;
+                flex-direction: column;
+                min-width: 100px;
+              }
+            }
+
+            .table-container {
+              overflow: auto;
+              border-radius: 0 !important;
+              height: unset !important;
+              max-height: unset !important;
+
+              .category-header {
+                td {
+                  background: #f0f0f0 !important;
+                  border-bottom: 2px solid #a3aed0;
+                  border-top: 2px solid #a3aed0;
+                }
+
+                .head-total,
+                .head-juri {
+                  text-align: center;
+                }
+              }
+
+              #sub-point-table-list {
+
+                td,
+                th {
+                  padding: 5px !important;
+                }
+
+                .done {
+                  background: #47bb8e !important;
+
+                  input {
+                    color: white !important;
+                  }
+                }
+
+                .col-juri {
+                  input {
+                    text-align: center;
+                  }
+                }
+
+                .col-total {
+                  text-align: center;
+                }
+              }
+            }
+          }
+
+          #detail-formulir-penilaian {
+            display: grid;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 100%;
+            grid-template-rows: max-content 1fr;
+
+            #header-formulir-penilaian {
+              border-bottom: 1px solid #a3aed0;
+              display: flex;
+              position: sticky;
+              background: white;
+              top: 0;
+
+              button {
+                background: transparent;
+                font-size: var(--font-size-normal);
+                color: #929292;
+                padding: 0.8rem;
+                border-radius: 0 !important;
+
+                &:hover {
+                  color: #47bb8e;
+                  border-bottom: 2px solid #47bb8e;
+                }
+              }
+
+              .active {
+                color: #47bb8e;
+                border-bottom: 2px solid #47bb8e;
+              }
+
+              #category-penilaian-list {
+                margin-left: auto;
+                background: #efebff;
+                color: #353535;
+                border-left: 1px solid #a3aed0;
+              }
+
+              #add-category-sub-nilai {
+                background: #efebff;
+                border-left: 1px solid #a3aed0;
+                color: #353535;
+              }
+            }
+
+            #wrap-sub-point-content {
+              .box-sub-point {
+                margin: 1rem;
+                border: 1px solid #a3aed0;
+                border-radius: 8px;
+                overflow: hidden;
+                display: grid;
+
+                .header-sub-point {
+                  padding: 0;
+                  display: flex;
+                  align-items: center;
+                  background: #efebff;
+
+                  span {
+                    padding: 0.8rem;
+                    font-weight: bold;
+                  }
+
+                  button {
+                    height: 100%;
+                    min-width: 50px;
+                    background: #d1d5db;
+                    border-radius: 0;
+
+                    &:hover {
+                      background: #47bb8e;
+                      color: white;
+                    }
+                  }
+
+                  .btn-delete-sub-point {
+                    margin-left: auto;
+                    border-right: 1.5px solid #a3aed0;
+                  }
+                }
+
+                .sub-point-list {
+                  display: grid;
+                  gap: 0.5rem;
+                  padding: 0.8rem;
+
+                  .sub-point-content {
+                    padding: 0.5em;
+                    border: 1px solid #d1d5db;
+                    border-radius: 5px;
+                    font-size: 12px !important;
+                  }
+                }
+              }
+            }
+
+            thead {
+              th {
+                border-right: 0 !important;
+                border-left: 0 !important;
+                background: transparent !important;
+                border-bottom: 3px solid #a3aed0 !important;
+                padding: 0.5rem !important;
+                text-align: left;
+              }
+
+              .head-regu,
+              .head-lomba {
+                max-width: 80px;
+                width: 80px;
+              }
+
+              .head-pangkalan {
+                max-width: 130px;
+                width: 130px;
+              }
+
+              .head-peserta {
+                max-width: 150px;
+                width: 150px;
+              }
+
+              .head-act {
+                max-width: 30px;
+                width: 30px;
+                text-align: center;
+              }
+            }
+
+            tbody {
+              td {
+                background: transparent;
+                color: #232323 !important;
+                border-bottom: 1px solid #a3aed0 !important;
+              }
+
+              .col-action {
+                text-align: center;
+              }
+
+              tr {
+                &:hover {
+                  td {
+                    background: #f0f0f0 !important;
+                  }
+                }
+              }
+            }
+
+            .no-data-content {
+              display: flex;
+              height: 100%;
+              justify-content: center;
+              text-align: center;
+              flex-direction: column;
+
+              img {
+                width: 32%;
+                margin: 0 auto;
+              }
+
+              h3 {
+                font-size: 25px;
+                margin-bottom: 0.5rem;
+              }
+
+              .btn-category-list {
+                margin: 0 auto;
+                border-radius: 8px;
+                padding: 1rem;
+                font-size: larger;
+                background: #2200b8;
+                color: white;
+              }
+            }
+          }
+
+        }
+
+        .no-data-content {
+          grid-row: span 2;
+        }
+      }
+    }
+
+  }
+
+  .content-wrap{
+
+    #report-print-temp{
+      .report-print{
+        .tabel-rekap-nilai-lomba, .tabel-rekap-pengurangan-nilai-lomba, .tabel-rekap-akhir-nilai-lomba{
+          td, th{
+            font-size: 2px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.progress-container {
+  background-color: #f3f3f3;
+  border-radius: 25px;
+  position: relative;
+}
+
+.progress-bar {
+  height: 7px;
+  background-color: #2200B8;
+  border-radius: 25px;
+  width: 0;
+}
+
+#progress-percent {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+}
+
+#modal-content-lembar-jawaban-print {
+  #wrap-content-print-preview {
+    .report-print {
+
+      .tabel-rekap-nilai-lomba,
+      .tabel-rekap-pengurangan-nilai-lomba,
+      .tabel-rekap-akhir-nilai-lomba {
+
+        td,
+        th,
+        span {
+          font-size: 8px;
+        }
+
+        th {
+          background: #444444 !important;
+          text-align: center;
+          font-weight: bold;
+          color: white !important;
+        }
+
+        .col-juri {
+          text-align: center;
+        }
+
+        .col-nilai,
+        .col-footer-nilai,
+        .col-total-akhir,
+        .col-nilai-pinalti,
+        .pengurangan-nilai-total,
+        .pengurangan-nilai-field {
+          text-align: center;
+
+        }
+
+        .col-footer-nilai-pinalti,
+        .col-footer-nilai-umum,
+        .col-footer-nilai-utama,
+        .col-footer-nilai-akhir, .col-footer-nilai-sub-total{
+          text-align: center;
+          font-weight: 800;
+        }
+
+        .col-footer-nilai-pinalti {
+          background: #d62828 !important;
+          color: white !important;
+        }
+
+        .col-footer-nilai-akhir {
+          background: #47bb8e !important;
+          color: white !important;
+        }
+
+        .col-footer-nilai-umum, .col-footer-nilai-sub-total{
+          background: #2200B8 !important;
+          color: white !important;
+        }
+
+        .col-footer-nilai-utama {
+          background: #1e96fc !important;
+          color: white !important;
+        }
+      }
+
+      .category-header {
+        td {
+          background: #444444 !important;
+          text-align: center;
+          font-weight: bold;
+          color: white !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    .content-wrap {
+      #wrap-lembar-jawaban {
+        height: 100vh !important;
+        #wrap-content-body-rekap {
+          #rekap-lembar-peserta {
+            #table-rekap-crud {
+              display: flex !important;
+              flex-direction: column-reverse;
+
+              #print-lembar-nilai-peserta, #btn-modal-arsip-nilai {
+                height: 35px;
+                font-size: 14px !important;
+              }
+
+              #wrap-filter-rekap {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: unset !important;
+                gap: 0.2rem;
+              }
+            }
+
+            .content-tb-lembar-rekap {
+              grid-template-columns: 1fr !important;
+            }
+          }
+
+          #formulir-penilaian-token{
+            .formulir-penilaian-token{
+              img{
+                    width: 80% !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #modal-lampiran-lembar-juri{
+      width: 95% !important;
+      #wrap-foto-lembar-juri{
+        #foto-preview{
+          .wrap-img-preview{
+            .btn-download{
+                  font-size: 12px !important;
+            }
+            .btn-delete{
+                  font-size: 16px !important;
+              width: 43px;
+              height: 43px;
+            }
+          }
+        }
+      }
+  }
+  }
+}
+
+#modal-lampiran-lembar-juri{
+  #foto-preview{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    .wrap-img-preview{
+      position: relative;
+      img{
+        width: 100%;
+        object-fit: cover;
+        border: 1px solid rgb(204, 204, 204);
+        border-radius: 4px;
+        margin: 5px;
+      }
+      .btn-img-preview{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        gap: 1rem;
+        .btn-download{
+          display: block;
+          text-decoration: unset !important;
+          font-size: 16px;
+          background: #0433a5;
+          padding: 1rem;
+          color: white;
+          font-weight: bold;
+          border-radius: 100px;
+        }
+        .btn-delete{
+          display: block;
+          text-decoration: unset !important;
+          font-size: 16px;
+          background: #d62828;
+          padding: 1rem;
+          color: white;
+          font-weight: bold;
+          border-radius: 100px;
+          width: 55px;
+          height: 55px;
+        }
+      }
+    }
+  }
+}

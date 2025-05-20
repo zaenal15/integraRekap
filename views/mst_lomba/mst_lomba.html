@@ -1,0 +1,77 @@
+<section class="content-wrap">
+  <div class="table-container">
+    <section class="table-crud-button" id="table-customer-crud">
+      <span class="title-table">List Mata Lomba</span>
+      <section class="wrap-btn-list">
+        <button id="add-customer" onclick="updateKategoriLombaModal()"><i class="bi bi-list-ul"></i> List Kategori</button>
+      </section>
+      <button id="add-customer" onclick="updateMataLombaModal('add')"><i class="fa fa-plus-square"></i> Add</button>
+      <button id="update-customer" onclick="updateMataLombaModal('update')"><i class="fas fa-pencil-alt"></i> Update</button>
+      <button class="delete-button" id="delete-customer" onclick="deleteLomba()"><i class="fa fa-trash"></i> Delete</button>
+    </section>
+    <div id="customer-layout-section">
+      <div id="table-mata-lomba-section" class="table-container">
+        <table id="table-mata-lomba">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="modal modal-sm modal-master" id="modal-update-lomba">
+  <section class="modal-head">
+    <h2>Tambah Mata Lomba</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+  <section class="modal-content">
+    <div style="display: none;" class="form-input basic-flex-reverse">
+      <label>ID Lomba : </label>
+      <input id="lomba-id-field" hidden>
+    </div>
+    <div class="modal-master-info" id="lomba-update-info" style="display: flex;">
+      <div class="form-input basic-flex-reverse">
+        <label>Nama Lomba : </label>
+        <input id="nama-lomba-field" placeholder="Masukkan Nama Lomba" required>
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Kategori Lomba : </label>
+        <select id="kategori-lomba-field" required>
+          <!-- Option kategori akan di-generate menggunakan JavaScript -->
+        </select>
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Jumlah Juri : </label>
+        <input id="jumlah-juri-field" type="number" value="1" placeholder="Masukkan Jumlah Juri" required>
+      </div>
+    </div>
+  </section>
+  <section class="modal-foot">
+    <button id="add-lomba-btn" class="add" onclick="updateLomba('add')"><i class="fa fa-plus"></i> Tambah</button>
+    <button id="update-lomba-btn" class="update" onclick="updateLomba('update')"><i class="fas fa-pencil-alt"></i> Perbarui</button>
+  </section>
+</section>
+
+<section class="modal modal-sm modal-master" id="modal-update-kategori-lomba">
+  <section class="modal-head">
+    <h2>Tambah Kategori Lomba</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+  <section class="modal-content">
+    <div class="modal-master-info" id="peserta-update-info" style="display: flex;">
+      <section id="wrap-add-kaegori-lomba-form">
+        <div class="form-input basic-flex-reverse">
+          <input id="add-kategori-lomba-field" placeholder="Masukkan Nama Kategori" required="">
+        </div>
+        <button onclick="updateKategoriLomba(this,'add')"><i class="fa fa-plus"></i> Tambah</button>
+      </section>
+      <h3>List Kategori</h3>
+      <section id="wrap-content-list-category"></section>
+    </div>
+  </section>
+  <!-- <section class="modal-foot">
+    <button id="add-peserta-btn" class="add" onclick="updatePeserta('add')" ><i class="fa fa-plus"></i> Tambah</button>
+    <button id="update-peserta-btn" class="update" onclick="updatePeserta('update')" ><i class="fas fa-pencil-alt"></i>Perbarui</button>
+  </section> -->
+</section>

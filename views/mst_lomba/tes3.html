@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Lomba Dinamis</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .nilai-diberikan {
+            background-color: #4CAF50;  /* Hijau untuk nilai yang sudah ada */
+            color: white;
+        }
+        .nilai-belum-diberikan {
+            background-color: #FFEB3B;  /* Kuning untuk nilai yang belum diberikan */
+        }
+        .tidak-ikut-lomba {
+            background-color: #F44336;  /* Merah untuk lomba yang tidak diikuti */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <table id="tabel-lomba">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // **1. Data Kategori & Lomba**
+        const kategoriLomba = [
+            { kategori_id: 1, nama_kategori: "Kategori A" },
+            { kategori_id: 3, nama_kategori: "Kategori C" }
+        ];
+
+        const daftarLomba = [
+            { lomba_id: 1, nama_lomba: "LKBBT", kategori_id: 1 },
+            { lomba_id: 2, nama_lomba: "Cerdas Cermat", kategori_id: 1 },
+            { lomba_id: 3, nama_lomba: "Panahan", kategori_id: 3 }
+        ];
+
+// **2. Data Nilai Peserta**
+  const pesertaYangSudahAdaNilai = [
+    { no_peserta: "SAYAKA-0002", nama_pangkalan: "SMK Negeri 2", regu: "Mawar", lomba_id: 2, nilai: 95 },
+    { no_peserta: "SAYAKA-0002", nama_pangkalan: "SMK Negeri 2", regu: "Mawar", lomba_id: 1, nilai: 80 },
+    { no_peserta: "SAYAKA-0003", nama_pangkalan: "SMK Negeri 3", regu: "Melati", lomba_id: 2, nilai: 88 }
+  ];
+
+  // **3. Data Peserta yang Diupdate**
+  const seluruhPeserta = [
+    { no_peserta: "SAYAKA-0001", nama_pangkalan: "SMK Negeri 1", regu: "Anggrek", lomba_id: 1 },
+    { no_peserta: "SAYAKA-0001", nama_pangkalan: "SMK Negeri 1", regu: "Anggrek", lomba_id: 2 },
+    { no_peserta: "SAYAKA-0002", nama_pangkalan: "SMK Negeri 2", regu: "Mawar", lomba_id: 1 },
+    { no_peserta: "SAYAKA-0002", nama_pangkalan: "SMK Negeri 2", regu: "Mawar", lomba_id: 2 },
+    { no_peserta: "SAYAKA-0003", nama_pangkalan: "SMK Negeri 3", regu: "Melati", lomba_id: 2 },
+    { no_peserta: "SAYAKA-0003", nama_pangkalan: "SMK Negeri 3", regu: "Melati", lomba_id: 1 },
+    { no_peserta: "SAYAKA-0004", nama_pangkalan: "SMK Negeri 4", regu: "Mawar", lomba_id: 2 }
+  ];
+        // **4. Struktur Data untuk Mempermudah Akses**
+        let kategoriMap = {}; 
+        kategoriLomba.forEach(kat => kategoriMap[kat.kategori_id] = { nama: kat.nama_kategori, lomba: [] });
+
+        daftarLomba.forEach(lomba => {
+            if (kategoriMap[lomba.kategori_id]) {
+                kategoriMap[lomba.kategori_id].lomba.push(lomba);
+            }
+        });
+
+        let pesertaMap = {};
+        seluruhPeserta.forEach(peserta => {
+            if (!pesertaMap[peserta.no_peserta]) {
+                pesertaMap[peserta.no_peserta] = { 
+                    no_peserta: peserta.no_peserta, 
+                    nama_pangkalan: peserta.nama_pangkalan, 
+                    regu: peserta.regu, 
+                    lomba_diikuti: [],
+                    nilai: {}, 
+                    total_nilai: 0 
+                };
+            }
+            pesertaMap[peserta.no_peserta].lomba_diikuti.push(peserta.lomba_id);
+        });
+
+        // Gabungkan peserta dengan nilai yang sudah diinput
+        pesertaYangSudahAdaNilai.forEach(nilaiPeserta => {
+            if (pesertaMap[nilaiPeserta.no_peserta]) {
+                pesertaMap[nilaiPeserta.no_peserta].nilai[nilaiPeserta.lomba_id] = nilaiPeserta.nilai;
+                pesertaMap[nilaiPeserta.no_peserta].total_nilai += nilaiPeserta.nilai;
+            }
+        });
+
+        // **5. Buat Header Tabel**
+        const thead = document.querySelector("#tabel-lomba thead");
+        const tbody = document.querySelector("#tabel-lomba tbody");
+
+        let headerKategori = "<tr><th rowspan='2'>No Urut</th><th rowspan='2'>No Peserta</th><th rowspan='2'>Nama Pangkalan</th><th rowspan='2'>Regu</th>";
+        let headerLomba = "<tr>";
+
+        for (const kategori in kategoriMap) {
+            let kolomSpan = kategoriMap[kategori].lomba.length || 1;
+            headerKategori += `<th colspan="${kolomSpan}">${kategoriMap[kategori].nama}</th>`;
+
+            kategoriMap[kategori].lomba.forEach(lomba => {
+                headerLomba += `<th>${lomba.nama_lomba}</th>`;
+            });
+        }
+
+        headerKategori += "<th rowspan='2'>Total Nilai</th><th rowspan='2'>Rank</th>";
+        headerLomba += "</tr>";
+
+        thead.innerHTML = headerKategori + headerLomba;
+
+        // **6. Buat Daftar Peserta Berdasarkan No Peserta**
+        let pesertaArr = Object.values(pesertaMap);
+
+        // **7. Urutkan Peserta Berdasarkan No Peserta (ALFABETIS)**
+        pesertaArr.sort((a, b) => a.no_peserta.localeCompare(b.no_peserta));
+
+        // **8. Tentukan Ranking Berdasarkan Total Nilai (TERBESAR KE TERKECIL)**
+        let sortedRank = pesertaArr.filter(p => p.total_nilai > 0).sort((a, b) => b.total_nilai - a.total_nilai);
+        let rankMap = {};
+        let rank = 1;
+
+        sortedRank.forEach((peserta, index) => {
+            if (index > 0 && peserta.total_nilai < sortedRank[index - 1].total_nilai) {
+                rank++;
+            }
+            rankMap[peserta.no_peserta] = rank;
+        });
+
+        // **9. Tampilkan Data Peserta di Tabel**
+        if (pesertaArr.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="100%">Belum ada data peserta</td></tr>`;
+        } else {
+            let noUrut = 1;  // Variabel untuk penomoran urut
+            pesertaArr.forEach(peserta => {
+                let row = `<tr>
+                    <td>${noUrut}</td> <!-- No Urut -->
+                    <td>${peserta.no_peserta}</td>
+                    <td>${peserta.nama_pangkalan}</td>
+                    <td>${peserta.regu}</td>`;
+
+                for (const kategori in kategoriMap) {
+                    kategoriMap[kategori].lomba.forEach(lomba => {
+                        let nilai = peserta.nilai[lomba.lomba_id] || "-";
+                        let cellClass = '';
+
+                        // Menentukan kelas CSS untuk setiap kolom berdasarkan kondisi
+                        if (!peserta.lomba_diikuti.includes(lomba.lomba_id)) {
+                            cellClass = 'tidak-ikut-lomba';  // Tidak mengikuti lomba
+                        } else if (nilai === "-") {
+                            cellClass = 'nilai-belum-diberikan';  // Nilai belum diberikan
+                        } else {
+                            cellClass = 'nilai-diberikan';  // Nilai sudah ada
+                        }
+
+                        row += `<td class="${cellClass}">${nilai}</td>`;
+                    });
+                }
+
+                let rankDisplay = peserta.total_nilai > 0 ? rankMap[peserta.no_peserta] : "-";
+                row += `<td>${peserta.total_nilai}</td><td>${rankDisplay}</td></tr>`;
+                tbody.innerHTML += row;
+                noUrut++;
+            });
+        }
+    </script>
+</body>
+</html>

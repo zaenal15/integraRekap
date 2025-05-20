@@ -1,0 +1,130 @@
+<section class="content-wrap">
+  <section class="table-crud-button" id="table-customer-crud">
+    <span class="title-table">List Peserta</span>
+    <button id="add-customer" onclick="showListToken()"><i class="fa fa-plus-square"></i> Token</button>
+    <button id="add-customer" onclick="updatePesertaModal(this,'add')"><i class="fa fa-plus-square"></i> Add</button>
+    <button class="delete-button" id="delete-customer" onclick="deletePeserta()"><i class="fa fa-trash"></i>
+      Delete</button>
+  </section>
+  <section id="participants-container"></section>
+
+</section>
+
+<!-- Print Excel Table -->
+<div style="display: none;" class="no-border-bg tableScroll clone-tb-print" id="wrap-tabel-print">
+  <table class="no-border-bg" id="table-token-list-print" style="border-collapse: collapse; width: 100%; border: 0;">
+    <thead></thead>
+    <tbody></tbody>
+    <tfoot></tfoot>
+  </table>
+</div>
+
+<section class="modal modal-sm modal-master" id="modal-update-peserta">
+  <section class="modal-head">
+    <h2>Tambah Peserta</h2>
+    <button class="modal-close" onclick="closeModal()">X</button>
+  </section>
+
+  <section class="modal-content">
+    <div class="modal-master-info" id="peserta-update-info" style="display: flex; flex-wrap: wrap; gap: 16px;">
+
+      <!-- No Peserta -->
+      <div class="form-input basic-flex-reverse">
+        <label>No Peserta: </label>
+        <input id="no-peserta-field" placeholder="Masukkan No Peserta" required>
+      </div>
+
+      <!-- Regu -->
+      <div class="form-input basic-flex-reverse">
+        <label>Regu: </label>
+        <input id="regu-field" placeholder="Masukkan Nama Regu" required>
+      </div>
+
+      <!-- Jenis Regu -->
+      <div class="form-input basic-flex-reverse">
+        <label>Jenis Regu: </label>
+        <select id="jenis-regu-field" required>
+          <option value="">Pilih Jenis Regu</option>
+          <option value="none">None</option>
+          <option value="putra">Putra</option>
+          <option value="putri">Putri</option>
+        </select>
+      </div>
+
+      <!-- Tingkat Peserta -->
+      <div class="form-input basic-flex-reverse">
+        <label>Tingkat Peserta: </label>
+        <select id="tingkat-peserta-field" required>
+          <option value="">Pilih Tingkat Peserta</option>
+          <option value="SD">SD</option>
+          <option value="SMP">SMP</option>
+          <option value="SMA">SMA</option>
+        </select>
+      </div>
+
+      <!-- Pangkalan -->
+      <div class="form-input basic-flex-reverse">
+        <label>Pangkalan: </label>
+        <select id="pangkalan-field" required>
+          <!-- Options for Pangkalan will be dynamically generated -->
+        </select>
+      </div>
+
+      <!-- No WhatsApp -->
+      <div class="form-input basic-flex-reverse">
+        <label>No WhatsApp: </label>
+        <input id="no-wa-field" placeholder="Contoh: 6281234567890" required>
+      </div>
+
+      <!-- Mata Lomba -->
+      <div class="form-input basic-flex-reverse">
+        <label>Mata Lomba: </label>
+        <div id="mata-lomba-field" class="checkbox-group" required>
+          <!-- Checkboxes will be generated dynamically using JavaScript -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="modal-foot">
+    <button id="add-peserta-btn" class="add" onclick="updatePeserta('add')">Tambah</button>
+    <button id="update-peserta-btn" class="update" onclick="updatePeserta('update')">Perbarui</button>
+  </section>
+</section>
+
+<section class="modal modal-md modal-master" id="modal-token-peserta">
+  <section class="modal-head">
+    <h2>Token List</h2>
+    <button class="modal-close" onclick="closeModal()">X</button>
+  </section>
+  <section class="modal-content">
+    <div class="modal-master-info" id="peserta-update-info" style="display: flex;">
+  <div class="token-wrapper">
+    <div class="token-header">
+      <h4><i class="bi bi-clipboard-data"></i> Token List</h4>
+      <button class="export-btn" onclick="printExcelToken(this, 'tabel-token-peserta')">
+        <i class="bi bi-file-earmark-excel"></i> Export Excel
+      </button>
+    </div>
+
+    <table id="tabel-token-peserta">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>No Peserta</th>
+          <th>No WhatsApp</th>
+          <th>Token</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody id="token-body"></tbody>
+    </table>
+  </div>
+    </div>
+  </section>
+
+  <section class="modal-foot">
+
+  </section>
+</section>

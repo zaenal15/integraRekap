@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buat Sertifikat</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    textarea {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    input[type="file"] {
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin: 10px 10px 0 0;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #canvas {
+      margin-top: 30px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .form-group {
+        width: 100%;
+      }
+      button {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Generator Sertifikat + QR Code</h1>
+
+    <div class="form-group">
+      <label for="upload">Upload Template Sertifikat</label>
+      <input type="file" id="upload" accept="image/*" />
+    </div>
+
+    <div class="form-group">
+      <label for="namaPeserta">Nama Peserta</label>
+      <input type="text" id="namaPeserta" placeholder="Contoh: Budi Santoso" />
+    </div>
+
+    <div class="form-group">
+      <label for="dataPeserta">Data untuk QR Code</label>
+      <textarea id="dataPeserta" placeholder="Contoh: Nama, Email, ID, dll"></textarea>
+    </div>
+
+    <div>
+      <button onclick="generateCertificate()">Tampilkan Sertifikat</button>
+      <button onclick="downloadCertificate()">Download Sertifikat</button>
+    </div>
+
+    <canvas id="canvas" width="1000" height="700"></canvas>
+  </div>
+
+  <!-- QRCode.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    let uploadedImage = null;
+
+    document.getElementById('upload').addEventListener('change', function(e) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        uploadedImage = new Image();
+        uploadedImage.onload = function() {
+          drawCertificate();
+        };
+        uploadedImage.src = event.target.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+
+    function drawCertificate() {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (uploadedImage) {
+        ctx.drawImage(uploadedImage, 0, 0, canvas.width, canvas.height);
+      }
+
+      const name = document.getElementById('namaPeserta').value;
+      const dataQR = document.getElementById('dataPeserta').value;
+
+      if (name) {
+        ctx.font = 'bold 40px Arial';
+        ctx.fillStyle = '#000';
+        ctx.textAlign = 'center';
+        ctx.fillText(name, canvas.width / 2, canvas.height / 2 + 50);
+      }
+
+      // Generate QR Code
+      if (dataQR) {
+        const tempDiv = document.createElement("div");
+        const qr = new QRCode(tempDiv, {
+          text: dataQR,
+          width: 100,
+          height: 100
+        });
+
+        setTimeout(() => {
+          const qrImg = tempDiv.querySelector("img");
+          const img = new Image();
+          img.onload = function () {
+            ctx.drawImage(img, canvas.width - 130, canvas.height - 130, 100, 100);
+          };
+          img.src = qrImg.src;
+        }, 500);
+      }
+    }
+
+    function generateCertificate() {
+      if (!uploadedImage) {
+        alert('Silakan upload template sertifikat.');
+        return;
+      }
+      drawCertificate();
+    }
+
+    function downloadCertificate() {
+      const canvas = document.getElementById('canvas');
+      const link = document.createElement('a');
+      link.download = 'sertifikat_' + document.getElementById('namaPeserta').value + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>

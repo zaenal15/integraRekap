@@ -1,0 +1,479 @@
+body{
+  .content-wrap{
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    gap: 0em;
+    #group-lists-box{
+      display: flex;
+      gap: 1em;
+      padding: 1em;
+      border-bottom: .2em solid var(--b7-clr-wht-1);
+      padding-bottom: .5em;
+      #group-lists{
+        display: flex;
+        overflow: auto;
+        max-width: 1000px;
+        gap: .5em;
+        padding-bottom: .5em;
+        button{
+          min-width: 100px;
+        }
+      }
+      #group-filter{
+        display: flex;
+        gap: 0px;
+        overflow: hidden;
+        margin-left: auto;
+        height: max-content;
+        border-radius: .25em;
+        border: .1em solid var(--b7-clr-wht-1);
+        button, input{
+          padding: .3em .5em;
+          border-radius: 0px;
+          border: unset;
+        }
+        button{
+          width: 50px;
+        }
+      }
+      .search-user{
+        width: 300px;
+        height: max-content;
+        background: var(--b7-clr-blk-2);
+        color: var(--b7-clr-wht-1);
+        border-left: .3em solid transparent;
+        font-size: var(--font-size-normal);
+        margin-left: auto;
+        &:hover, &:focus, &:focus-within{
+          border-left: .3em solid var(--b7-clr-org-1);
+        }
+      }
+      button{
+        background: var(--b7-clr-blk-3);
+        color: var(--b7-clr-wht-1);
+        border: .1em solid var(--b7-clr-wht-1);
+        height: max-content;
+        font-size: var(--font-size-normal);
+      }
+      .group-button{
+        background: var(--b7-clr-blk-2);
+        color: var(--b7-clr-wht-1);
+        &:hover{
+          background: var(--b7-clr-wht-2);
+          color: var(--b7-clr-blk-1);
+          box-shadow: var(--main-neon-wht-light);
+        }
+      }
+      #add-group-button{
+        &:hover{
+          background: var(--b7-clr-blu-2);
+          color: var(--b7-clr-wht-1);
+        }
+      }
+      #remove-group-button{
+        &:hover{
+          background: var(--b7-clr-blu-1);
+          color: var(--b7-clr-wht-1);
+        }
+      }
+      #rename-group-button{
+        &:hover{
+          background: var(--b7-clr-org-1);
+          color: var(--b7-clr-wht-1);
+        }
+      }
+      .active{
+        background: var(--b7-clr-wht-2);
+        color: var(--b7-clr-blk-1);
+        box-shadow: var(--main-neon-wht-light);
+      }
+    }
+    #user-lists{
+      display: grid;
+      gap: 1em;
+      padding: 1em;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      grid-template-rows: repeat(auto-fit, 350px);
+      overflow: auto;
+      height: 85vh;
+      .user-card.active{
+        box-shadow: var(--main-neon-wht-medium);
+        border: 0.2em solid var(--b7-clr-wht-1);
+        grid-column: span 2;
+        overflow: hidden;
+        .user-section{
+          border-radius: 0;
+          background: var(--b7-clr-blu-3);
+          .user-name{
+            text-shadow: var(--main-neon-wht-light);
+          }
+        }
+      }
+      .user-card.blocked{
+        border: .2em solid var(--b7-clr-blu-1) !important;
+        .user-section{
+          background: var(--b7-clr-blk-1) !important;
+          border-right: .2em solid var(--b7-clr-blu-1) !important;
+        }
+        .user-update-info{
+          pointer-events: none;
+        }
+      }
+      .user-card.inactive{
+        .user-section{
+          border-radius: 0;
+          background: var(--b7-clr-org-1) !important;
+        }
+      }
+      .user-card{
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        border-radius: 1em;
+        overflow: hidden;
+        border: 0.2em solid transparent;
+        transition: all var(--speed-faster) ease-in-out;
+        height: 350px;
+        &:hover{
+          box-shadow: var(--main-neon-wht-medium);
+          border: 0.2em solid var(--b7-clr-wht-1);
+          .user-section{
+            background: var(--b7-clr-blu-2);
+            .user-name{
+              text-shadow: var(--main-neon-wht-light);
+            }
+          }
+          .user-section.add-user{
+            background: var(--b7-clr-org-1);
+          }
+        }
+        .user-section{
+          border-radius: 1em;
+          padding: 1em;
+          background: var(--b7-clr-blu-1);
+          cursor: pointer;
+          display: grid;
+          grid-template-rows: max-content 1fr;
+          gap: 1em;
+          width: calc(100% - 1em);
+          .user-name{
+            font-size: var(--font-size-medium);
+            font-weight: bolder;
+            margin: auto;
+          }
+          .user-photo{
+            width: 14em;
+            height: 13em;
+            margin: auto 0px;
+            border-radius: 50%;
+            margin: auto 0px;
+          }
+          .user-info{
+            width: calc(100% - 0em);
+            padding-top: 1em;
+            border-top: .2em solid var(--b7-clr-wht-1);
+            display: grid;
+            gap: .5em;
+            font-size: var(--font-size-normal);
+            margin-top: 0px;
+            margin-left: unset;
+            #add-user-button{
+              font-size: var(--font-size-medium);
+              margin: auto 0px;
+            }
+            label, span{
+              color: var(--b7-clr-wht-1);
+              font-size: var(--font-size-small);
+            }
+          }
+        }
+        .user-section.add-user{
+          background: var(--b7-clr-blk-3); 
+          &:hover{
+            background: var(--b7-clr-blu-2); 
+          }
+        }
+        .user-detail{
+          display: none;
+          transition: all var(--speed-faster) ease-in-out;
+          min-width: 200px;
+          grid-template-rows: max-content 1fr max-content;
+          border-left: .2em solid var(--b7-clr-wht-1);
+          .user-act{
+            display: flex;
+            overflow: hidden;
+            gap: 0em;
+            border-bottom: .2em solid var(--b7-clr-wht-1);
+            button{
+              width: 100%;
+              border-radius: 0px;
+              background: var(--b7-clr-blu-2);
+              color: var(--b7-clr-wht-1);
+              font-weight: bolder;
+              font-size: var(--font-size-normal);
+              padding: .5em 1em;
+              &:hover{
+                background: var(--b7-clr-org-1);
+              }
+            }
+            .active{
+              background: var(--b7-clr-org-1);
+              color: var(--b7-clr-wht-1);
+            }
+          }
+          .user-update-info, .user-update-password{
+            background: var(--b7-clr-blk-1);
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            max-height: 260px;
+            overflow: auto;
+          }
+          .form-input{
+            display: grid;
+            gap: .5em;
+            background: var(--b7-clr-blk-3);
+            padding: .5em;
+            border-left: .3em solid transparent;
+            cursor: pointer !important;
+            &:hover, &:focus, &:focus-within{
+              text-shadow: var(--main-neon-wht-medium);
+              border-left: .3em solid var(--b7-clr-org-1);
+            }
+            label,input,select{
+              cursor: pointer !important;
+              color: var(--b7-clr-wht-1);
+              background: transparent !important;
+              border: 0px !important;
+              font-size: var(--font-size-normal);
+              padding: 0px;
+              option{
+                color: var(--b7-clr-blk-1);
+              }
+              &:focus, &:focus-visible{
+                outline: none;
+                outline-color: transparent !important;
+              }
+            }
+            label{
+              font-size: var(--font-size-small);
+            }
+            button{
+              width: 100%;
+              &:hover{
+                background: var(--b7-clr-org-1);
+                color: var(--b7-clr-wht-1);
+              }
+            }
+            button.active{
+              background: var(--b7-clr-blu-1);
+            }
+          }
+          .update-user-button{
+            width: 100%;
+            border-radius: 0px;
+            background: var(--b7-clr-blu-2);
+            color: var(--b7-clr-wht-1);
+            font-weight: bolder;
+            font-size: var(--font-size-normal);
+            padding: .5em;
+            position: sticky;
+            bottom: 0px;
+            &:hover{
+              background: var(--b7-clr-org-1);
+            }
+          }
+        }
+      }
+    }
+    #user-lists-no-data{
+      padding: .5em 2em;
+      border-radius: .25em;
+      background: url(../../assets/svgs/cancel1.svg) no-repeat right bottom;
+      background-size: 250px;
+      background-origin: content-box;
+      background-color: var(--b7-clr-blk-1);
+      height: 300px;
+      color: var(--b7-clr-wht-2);
+      display: grid;
+      place-content: center;
+      gap: 1em;
+      span{
+        font-size: var(--font-size-large);
+        font-weight: bold;
+        margin: auto;
+        button{
+          height: 100%;
+          padding: .2em;
+          font-size: smaller;
+          width: 100%;
+          margin-top: .3em;
+          &:hover{
+            background: var(--b7-clr-org-1);
+            color: var(--b7-clr-wht-1);
+          }
+        }
+      }
+    }
+  }
+
+  #doModal {
+    .modal-title{
+      padding-top: 0px !important;
+    }
+  }
+}
+
+body.white-theme{
+  .content-wrap{
+    #user-lists-no-data{
+      background: var(--b7-clr-blu-1) !important;
+    }
+    #group-lists{
+      border-color: var(--b7-clr-blu-1);
+      #add-group-button{
+        &:hover{
+          background: var(--b7-clr-org-1) !important;
+          color: white !important;
+        }
+      }
+      .search-user{
+        background: var(--b7-clr-blu-1) !important;
+      }
+      .group-button{
+        background: var(--b7-clr-blu-1) !important;
+        color: white !important;
+        &:hover{
+          background: var(--b7-clr-org-1) !important;
+        }
+      }
+      .group-button.active{
+        background: var(--b7-clr-org-1) !important;
+      }
+    }
+
+    #user-lists{
+      .user-card{
+        border: 5px solid var(--b7-clr-blu-1);
+        .user-section{
+          background: var(--b7-clr-wht-1) !important;
+          span,label{
+            color: var(--b7-clr-blk-2) !important;
+          }
+          .user-info{
+            border-color: var(--b7-clr-blu-1) !important;
+          }
+          &:hover{
+            background: var(--b7-clr-blu-1) !important;
+            span,label{
+              color: var(--b7-clr-wht-1) !important;
+            }
+            .user-info{
+              border-color: var(--b7-clr-wht-1) !important;
+            }
+          }
+        }
+        .user-section.add-user{
+          background: var(--b7-clr-blu-2) !important;
+          .user-info{
+            border-color: var(--b7-clr-wht-1) !important;
+          }
+          &:hover{
+            background: var(--b7-clr-org-1) !important;
+          }
+        }
+      }
+      .user-card.active, .user-card.inactive{
+        border: 5px solid var(--b7-clr-blu-1);
+        .user-section{
+          span,label{
+            color: var(--b7-clr-wht-1) !important;
+          }
+          .user-info{
+            border-color: var(--b7-clr-wht-1) !important;
+          }
+        }
+        .user-update-info{
+          background: var(--b7-clr-wht-1) !important;
+          .form-input{
+            background: var(--b7-clr-gry-4) !important;
+            label, input, select{
+              color: var(--b7-clr-blk-2) !important;
+            }
+            .status-user{
+              background: var(--mtb-clr-gry-3);
+              &:hover{
+                background: var(--b7-clr-org-1);
+                color: var(--b7-clr-wht-1);
+              }
+            }
+            .status-user.active{
+              background: var(--b7-clr-blu-1);
+            }
+          }
+        }
+      }
+      .user-card.active, .user-card.inactive{
+        .user-section{
+          background: var(--b7-clr-blu-1) !important;
+        }
+      }
+      .user-card.inactive{
+        .user-section{
+          background: var(--b7-clr-org-1) !important;
+        }
+      }
+    }
+  }
+
+  #doModal{
+    #group-add-info, #user-add-info{
+      background: white !important;
+      h2{
+        color: var(--mtb-clr-blk-2) !important;
+        border-color: var(--mtb-clr-blk-2) !important;
+      }
+      .form-input{
+        background:var(--b7-clr-wht-2) !important;
+        input, label, select{
+          color: var(--mtb-clr-blk-2) !important;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-device-width: 1500px) {
+  body{
+    #mainContent{
+      .content-wrap{
+        button,span,input,label{
+          font-size: small !important;
+        }
+        .user-card{
+          min-height: 300px !important;
+          grid-template-columns: unset !important;
+          .user-section{
+            // grid-template-rows: 300px 1fr !important;
+            width: auto !important;
+            .user-photo{
+              margin: auto !important;
+              max-width: 200px !important;
+            }
+          }
+        }
+        #user-lists{
+          .user-card.active{
+            grid-template-columns: max-content 1fr !important;
+          }
+        }
+      }
+    }
+
+    #doModal{
+      button,span,label,.user-info{
+        font-size: medium !important;
+      }
+    }
+  }
+}

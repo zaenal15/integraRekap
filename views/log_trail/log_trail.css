@@ -1,0 +1,70 @@
+body .content-wrap {
+  display: grid;
+  grid-template-rows: max-content;
+  gap: 2em;
+  grid-template-columns: 1fr;
+  grid-template-areas: "title-filter" "room";
+  gap: 0.5em;
+}
+body .content-wrap #log-trail-title-filter {
+  grid-area: title-filter;
+  display: flex;
+  gap: 1em;
+  margin: 1em;
+  margin-bottom: 0.5em;
+}
+body .content-wrap #log-trail-title-filter #log-trail-title {
+  margin: 0px;
+  margin-left: 0px;
+  font-size: var(--font-size-large);
+  margin: auto 0px;
+  padding-left: 0.5em;
+}
+body .content-wrap #log-trail-title-filter #log-trail-filter {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5em;
+}
+body .content-wrap #log-trail-title-filter #log-trail-filter input {
+  font-size: var(--font-size-normal);
+  border: 2px solid var(--jr-clr-wht-1);
+}
+body .content-wrap .table-container {
+  max-height: 85vh !important;
+}
+body .content-wrap .table-container .dataTables_wrapper .dataTables_scroll {
+  max-height: 80vh !important;
+}
+body .content-wrap .table-container .dataTables_wrapper .dataTables_scroll .dataTables_scrollBody {
+  max-height: 75vh !important;
+}
+body .content-wrap #table-trail-section {
+  grid-area: room;
+  padding-top: 1em;
+  border-top: 0.5em solid var(--wki-clr-red-1);
+}
+body .content-wrap table {
+  width: 100% !important;
+}
+body .content-wrap table th,
+body .content-wrap table td {
+  color: var(--enk-clr-wht-1);
+}
+body .content-wrap table th {
+  border-bottom: 0.2em solid var(--enk-clr-wht-1);
+}
+body .content-wrap table td {
+  border-bottom: 0.1em solid var(--enk-clr-wht-1);
+  font-size: 1em;
+}
+body .content-wrap table .col-log_date, body .content-wrap table .head-log_date {
+  min-width: 150px;
+}
+body .content-wrap table thead {
+  color: var(--enk-clr-wht-1);
+}
+body .content-wrap table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--enk-clr-blu-1);
+}/*# sourceMappingURL=log_trail.css.map */

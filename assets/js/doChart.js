@@ -1,0 +1,3 @@
+function lineAmchart(series) {
+
+}

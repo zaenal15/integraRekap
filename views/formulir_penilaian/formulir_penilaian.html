@@ -1,0 +1,157 @@
+<section class="content-wrap">
+  <section id="wrap-lembar-jawaban">
+    <!-- Sidebar -->
+    <section id="wrap-header-lembar-jawaban">
+      <h2>Formulir Penilaian List</h2>
+    </section>
+
+    <section id="wrap-body-lembar-jawaban">
+      <div class="sidebar">
+        <h2>Daftar Lomba</h2>
+        <div id="lomba-container"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="content-lembar-jawaban">
+        <div class="detail-section" id="detail-formulir-penilaian">
+          <section class="no-data-content" style="">
+            <img src="../../assets/img/no-data.svg" alt="" style="width: 32%; margin: 0 auto;">
+            <h3 style="font-size: 25px;">Pilih lomba untuk melihat peserta</h3>
+          </section>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+<section class="modal modal-md modal-master" id="modal-update-kategori-penilaian">
+  <section class="modal-head">
+    <h2>Kategori penilaian</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+  <section class="modal-content">
+    <div class="modal-master-info" id="peserta-update-info" style="display: flex;">
+      <section id="wrap-add-kaegori-lomba-form">
+        <div class="form-input basic-flex-reverse">
+          <input id="add-kategori-lomba-field" placeholder="Masukkan Nama Kategori" required="">
+        </div>
+        <button id="add-kategori-penilaian" onclick="updateKategoriLomba(this,'add')"><i class="fa fa-plus"></i> Tambah</button>
+      </section>
+      <h3>List Sub Point Penilaian</h3>
+      <section id="wrap-content-list-category"></section>
+      <!-- <h3>Sistem Penilaian</h3>
+      <section id="wrap-content-list-sistem-penilaian"></section> -->
+    </div>
+  </section>
+  <!-- <section class="modal-foot">
+    <button id="add-peserta-btn" class="add" onclick="updatePeserta('add')" ><i class="fa fa-plus"></i> Tambah</button>
+    <button id="update-peserta-btn" class="update" onclick="updatePeserta('update')" ><i class="fas fa-pencil-alt"></i>Perbarui</button>
+  </section> -->
+</section>
+
+<section class="modal modal-sm modal-master" id="modal-update-point-penilaian">
+  <section class="modal-head">
+    <h2>Tambah Point Penilaian</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+  <section class="modal-content">
+    <div style="display: none;" class="form-input basic-flex-reverse">
+      <label>ID Lomba : </label>
+      <input id="lomba-id-field" hidden>
+    </div>
+    <div class="modal-master-info" id="lomba-update-info" style="display: flex;">
+      <div class="form-input basic-flex-reverse">
+        <label>Kategori Penilaian : </label>
+        <span id="kategori-penilaian-field"></span>
+      </div>
+      <div class="form-input basic-flex-reverse">
+        <label>Judul Point Penilaian : </label>
+        <input id="judul-point-penilaian-field" placeholder="Masukkan Judul Point Penilaian" required>
+      </div>
+    </div>
+  </section>
+  <section class="modal-foot">
+    <button id="add-lomba-btn" class="add" onclick="updateKategoriSubPoint(this,'add')"><i class="fa fa-plus"></i>
+      Tambah</button>
+  </section>
+</section>
+
+<section class="modal modal-md modal-master" id="modal-update-sub-penilaian">
+  <section class="modal-head">
+    <h2>Sub Point Penilaian</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+  <section class="modal-content">
+    <div class="modal-master-info" id="peserta-update-info" style="display: flex; padding: 0 1em;">
+      <section class="wrap-header-info-sub-point">
+        <div class="form-input"
+          style="display: grid;grid-template-columns: 150px 1fr;padding: 0;align-items: center;overflow: hidden;">
+          <label style="padding: 0.5rem;background: #eeeaff !important;font-weight: bold;">Kategori Penilaian </label>
+          <span id="judul-ketegori-penilaian-header"></span>
+        </div>
+        <div id="kategori-sub-poit-title" class="form-input"
+          style="display: grid; grid-template-columns: 150px 1fr max-content max-content;padding: 0;align-items: center;overflow: hidden;">
+          <label style="padding: 0.5rem;background: #eeeaff !important;font-weight: bold;">Judul Point </label>
+          <input id="judul-point-penilaian-header-field" placeholder="Masukkan Judul Point Penilaian" required>
+          <span id="judul-point-penilaian-header"></span>
+          <button id="update-kategori-sub-point-btn" onclick="updateKategoriSubPoint(this,'update')" class="edit"><i
+              class="bx bxs-save"></i></button>
+          <button id="edit-kategori-sub-point-btn" onclick="updateKategoriSubPoint(this,'edit')" class="edit"><i
+              class="fas fa-pencil-alt"></i></button>
+        </div>
+      </section>
+
+      <section id="wrap-add-kaegori-lomba-form">
+        <div class="form-input basic-flex-reverse">
+          <input id="add-sub-point-field" placeholder="Masukkan Sub Point" required="">
+        </div>
+        <button onclick="updateSubPointList(this,'add')"><i class="fa fa-plus"></i> Tambah</button>
+      </section>
+      <h3>List Sub Point</h3>
+      <section id="wrap-content-list-sub-point"></section>
+    </div>
+  </section>
+</section>
+
+<section class="modal modal-md modal-master" id="modal-update-kategori-pengurangan">
+  <section class="modal-head">
+    <h2>Kategori Pengurangan</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+  <section class="modal-content">
+    <div class="modal-master-info" id="peserta-update-info" style="display: flex; padding: 0 1em;">
+      <!-- <section class="wrap-header-info-sub-point">
+        <div class="form-input" style="display: grid;grid-template-columns: 150px 1fr;padding: 0;align-items: center;overflow: hidden;">
+          <label style="padding: 0.5rem;background: #eeeaff !important;font-weight: bold;">Kategori Penilaian </label>
+          <span id="judul-ketegori-penilaian-header"></span>
+        </div>
+        <div id="kategori-sub-poit-title" class="form-input" style="display: grid; grid-template-columns: 150px 1fr max-content max-content;padding: 0;align-items: center;overflow: hidden;">
+          <label style="padding: 0.5rem;background: #eeeaff !important;font-weight: bold;">Judul Point </label>
+          <input id="judul-point-penilaian-header-field" placeholder="Masukkan Judul Point Penilaian" required>
+          <span id="judul-point-penilaian-header"></span>
+          <button id="update-kategori-sub-point-btn" onclick="updateKategoriSubPoint(this,'update')" class="edit"><i class="bx bxs-save"></i></button>
+          <button id="edit-kategori-sub-point-btn" onclick="updateKategoriSubPoint(this,'edit')" class="edit"><i class="fas fa-pencil-alt"></i></button>
+        </div>
+      </section>
+       -->
+
+      <section id="wrap-content-pengurangan">
+        <section id="wrap-add-kaegori-lomba-form">
+          <div class="form-input basic-flex-reverse">
+            <label>Kategori : </label>
+            <select name="" id="kategori-pengurangan-nilai-field">
+              
+            </select>
+          </div>
+          <div class="form-input basic-flex-reverse">
+            <textarea name="" placeholder="Input Point Pengurangan" id="kriteria-pengurangan-field"></textarea>
+          </div>
+          <button onclick="updateKategoriPenguranganPoint(this,'add')"><i class="fa fa-plus"></i> Tambah</button>
+        </section>
+        <section class="wrap-content-list-kategori-box">
+          <h3>List Sub Point</h3>
+          <section id="wrap-content-list-kategori-pengurangan"></section>
+        </section>
+      </section>
+    </div>
+  </section>
+</section>

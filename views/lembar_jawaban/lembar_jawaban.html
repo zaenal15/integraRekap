@@ -1,0 +1,88 @@
+<section class="content-wrap">
+  <section id="wrap-lembar-jawaban">
+    <!-- Sidebar -->
+     <section id="wrap-header-lembar-jawaban">
+      <h2>Lembar Jawaban List</h2>
+     </section>
+
+     <section id="wrap-body-lembar-jawaban">
+       <div class="sidebar">
+         <h2>Daftar Lomba</h2>
+         <div id="lomba-container"></div>
+       </div>
+   
+       <!-- Content -->
+       <div class="content-lembar-jawaban">
+         <div class="detail-section" id="detail-lembar-jawaban-peserta">
+            <section class="no-data-content" style="">
+              <img src="../../assets/img/no-data.svg" alt="" style="width: 32%; margin: 0 auto;">
+              <h3 style="font-size: 25px;">Pilih lomba untuk melihat peserta</h3>
+            </section>
+         </div>
+       </div>
+     </section>
+  </section>
+</section>
+
+<section class="modal modal-master" id="modal-content-lembar-jawaban-print">
+  <section class="modal-head">
+    <h2>Lembar Jawaban</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+
+  <section class="modal-content">
+    <!-- Mockup Content Print -->
+    <section style="display: none;" class="wrap-content-print">
+      <section class="report-print wrap-print-content" id="form-lembar-jawaban">
+        <section class="canvas-content report-print" style="height: 837px; width: 592px; padding: 1rem; background: white; display: grid; grid-template-rows: max-content;">
+          <section id="form-section-lembar-jawaban" class="wrap-time-sheet-content box-content-print">
+            <section>
+              <h2 class="title-lembar-jawaba-lomba title-text" style="margin: 0; margin-bottom: 1rem; font-size: 20px; text-align: center; text-transform: uppercase;">LEMBAR JAWABAN</h2>
+              <section style="display: grid ;grid-template-columns: 1fr 0.7fr;">
+                <table style="width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="border: 0; width: 100px; font-size: 11px;">NAMA REGU</td>
+                      <td style="border: 0; font-size: 11px;" id="nama-regu-field">:</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 0; width: 100px; font-size: 11px;">NOMOR PESERTA</td>
+                      <td style="border: 0; font-size: 11px;" id="no-peserta-field">:</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 0; width: 100px; font-size: 11px;">NAMA PANGKALAN </td>
+                      <td style="border: 0; font-size: 11px;" id="nama-pangkalan-field">:</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 0; width: 100px; font-size: 11px;">Mata Lomba </td>
+                      <td style="border: 0; font-size: 11px;" id="mata-lomba-field">:</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table>
+                  <tbody>
+                    <tr>
+                      <td style="width: 35%; font-size: 10px; font-weight: bold; text-align: center; border: 1px solid black; border-right: 0 !important;">NILAI</td>
+                      <td style="width: 35%; font-size: 10px; font-weight: bold; text-align: center; border: 1px solid black;">PARAF</td>
+                      <td rowspan="2" class="qr-box-section"></div></td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center; border: 1px solid black; height: 50px; border-top: 0 !important; border-right: 0 !important;"></td>
+                      <td style="text-align: center; border: 1px solid black; height: 50px; border-top: 0 !important;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+      <section class="report-print wrap-print-content" id="form-lembar-jawaban-temp"></section>
+    </section>
+  </section>
+  
+  <section class="modal-foot">
+    <button onclick="printLembarJawabanModal(this, 'print')">Print</button>
+  </section>
+</section>

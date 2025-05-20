@@ -1,0 +1,134 @@
+<section class="content-wrap">
+  <section id="wrap-lembar-jawaban">
+    <!-- Sidebar -->
+    <section id="wrap-header-lembar-jawaban">
+      <i class=" bi bi-file-earmark-text-fill"></i>
+      <h2>Lembar Peserta</h2>
+       <!-- <section class="btn-rekap-lomba">
+        <button disabled onclick="showRekapContent(this, 'rekap-lembar-peserta')" class="btn-rekap-lomba active"><i class="bi bi-file-earmark-text-fill"></i> Lembar Penilaian</button>
+        <button disabled onclick="showRekapContent(this, 'rekap-content-section')"  class="btn-rekap-lomba"><i class="bi bi-file-earmark-text-fill"></i> Laporan Akhir</button>
+      </section> -->
+    </section>
+
+    <section id="wrap-content-body-rekap">
+      <div class="table-container content-rekap show" id="formulir-penilaian-token">
+        <section class="no-data-content" style="">
+          <img src="../../assets/img/no-data.svg" alt="" style="width: 32%; margin: 0 auto;">
+          <h3 style="font-size: 25px;">Masukan token untuk melihat nilai</h3>
+          <div class="form-input basic-flex-reverse">
+            <input id="token-field" placeholder="Token" required="">
+          </div>
+          <button onclick="validateToken()" id="show-report">Lihat Nilai</button>
+        </section>
+      </div>
+      <div id="rekap-lembar-peserta" class="table-container content-rekap">
+        <section class="table-crud-button" id="table-rekap-crud">
+          <section id="wrap-filter-rekap">
+            <div class="filter-icon form-input field-box basic-flex-reverse">
+              <div class="icon-menu">
+                <i class="bi bi-list-ul"></i>
+              </div>
+              <label>Mata Lomba :</label>
+              <select class="filter-rekap-peserta" id="opt-filter-mata-lomba-field"">
+                <option value="" selected="">-- Semua Mata Lomba --</option>
+              </select>
+            </div>
+            <div class="filter-icon form-input field-box basic-flex-reverse" style="min-width: 175px;">
+              <div class="icon-menu">
+                <i class="bi bi-person-check-fill"></i>
+              </div>
+              <label>Peserta :</label>
+              <span style="line-height: 0 !important;" id="peserta-title-field">-</span>
+            </div>
+            <div class="filter-icon form-input field-box basic-flex-reverse" style="min-width: 175px;">
+              <div class="icon-menu">
+                <i class="bi bi-person-check-fill"></i>
+              </div>
+              <label>Pangkalan :</label>
+              <span style="line-height: 0 !important;" id="pangkalan-title-field">-</span>
+            </div>
+
+          </section>
+          <section class="btn-header-peserta">
+            <button id="print-lembar-nilai-peserta" onclick="printLembarJawabanModal(this, 'view')"><i class="bi bi-file-earmark-pdf-fill"></i> Print</button>
+            <button id="btn-modal-arsip-nilai" onclick="previewFotoPenilaian()" title="Arsip C1" ><i class="fas fa-paperclip"></i> <span>Arsip C1</span></button>
+          </section>
+        </section>
+        <section class="row-content">
+
+          <section id="table-mata-lomba-section" class="table-container"></section>
+        </section>
+      </div>
+    </section>
+  </section>
+</section>
+
+<section class="modal modal-master" id="modal-content-lembar-jawaban-print">
+  <section class="modal-head">
+    <h2>Lembar Peserta</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+
+  <section class="modal-content">
+    <!-- Mockup Content Print -->
+    <section style="display: none;" class="wrap-content-print">
+      <section class="report-print wrap-print-content" id="form-lembar-jawaban">
+        <section class="canvas-content report-print" style="height: 837px; width: 592px; padding: 1rem; background: white; display: grid; grid-template-rows:1fr max-content;">
+          <section id="form-section-lembar-jawaban" class="wrap-time-sheet-content box-content-print">
+            <section id="wrap-content-nilai-print">
+              <section style="display: grid; grid-template-columns: 1fr max-content; border-bottom: 3px solid black; padding-bottom: 4px;">
+                <section style="display: flex; flex-direction: column; justify-content: center;">
+                  <h2 class="title-lembar-jawaba-lomba title-text" style="margin: 0; font-size: 10px; text-transform: uppercase;">LEMBAR PENILAIAN</h2>
+                  <h2 class="title-lembar-jawaba-lomba title-text" style="margin: 0; font-size: 10px; text-transform: uppercase;">LABSCHOOL SCOUT COMPETITION 2025</h2>
+                  <h2 class="title-lembar-jawaba-lomba title-text" style="margin: 0; font-size: 10px; text-transform: uppercase;">TINGKAT PENGGALANG (SMP/MTS SEDERAJAT)</h2>
+                </section>
+                <img style="width: 95px;" src="../../assets/logo/labscoutition.png" alt="">
+              </section>
+              <section style="display: grid ;grid-template-columns: 1fr 0.7fr;">
+                <table style="width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="border: 0; width: 100px; font-size: 11px;">NOMOR PESERTA</td>
+                      <td style="border: 0; font-size: 11px;" id="no-peserta-field">:</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 0; width: 100px; font-size: 11px;">NAMA PANGKALAN </td>
+                      <td style="border: 0; font-size: 11px;" id="nama-pangkalan-field">:</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+            </section>
+          </section>
+           <section style="display: flex;align-items: center;justify-content: space-between; margin-top: auto;"><span style="">Printed - Integrarekap Web APP (@integrarekap)</span> <span>Suported By SIQIA (@siqia_2018)</span></section>
+        </section>
+      </section>
+      <section class="report-print wrap-print-content" id="form-lembar-jawaban-temp"></section>
+    </section>
+  </section>
+  
+  <section class="modal-foot">
+    <button onclick="printLembarJawabanModal(this, 'print')">Print</button>
+  </section>
+</section>
+
+
+<section class="modal modal-md modal-master" id="modal-lampiran-lembar-juri">
+  <section class="modal-head">
+    <h2>Arsip C1</h2>
+    <button class="modal-close" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+  </section>
+
+  <section class="modal-content">
+    <section id="wrap-foto-lembar-juri">
+
+      <section id="foto-preview">
+
+      </section>
+    </section>
+  </section>
+
+  <section class="modal-foot">
+ 
+  </section>
+</section>
