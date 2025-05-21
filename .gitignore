@@ -1,3 +1,4 @@
 
 config/config.go
 node_modules/
+echo "node_modules/" >> .gitignore
