@@ -1,53 +1,272 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kirim WhatsApp ke Nomor Tertentu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konfigurasi Kategori Juara</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+      padding: 30px 16px;
+      margin: 0;
+      color: #374151;
+    }
+    h2 {
       text-align: center;
-      margin-top: 100px;
+      color: #1f2937;
+      margin-bottom: 24px;
     }
-    .container {
-      background: white;
-      padding: 40px;
-      width: 300px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .controls {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    button {
-      background: #25D366;
+    .controls input, .controls button {
+      flex: 1 1 200px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+    }
+    .controls button {
+      background-color: #10b981;
       color: white;
-      border: none;
-      padding: 15px 20px;
-      border-radius: 5px;
-      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
     }
-    button:hover {
-      background: #1ebe5d;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+    label {
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+    select, input[type="number"], .toggle, .save-btn {
+      width: 100%;
+      padding: 8px;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      margin-top: 4px;
+    }
+    select:disabled {
+      background-color: #f9fafb;
+      color: #9ca3af;
+    }
+    .toggle {
+      background-color: #10b981;
+      color: white;
+      border: none;
+    }
+    .toggle.inactive {
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+    .save-btn {
+      background-color: #3b82f6;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .info {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+    .point-group {
+      margin-top: 6px;
+    }
+    .point-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .remove-btn {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .add-point-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 6px;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Kirim Pesan ke WhatsApp</h1>
-    <p id="message">Halo, ini pesan dari website kami. Semoga harimu menyenangkan!</p>
-    <button onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
+  <h2>Konfigurasi Kategori & Total Juara</h2>
+
+  <div class="controls">
+    <input type="text" id="new-kategori" placeholder="Nama Kategori Baru">
+    <input type="number" id="total-juara" placeholder="Total Juara (misal: 3)">
+    <button onclick="addKategori()">Tambah Kategori</button>
   </div>
 
+  <div class="grid" id="kategori-grid"></div>
+
   <script>
-    function sendToWhatsApp() {
-      const phoneNumber = "6281398175897"; // Nomor WhatsApp (ganti sesuai kebutuhan)
-      const message = document.getElementById("message").innerText;
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-      window.open(whatsappUrl, '_blank');
+    const daftarPointPenilaian = [
+      "PBB", "DANTON", "VARIASI FORMASI", "Scout Intelegent",
+      "Tanding Ulang", "LABSPHORE (SMS)", "LABSRING (PIONEERING)", "LABSRING (MAKET PIONEERING)"
+    ];
+
+    let kategoriList = [
+      { id: 1, nama: "JUARA UMUM" },
+      { id: 2, nama: "JUARA LKBBT" },
+      { id: 3, nama: "JUARA LSCK (SI)" }
+    ];
+
+    function renderKategoris() {
+      const grid = document.getElementById('kategori-grid');
+      grid.innerHTML = '';
+
+      kategoriList.forEach(kategori => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${kategori.nama}</h3>
+          <label>Set Value Banding</label>
+          <button class="toggle inactive" onclick="toggleBanding(this)">Inactive</button>
+
+          <label>Nilai Banding</label>
+          <select class="nilai-banding" disabled>
+            <option value="0">None</option>
+            ${kategoriList.map(k => `<option value="${k.id}">${k.nama}</option>`).join('')}
+          </select>
+
+          <label>Rekap Banding</label>
+          <select class="rekap-banding" disabled>
+            <option value="none">None</option>
+            <option value="utama">Nilai Utama</option>
+            <option value="umum">Nilai Umum</option>
+            <option value="point">Point</option>
+            <option value="kategori">Kategori</option>
+          </select>
+
+          <label>Tipe Penilaian</label>
+          <select class="tipe-penilaian" onchange="updateAkumulasi(this)">
+            <option value="mata lomba" selected>Mata Lomba</option>
+            <option value="kategori">Kategori</option>
+          </select>
+
+          <div class="info">Akumulasi Rekap: <span class="akumulasi-output">Point</span></div>
+
+          <label>Total Juara</label>
+          <input type="number" class="total-juara-input" placeholder="Contoh: 3">
+
+          <label>Point Penilaian</label>
+          <div class="point-group"></div>
+          <button class="add-point-btn" onclick="addPoint(this)">+ Tambah Point</button>
+
+          <button class="save-btn" onclick="simpan(this)">Simpan</button>
+        `;
+        grid.appendChild(card);
+      });
     }
+
+    function toggleBanding(button) {
+      const isInactive = button.classList.toggle("inactive");
+      button.textContent = isInactive ? "Inactive" : "Active";
+      const card = button.closest(".card");
+      const selects = card.querySelectorAll("select:not(.tipe-penilaian)");
+      selects.forEach(sel => sel.disabled = isInactive);
+    }
+
+    function updateAkumulasi(select) {
+      const val = select.value;
+      const output = select.closest(".card").querySelector(".akumulasi-output");
+      output.textContent = val === "kategori" ? "Nilai" : "Point";
+    }
+
+    function addPoint(button) {
+      const group = button.previousElementSibling;
+      const wrapper = document.createElement("div");
+      wrapper.className = "point-item";
+      wrapper.innerHTML = `
+        <select>${daftarPointPenilaian.map(p => `<option value="${p}">${p}</option>`).join('')}</select>
+        <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
+      `;
+      group.appendChild(wrapper);
+    }
+
+    function simpan(button) {
+      const card = button.closest(".card");
+      const kategoriNama = card.querySelector("h3").innerText;
+      const nilaiBanding = card.querySelector(".nilai-banding").value;
+      const rekapBanding = card.querySelector(".rekap-banding").value;
+      const tipe = card.querySelector(".tipe-penilaian").value;
+      const akumulasi = tipe === "kategori" ? "nilai" : "point";
+      const aktif = !card.querySelector(".toggle").classList.contains("inactive");
+      const totalJuara = card.querySelector(".total-juara-input").value || "Belum diisi";
+      const pointPenilaian = Array.from(card.querySelectorAll(".point-item select")).map(sel => sel.value);
+
+      const data = {
+        kategoriNama,
+        nilaiBanding,
+        rekapBanding,
+        tipePenilaian: tipe,
+        akumulasi,
+        aktif,
+        totalJuara,
+        pointPenilaian
+      };
+
+      console.log("Disimpan:", data);
+      alert(`Konfigurasi \"${kategoriNama}\" berhasil disimpan!`);
+    }
+
+    function addKategori() {
+      const input = document.getElementById("new-kategori");
+      const juara = document.getElementById("total-juara");
+      const nama = input.value.trim();
+
+      if (!nama) {
+        alert("Isi nama kategori terlebih dahulu.");
+        return;
+      }
+
+      const idBaru = Date.now();
+      kategoriList.push({ id: idBaru, nama });
+      input.value = "";
+      juara.value = "";
+      renderKategoris();
+    }
+
+    renderKategoris();
   </script>
 </body>
 </html>

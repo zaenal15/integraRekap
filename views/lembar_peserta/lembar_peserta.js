@@ -137,32 +137,53 @@ async function setKategoriPenguranganPoint(lombaId, noPeserta) {
 
     const kategoriData = kategoriPenilaianResponse.data;
     const kriteriaPenguranganData = kriteriaPenguranganResponse.data;
-
     let tableContent = '';
+
+    // Render kategori dari kategoriData
     kategoriData.forEach(value => {
       const dataKriteriaList = kriteriaPenguranganData.filter(item => item.kategori_id === value.kategori_id);
       if (dataKriteriaList.length > 0) {
         dataKriteriaList.forEach((item, index) => {
           const itemKriteriaArr = item.kriteria_point_pengurangan.split('-').filter(val => val.trim() !== "");
-          let itemContent = itemKriteriaArr.length > 1
+          const itemContent = itemKriteriaArr.length > 1
             ? itemKriteriaArr.map((val, idx) => `<span style="display: block;">${idx + 1}. ${val.trim()}</span>`).join('')
-            : `<span style="display: block;"> ${itemKriteriaArr[0].trim()}</span>`;
+            : `<span style="display: block;">${itemKriteriaArr[0].trim()}</span>`;
 
           tableContent += `
-            <tr class="row-pengurangan" data-id="${item.id}" kategori-id="${item.kategori_id}">
-              ${index === 0 ? `<td rowspan="${dataKriteriaList.length}">${value.nama_kategori}</td>` : ''}
-              <td>${itemContent}</td>
-              <td data-id="${item.id}" class="pengurangan-nilai-field">0</td>
-              ${index === 0 ? `<td class="pengurangan-nilai-total" kategori-id="${item.kategori_id}" rowspan="${dataKriteriaList.length}">0</td>` : ''}
-            </tr>
-          `;
+        <tr class="row-pengurangan" data-id="${item.id}" kategori-id="${item.kategori_id}">
+          ${index === 0 ? `<td rowspan="${dataKriteriaList.length}">${value.nama_kategori}</td>` : ''}
+          <td>${itemContent}</td>
+          <td data-id="${item.id}" class="pengurangan-nilai-field">0</td>
+          ${index === 0 ? `<td class="pengurangan-nilai-total" kategori-id="${item.kategori_id}" rowspan="${dataKriteriaList.length}">0</td>` : ''}
+        </tr>
+      `;
         });
       }
     });
 
+    // Tambahkan manual kategori_id = 0 (Pengurangan Pasukan)
+    const umumKriteriaList = kriteriaPenguranganData.filter(item => item.kategori_id === 0);
+    if (umumKriteriaList.length > 0) {
+      umumKriteriaList.forEach((item, index) => {
+        const itemKriteriaArr = item.kriteria_point_pengurangan.split('-').filter(val => val.trim() !== "");
+        const itemContent = itemKriteriaArr.length > 1
+          ? itemKriteriaArr.map((val, idx) => `<span style="display: block;">${idx + 1}. ${val.trim()}</span>`).join('')
+          : `<span style="display: block;">${itemKriteriaArr[0].trim()}</span>`;
+
+        tableContent += `
+      <tr class="row-pengurangan" data-id="${item.id}" kategori-id="0">
+        ${index === 0 ? `<td rowspan="${umumKriteriaList.length}">Pengurangan Pasukan</td>` : ''}
+        <td>${itemContent}</td>
+        <td data-id="${item.id}" class="pengurangan-nilai-field">0</td>
+        ${index === 0 ? `<td class="pengurangan-nilai-total" kategori-id="0" rowspan="${umumKriteriaList.length}">0</td>` : ''}
+      </tr>
+    `;
+      });
+    }
+
     const kategoriListElement = document.querySelector(`.tabel-rekap-pengurangan-nilai-lomba[lamba-id="${lombaId}"] tbody`);
     if (kategoriListElement) {
-      if (tableContent.length > 0){
+      if (tableContent.length > 0) {
         kategoriListElement.innerHTML = tableContent;
       }
     }
@@ -187,7 +208,7 @@ async function setRekapAkhir(lombaId, noPeserta) {
     let tableContent = '';
     let noUrut = 1;
     namaLomba = document.querySelector(`.tabel-rekap-akhir-nilai-lomba[lamba-id="${lombaId}"]`).getAttribute('nama-lomba')
-    
+
     kategoriData.forEach(value => {
       tableContent += `
         <tr class="row-rekap" kategori-id="${value.kategori_id}">
@@ -199,13 +220,14 @@ async function setRekapAkhir(lombaId, noPeserta) {
         </tr>`;
     });
 
+    textPinalti = lombaId == 11 ? 'Pengurangan Pasukan' : 'General Pinalti'
     tableContent += `
     <tr class="row-rekap">
       <td class="col-footer-sub-total" colspan="3">Sub Total</td>
       <td colspan="2" class="col-footer-nilai-sub-total">0</td>
     </tr>
     <tr class="row-rekap">
-      <td class="col-footer-point-pinalti" colspan="3">Total Point Pinalti</td>
+      <td class="col-footer-point-pinalti" colspan="3">${textPinalti}</td>
       <td colspan="2" class="col-footer-nilai-pinalti">0</td>
     </tr>
       <tr class="row-rekap">
@@ -290,9 +312,9 @@ async function updateAndCalculateTotal(lombaId, noPeserta) {
       fetch('/loadPointPenguranganPeserta', { method: 'POST', body: formData }).then(res => res.json())
     ]);
 
-    const subPointData = subPointResponse.data || [];
-    const kategoriData = kategoriPenilaianResponse.data || [];
-    const penguranganData = penguranganResponse.data || [];
+    subPointData = subPointResponse.data || [];
+    kategoriData = kategoriPenilaianResponse.data || [];
+    penguranganData = penguranganResponse.data || [];
 
     // 1. Proses Nilai Juri per kategori
     kategoriData.forEach(kategori => {
@@ -317,17 +339,25 @@ async function updateAndCalculateTotal(lombaId, noPeserta) {
       if (field) {
         field.textContent = `-${item.point_pengurangan}`;
         field.setAttribute('kriteria-id', item.id);
+        field.setAttribute('kategori-id', item.kategori_id); // Menambahkan kategori-id ke elemen
       }
     });
 
+
     // 3. Update total pengurangan dan tampilkan
     let totalAkhirNilaiPinalti = 0;
+
     for (const kategoriId in kategoriTotals) {
       const pengurangan = kategoriTotals[kategoriId].totalPengurangan || 0;
-      totalAkhirNilaiPinalti += pengurangan;
+
+      // Tambahkan ke totalAkhirNilaiPinalti hanya jika kategoriId adalah "0"
+      if (kategoriId === "0") {
+        totalAkhirNilaiPinalti += pengurangan;
+      }
 
       const totalElem = document.querySelector(`.pengurangan-nilai-total[kategori-id="${kategoriId}"]`);
       const rekapElem = document.querySelector(`.col-nilai-pinalti[kategori-id="${kategoriId}"]`);
+
       if (totalElem) totalElem.textContent = pengurangan === 0 ? '0' : `-${pengurangan}`;
       if (rekapElem) rekapElem.textContent = pengurangan === 0 ? '0' : `-${pengurangan}`;
     }
@@ -347,7 +377,11 @@ async function updateAndCalculateTotal(lombaId, noPeserta) {
 
       totalAkhirPerKategori[kategoriId] = total;
       totalAkhirNilai += total;
-      subTotalNilai += nilai
+      if (kategoriId !== "0") {
+        penguranganSubTotal = kategoriTotals[kategoriId].totalPengurangan || 0;
+        subtotal = nilai - penguranganSubTotal
+        subTotalNilai += subtotal
+      }
 
       const totalElem = document.querySelector(`.tabel-rekap-akhir-nilai-lomba[lamba-id="${lombaId}"] .row-rekap[kategori-id="${kategoriId}"] .col-total-akhir`);
       if (totalElem) totalElem.textContent = total;
@@ -543,7 +577,7 @@ async function printLembarJawabanModal(el, act) {
       if (contentNilaiElement) {
         contentNilaiElement.setAttribute('style', 'display: grid; gap: 3px; grid-auto-rows: max-content;');
       }
-      
+
       // contentElement.querySelectorAll('.td').forEach(element => {
       //   element.setAttribute('style', 'font-size:3px;');
       // });
@@ -567,7 +601,7 @@ async function printLembarJawabanModal(el, act) {
 
 
     // CLONE CANVAS AND OPEN MODAL 
-    
+
     openModal("#modal-content-lembar-jawaban-print")
 
     closeLoader()
@@ -644,7 +678,7 @@ async function printLembarJawabanModal(el, act) {
         // Tambahan CSS
         ".tabel-rekap-nilai-lomba td, .tabel-rekap-nilai-lomba th, .tabel-rekap-pengurangan-nilai-lomba td, .tabel-rekap-pengurangan-nilai-lomba th, .tabel-rekap-akhir-nilai-lomba td, .tabel-rekap-akhir-nilai-lomba th": {
           "font-size": "7px",
-          "padding":"2px"
+          "padding": "2px"
         }
       }
     });

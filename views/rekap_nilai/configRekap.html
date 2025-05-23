@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konfigurasi Rekap Banding</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 32px;
+      color: #1f2937;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s ease-in-out;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: #111827;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      margin-top: 12px;
+    }
+
+    select, button.toggle, button.save-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      background-color: #fff;
+      transition: background-color 0.2s;
+      cursor: pointer;
+    }
+
+    select:disabled {
+      background-color: #f3f4f6;
+      color: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    button.toggle {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      user-select: none;
+    }
+
+    button.toggle.inactive {
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+
+    button.save-btn {
+      background-color: #2563eb;
+      color: white;
+      font-weight: 600;
+      border: none;
+      margin-top: 16px;
+    }
+
+    .info {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>Konfigurasi Rekap Banding</h2>
+
+  <div class="grid" id="config-grid"></div>
+
+  <script>
+    const kategoriList = [
+      { id: 11, nama: "LKBBT" },
+      { id: 12, nama: "LSCK (SI)" },
+      { id: 13, nama: "LABSPHORE (SMS)" },
+      { id: 14, nama: "LABSRING (PIONEERING)" }
+    ];
+
+    function renderCards() {
+      const grid = document.getElementById('config-grid');
+      kategoriList.forEach(k => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${k.nama}</h3>
+
+          <label>Set Value Banding</label>
+          <button class="toggle inactive" onclick="toggleBanding(this)">Inactive</button>
+
+          <label>Nilai Banding</label>
+          <select class="nilai-banding" disabled>
+            <option value="0">None</option>
+            ${kategoriList.map(opt => `
+              <option value="${opt.id}" ${opt.id === k.id ? 'selected' : ''}>${opt.nama}</option>
+            `).join('')}
+          </select>
+
+          <label>Rekap Banding</label>
+          <select class="rekap-banding" disabled>
+            <option value="none">None</option>
+            <option value="utama">Nilai Utama</option>
+            <option value="umum" selected>Nilai Umum</option>
+            <option value="point">Point</option>
+            <option value="kategori">Kategori</option>
+          </select>
+
+          <label>Tipe Penilaian</label>
+          <select class="tipe-penilaian" onchange="updateAkumulasi(this)">
+            <option value="">Pilih Tipe</option>
+            <option value="mata lomba" selected>Mata Lomba</option>
+            <option value="kategori">Kategori</option>
+          </select>
+
+          <div class="info">Akumulasi Rekap: <span class="akumulasi-output">Point</span></div>
+
+          <button class="save-btn" onclick="simpan(this)">Simpan</button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleBanding(button) {
+      const isInactive = button.classList.toggle('inactive');
+      button.textContent = isInactive ? 'Inactive' : 'Active';
+
+      const card = button.closest('.card');
+      const inputs = card.querySelectorAll('select, button.save-btn');
+
+      inputs.forEach(input => {
+        if (!input.classList.contains('tipe-penilaian') && !input.classList.contains('save-btn')) {
+          input.disabled = isInactive;
+        }
+      });
+
+      // Tipe penilaian tetap aktif
+      // Tombol Simpan tetap aktif
+
+      // Update Akumulasi
+      const tipeSelect = card.querySelector('.tipe-penilaian');
+      updateAkumulasi(tipeSelect);
+    }
+
+    function updateAkumulasi(select) {
+      const val = select.value;
+      const output = select.closest('.card').querySelector('.akumulasi-output');
+      output.textContent = val === 'kategori' ? 'Nilai' : 'Point';
+    }
+
+    function simpan(button) {
+      const card = button.closest('.card');
+      const nilaiBanding = card.querySelector('.nilai-banding').value;
+      const rekapBanding = card.querySelector('.rekap-banding').value;
+      const tipe = card.querySelector('.tipe-penilaian').value;
+      const akumulasi = tipe === 'kategori' ? 'nilai' : 'point';
+      const aktif = !card.querySelector('.toggle').classList.contains('inactive');
+
+      const data = {
+        nilaiBanding,
+        rekapBanding,
+        tipePenilaian: tipe,
+        akumulasi,
+        aktif
+      };
+
+      console.log('Konfigurasi Disimpan:', data);
+      alert(`Konfigurasi "${card.querySelector('h3').innerText}" berhasil disimpan.`);
+    }
+
+    renderCards();
+  </script>
+
+</body>
+</html>

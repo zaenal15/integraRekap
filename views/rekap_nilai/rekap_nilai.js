@@ -359,7 +359,6 @@ async function setNilaiRekapJuara(kategoripenilaianLists, dataLomba, kategorPeni
     const categories = kategoripenilaianLists || [];
     const result = {};
 
-
     // Langkah 2: Memproses nilai dan mengategorikannya
     if (rekapData.length > 0) {
       rekapData.forEach(score => {
@@ -415,15 +414,15 @@ async function setNilaiRekapJuara(kategoripenilaianLists, dataLomba, kategorPeni
     });
 
     // Menampilkan hasil akhir dengan lomba_id
-    const totalNilaiKategori = result;
     kategoriJuaraId = document.querySelector('#kategori-juara-list-menu .kategori-juara-header.active').getAttribute('kategori-juara-id');
-    const hasil2 = akumulasiNilaiDenganBanding(totalNilaiKategori, kategorPenilaianJuara, kategoriJuaraId, 'mainRekap');
-
-    dataRankLombaPoint = processAndRankPeserta(totalNilaiKategori, masterRank);
-    const hasilAkumulasi = accumulatePoints(hasil2, dataRankLombaPoint, kategoriJuaraId, 'mainRekap');
-    const resultRekapPoint = {};
-
-    console.log('totalNilaiKategori', totalNilaiKategori)
+    totalNilaiKategori = result;
+    
+    generalPinalti = calculateGeneralPinalti(penguranganData)
+    hasil2 = akumulasiNilaiDenganBanding(totalNilaiKategori, kategorPenilaianJuara, kategoriJuaraId, 'mainRekap', generalPinalti);
+    dataRankLombaPoint = processAndRankPeserta(totalNilaiKategori, masterRank, generalPinalti);
+    hasilAkumulasi = accumulatePoints(hasil2, dataRankLombaPoint, kategoriJuaraId, 'mainRekap');
+    
+    resultRekapPoint = {};
     hasilAkumulasi.forEach(peserta => {
       resultRekapPoint[peserta.no_peserta] = {
         total_point: peserta.total_point,
@@ -587,6 +586,36 @@ async function setNilaiRekapJuara(kategoripenilaianLists, dataLomba, kategorPeni
   }
 }
 
+
+function calculateGeneralPinalti(dataList) {
+  // Filter data yang memiliki kategori_id = "0"
+  const generalCategory = dataList.filter(item => item.kategori_id === "0");
+
+  const result = [];
+
+  // Loop setiap data pada kategori umum
+  generalCategory.forEach(item => {
+    // Cek apakah kombinasi no_peserta dan lomba_id sudah ada di hasil
+    const existing = result.find(entry =>
+      entry.no_peserta === item.no_peserta && entry.lomba_id === item.lomba_id
+    );
+
+    if (existing) {
+      // Jika sudah ada, tambahkan point_pengurangan ke total
+      existing.total_pinalti_general += item.point_pengurangan;
+    } else {
+      // Jika belum ada, buat entri baru
+      result.push({
+        no_peserta: item.no_peserta,
+        lomba_id: item.lomba_id,
+        total_pinalti_general: item.point_pengurangan
+      });
+    }
+  });
+
+  return result;
+}
+
 function filterByKategoriJuaraId(kategoriId) {
   const result = rekapBanding.filter(item => item.kategori_juara_id === kategoriId);
 
@@ -594,8 +623,8 @@ function filterByKategoriJuaraId(kategoriId) {
   return result.length > 0 ? result : [];
 }
 // Fungsi untuk mengakumulasi nilai berdasarkan kategori_id dan kategori_penilaian_id
-function akumulasiNilaiDenganBanding(data, kategorPenilaianJuara, kategoriJuaraId, type) {
-  dataRankLombaPoint = processAndRankPeserta(data, masterRank);
+function akumulasiNilaiDenganBanding(data, kategorPenilaianJuara, kategoriJuaraId, type, generalPinalti) {
+  dataRankLombaPoint = processAndRankPeserta(data, masterRank, generalPinalti);
   kategoriPenilaianValid = kategorPenilaianJuara;
   const akumulasiNilai = {};
   if (type == 'mainRekap') {
@@ -614,6 +643,8 @@ function akumulasiNilaiDenganBanding(data, kategorPenilaianJuara, kategoriJuaraI
       let rank = dataRankLombaPoint[lombaId]?.find(item => item.peserta === peserta)?.rank || 0;
       let keteranganJuara = dataRankLombaPoint[lombaId]?.find(item => item.peserta === peserta)?.keterangan || '-';
       let status = dataRankLombaPoint[lombaId]?.find(item => item.peserta === peserta)?.status || '-';
+      let foundGeneralDeduction = generalPinalti.find(item => item.no_peserta === noPeserta && item.lomba_id === lombaId);
+      let totalGeneralPinalti = foundGeneralDeduction ? foundGeneralDeduction.total_pinalti_general : 0;
 
       const validKategori = kategoriPenilaianValid.find(item => {
         return item.lomba_id === String(lombaId) && item.kategori_penilaian_id === String(kategoriId);
@@ -639,9 +670,11 @@ function akumulasiNilaiDenganBanding(data, kategorPenilaianJuara, kategoriJuaraI
         const nilaiActive = (nilaiBanding === "active") ? totalNilai : 0;
         akumulasiNilai[lombaId].push({
           no_peserta: noPeserta,
-          total_nilai: totalNilai,
+          sub_total_nilai: totalNilai,
+          total_nilai: totalNilai - totalGeneralPinalti,
           nilai_active: nilaiActive,         // tetap ada
           nilai_banding_kategori: nilaiActive, // juga tetap ada
+          total_pinalti_general: totalGeneralPinalti, // juga tetap ada
           lomba_id: lombaId,
           point: points,
           rank: rank,
@@ -651,21 +684,19 @@ function akumulasiNilaiDenganBanding(data, kategorPenilaianJuara, kategoriJuaraI
       }
     }
   }
+
   const finalResult = {};
 
   for (const lombaId in akumulasiNilai) {
     finalResult[lombaId] = akumulasiNilai[lombaId];
   }
-
-  console.log('finalResult', finalResult)
   return finalResult;
 }
-
 
 function accumulatePoints(dataLomba, dataRankLombaPoint, kategoriJuaraId, type) {
   const pesertaMap = {};
   // Ambil kategoriJuaraId sekali saja
-  if(type == 'mainRekap'){
+  if (type == 'mainRekap') {
     kategoriJuaraId = document.querySelector('#kategori-juara-list-menu .kategori-juara-header.active').getAttribute('kategori-juara-id');
   }
 
@@ -694,7 +725,7 @@ function accumulatePoints(dataLomba, dataRankLombaPoint, kategoriJuaraId, type) 
       }
       nilaiBandingKategori = nilai_banding_kategori
       if (datarekapBanding.set_value_banding === true && datarekapBanding.rakap_banding === 'umum') {
-        nilaiBandingKategori = dataRankLombaPoint[idPointBanding]?.find(item => item.peserta === no_peserta)?.total_nilai_kategori_lomba || 0;
+        nilaiBandingKategori = dataRankLombaPoint[idPointBanding]?.find(item => item.peserta === no_peserta)?.total_nilai_lomba || 0;
       }
 
       // Akumulasi poin lomba
@@ -718,95 +749,145 @@ function accumulatePoints(dataLomba, dataRankLombaPoint, kategoriJuaraId, type) 
   }
   let sortedPeserta = [];
 
-  // Tentukan pengurutan berdasarkan kategori nilai_banding
+  // Sorting berdasarkan berbagai kondisi kombinasi akumulasi dan rakap_banding
   if (datarekapBanding.akumulasi_rekap_nilai === 'point') {
+    // Urutkan berdasarkan total_point lalu point_banding
     sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
-      // Urutkan berdasarkan total_point terlebih dahulu
       if (b.total_point === a.total_point) {
-        // Jika total_point sama, urutkan berdasarkan point_banding
         return b.point_banding - a.point_banding;
       }
       return b.total_point - a.total_point;
     });
   }
 
-  if (datarekapBanding.rakap_banding === 'point' && datarekapBanding.akumulasi_rekap_nilai === 'nilai') {
-    // Sort participants based on total_nilai_lomba and then point_banding
+  if (
+    datarekapBanding.rakap_banding === 'point' &&
+    datarekapBanding.akumulasi_rekap_nilai === 'nilai'
+  ) {
+    // Urutkan berdasarkan total_nilai_lomba lalu point_banding
     sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
-      // First, sort by total_nilai_lomba in descending order
       if (b.total_nilai_lomba === a.total_nilai_lomba) {
-        // If total_nilai_lomba is the same, sort by point_banding in descending order
         return b.point_banding - a.point_banding;
-      }
-      return b.total_nilai_lomba - a.total_nilai_lomba; // Sort total_nilai_lomba in descending order
-    });
-  }
-
-  if (datarekapBanding.rakap_banding === 'nilai' && datarekapBanding.akumulasi_rekap_nilai === 'nilai' || datarekapBanding.rakap_banding === 'umum' && datarekapBanding.akumulasi_rekap_nilai === 'nilai') {
-    sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
-      // Urutkan berdasarkan total_nilai_lomba terlebih dahulu
-      if (b.total_nilai_lomba === a.total_nilai_lomba) {
-        // Jika total_nilai_lomba sama, urutkan berdasarkan nilai_banding_kategori
-        return b.rekap_lomba[0].nilai_banding_kategori - a.rekap_lomba[0].nilai_banding_kategori;
       }
       return b.total_nilai_lomba - a.total_nilai_lomba;
     });
   }
 
+  if (
+    (datarekapBanding.rakap_banding === 'nilai' || datarekapBanding.rakap_banding === 'umum') &&
+    datarekapBanding.akumulasi_rekap_nilai === 'nilai'
+  ) {
+    // Urutkan berdasarkan total_nilai_lomba lalu nilai_banding_kategori
+    sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
+      if (b.total_nilai_lomba === a.total_nilai_lomba) {
+        const bNilai = b.rekap_lomba?.[0]?.nilai_banding_kategori || 0;
+        const aNilai = a.rekap_lomba?.[0]?.nilai_banding_kategori || 0;
+        return bNilai - aNilai;
+      }
+      return b.total_nilai_lomba - a.total_nilai_lomba;
+    });
+  }
 
-  // Menentukan urutan peringkat setelah sorting, dengan penanganan rank yang sama
-  // Urutkan dari total_nilai_lomba tertinggi ke terendah
+  if (
+    datarekapBanding.tipe_penilaian_lomba === 'mata lomba' &&
+    datarekapBanding.akumulasi_rekap_nilai === 'point' &&
+    datarekapBanding.rakap_banding === 'umum'
+  ) {
+    const lombaIdTarget = '11'; // bisa disesuaikan
 
-  if (datarekapBanding.tipe_penilaian_lomba == 'mata lomba' && datarekapBanding.akumulasi_rekap_nilai == 'point') {
-    sortedPeserta.sort((a, b) => {
-      // First sort by total_point (descending)
+    sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
+      const aBanding = a.rekap_lomba?.find(r => r.lomba_id === lombaIdTarget)?.nilai_banding_kategori || 0;
+      const bBanding = b.rekap_lomba?.find(r => r.lomba_id === lombaIdTarget)?.nilai_banding_kategori || 0;
+
+      if (a.total_point !== b.total_point) {
+        return b.total_point - a.total_point;
+      }
+      return bBanding - aBanding;
+    });
+  }
+
+  if (
+    datarekapBanding.tipe_penilaian_lomba === 'mata lomba' &&
+    datarekapBanding.akumulasi_rekap_nilai === 'point' &&
+    datarekapBanding.rakap_banding === 'none'
+  ) {
+    sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
+      if (b.total_point !== 0 && a.total_point !== 0) {
+        return b.total_point - a.total_point;
+      } else if (b.total_point === 0 && a.total_point === 0) {
+        return b.total_nilai_lomba - a.total_nilai_lomba;
+      } else if (b.total_point === 0) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  } else if (
+    datarekapBanding.tipe_penilaian_lomba === 'mata lomba' &&
+    datarekapBanding.akumulasi_rekap_nilai === 'point' &&
+    datarekapBanding.rakap_banding === 'kategori'
+  ) {
+    sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
       if (b.total_point !== 0 && a.total_point !== 0) {
         return b.total_point - a.total_point;
       }
-      // If total_point is 0, sort by total_nilai_lomba (descending)
-      else if (b.total_point === 0 && a.total_point === 0) {
-        return b.total_nilai_lomba - a.total_nilai_lomba;
+
+      if (b.total_point === 0 && a.total_point === 0) {
+        if (b.total_nilai_lomba !== a.total_nilai_lomba) {
+          return b.total_nilai_lomba - a.total_nilai_lomba;
+        }
+
+        const bNilai = b.rekap_lomba?.[0]?.nilai_banding_kategori || 0;
+        const aNilai = a.rekap_lomba?.[0]?.nilai_banding_kategori || 0;
+        return bNilai - aNilai;
       }
-      else if (b.total_point === 0) {
-        return -1;  // Put 'b' before 'a' if 'b' has zero total_point
-      }
-      else {
-        return 1;   // Put 'a' before 'b' if 'a' has zero total_point
-      }
+
+      return b.total_point === 0 ? -1 : 1;
     });
-  } else {
-    sortedPeserta.sort((a, b) => b.total_nilai_lomba - a.total_nilai_lomba)
   }
 
-  let currentRank = 1
-  let lastTotalNilaiLomba = -1
-  let lastRank = 1
+  let currentRank = 1;
+  let lastRank = 1;
+  let lastTotalPoint = -1;
+  let lastDrawStatus = false;
+  let lastPointBanding = -1;
 
   sortedPeserta.forEach((peserta, index) => {
-    if (peserta.total_nilai_lomba === 0) {
-      peserta.rank = null
-    } else if (
-      datarekapBanding.set_value_banding === false &&
-      peserta.total_nilai_lomba === lastTotalNilaiLomba
-    ) {
-      peserta.rank = lastRank // Tetap pakai rank sebelumnya jika nilainya sama
-    } else {
-      peserta.rank = currentRank
-      lastRank = currentRank // Simpan rank saat ini untuk peserta berikutnya dengan nilai sama
+    if (peserta.total_nilai_lomba === 0 && peserta.total_point === 0) {
+      peserta.rank = null;
+      return;
     }
 
-    lastTotalNilaiLomba = peserta.total_nilai_lomba
-    currentRank++
-  })
+    const isDraw = peserta.rekap_lomba?.[0]?.draw_status === true;
+    const pointBanding = peserta.point_banding || peserta.rekap_lomba?.[0]?.nilai_banding_kategori || 0;
+
+    const sameAsLast =
+      peserta.total_point === lastTotalPoint &&
+      isDraw &&
+      lastDrawStatus &&
+      pointBanding === lastPointBanding &&
+      pointBanding === 0;
+
+    if (sameAsLast) {
+      peserta.rank = lastRank;
+    } else {
+      peserta.rank = currentRank;
+      lastRank = currentRank;
+    }
+
+    lastTotalPoint = peserta.total_point;
+    lastDrawStatus = isDraw;
+    lastPointBanding = pointBanding;
+    currentRank++;
+  });
   // Kembalikan hasil akhir
   return sortedPeserta;
 }
 
+function processAndRankPeserta(data, masterRank, generalPinalti) {
+  const pesertaMap = {}
+  const lombaRankingMap = {}
 
-function processAndRankPeserta(data, masterRank) {
-  // Membuat objek untuk menyimpan data peserta dan lomba
-  const pesertaMap = {};
-  const lombaRankingMap = {};
   // Langkah 1: Akumulasi nilai untuk setiap peserta dan lomba
   for (const peserta in data) {
     for (const lomba in data[peserta]) {
@@ -816,48 +897,62 @@ function processAndRankPeserta(data, masterRank) {
         total_nilai,
         set_nilai,
         nilai_banding
-      } = data[peserta][lomba];
+      } = data[peserta][lomba]
 
-      // Membuat entry untuk peserta jika belum ada
-      if (!pesertaMap[peserta]) pesertaMap[peserta] = {};
+      // Cari pinalti general
+      let totalGeneralPinalti = 0
+      if (Array.isArray(generalPinalti)) {
+        let found = generalPinalti.find(item =>
+          item.no_peserta === peserta && item.lomba_id === lomba_id
+        )
+        totalGeneralPinalti = found ? found.total_pinalti_general : 0
+      }
 
-      // Membuat entry untuk lomba_id jika belum ada
+      // Inisialisasi objek peserta jika belum ada
+      if (!pesertaMap[peserta]) pesertaMap[peserta] = {}
       if (!pesertaMap[peserta][lomba_id]) {
         pesertaMap[peserta][lomba_id] = {
           peserta,
           lomba_id,
           total_nilai_kategori_lomba: 0,
+          sub_total_nilai: 0,
           total_nilai_lomba: 0,
-          total_nilai_banding: 0
-        };
+          total_nilai_banding: 0,
+          total_pinalti_general: totalGeneralPinalti // langsung set di sini
+        }
       }
 
-      // Menambahkan total nilai kategori lomba
-      pesertaMap[peserta][lomba_id].total_nilai_kategori_lomba += total_nilai;
+      // Tambahkan nilai juri ke total nilai kategori
+      pesertaMap[peserta][lomba_id].total_nilai_kategori_lomba += total_nilai
 
-      // Jika set_nilai "active", tambahkan ke total nilai lomba
       if (set_nilai === 'active') {
-        pesertaMap[peserta][lomba_id].total_nilai_lomba += total_nilai;
+        pesertaMap[peserta][lomba_id].sub_total_nilai += total_nilai
       }
 
-      // Jika nilai_banding "active", tambahkan ke total nilai banding
       if (nilai_banding === 'active') {
-        pesertaMap[peserta][lomba_id].total_nilai_banding += total_nilai;
+        pesertaMap[peserta][lomba_id].total_nilai_banding += total_nilai
       }
+
+      // Hitung total_nilai_lomba = sub_total_nilai - total_pinalti_general
+      pesertaMap[peserta][lomba_id].total_nilai_lomba =
+        pesertaMap[peserta][lomba_id].sub_total_nilai -
+        pesertaMap[peserta][lomba_id].total_pinalti_general
     }
   }
 
-  // Langkah 2: Menyiapkan daftar peserta berdasarkan lomba_id
+  // Langkah 2: Susun daftar peserta per lomba_id
   for (const peserta in pesertaMap) {
     for (const lomba_id in pesertaMap[peserta]) {
-      if (!lombaRankingMap[lomba_id]) lombaRankingMap[lomba_id] = [];
-      lombaRankingMap[lomba_id].push(pesertaMap[peserta][lomba_id]);
+      if (!lombaRankingMap[lomba_id]) lombaRankingMap[lomba_id] = []
+      lombaRankingMap[lomba_id].push(pesertaMap[peserta][lomba_id])
     }
   }
 
   for (const lomba_id in lombaRankingMap) {
-    // Mengurutkan peserta berdasarkan total_nilai_lomba dan total_nilai_banding
-    const sorted = lombaRankingMap[lomba_id].sort((a, b) => {
+    const pesertaList = lombaRankingMap[lomba_id];
+
+    // Urutkan berdasarkan nilai akhir lalu nilai banding
+    const sorted = pesertaList.sort((a, b) => {
       if (b.total_nilai_lomba !== a.total_nilai_lomba) {
         return b.total_nilai_lomba - a.total_nilai_lomba;
       } else {
@@ -865,44 +960,54 @@ function processAndRankPeserta(data, masterRank) {
       }
     });
 
-    let currentRank = 1; // Variabel untuk menyimpan peringkat awal
+    // Proses pemberian rank dan status
     for (let i = 0; i < sorted.length; i++) {
       const current = sorted[i];
-      const prev = sorted[i - 1];
+      const prev = i > 0 ? sorted[i - 1] : null;
 
-      // Jika total_nilai_lomba peserta adalah 0, tidak diberi peringkat
-      if (current.total_nilai_lomba === 0) {
-        current.rank = null; // Tidak ada peringkat jika nilai lomba 0
-        current.points = 0;  // Tidak ada poin jika nilai lomba 0
-        current.status = "No Rank"; // Status jika tidak ada peringkat
+      const currentFinal = current.total_nilai_lomba;
+      const currentBanding = current.total_nilai_banding;
+
+      // Jika nilai lomba 0, tidak diberi rank
+      if (currentFinal === 0) {
+        current.rank = null;
+        current.points = 0;
+        current.status = "No Rank";
+        current.keterangan = "-";
         continue;
       }
 
-      // Jika nilai lomba dan nilai banding sama dengan peserta sebelumnya, peringkat tetap sama
-      if (i > 0 && current.total_nilai_lomba === prev.total_nilai_lomba && current.total_nilai_banding === prev.total_nilai_banding) {
-        current.rank = prev.rank; // Menjaga peringkat yang sama dengan peserta sebelumnya
+      // Assign rank
+      if (
+        prev &&
+        currentFinal === prev.total_nilai_lomba &&
+        currentBanding === prev.total_nilai_banding
+      ) {
+        current.rank = prev.rank;
+        current.status = "Draw";
       } else {
-        current.rank = i + 1; // Peringkat baru berdasarkan urutan
+        current.rank = i + 1;
+        current.status = "No Draw";
       }
 
-      // Menangani kasus "Draw" jika ada peserta dengan nilai yang sama
-      if (prev && current.total_nilai_lomba === prev.total_nilai_lomba) {
-        current.status = "Draw"; // Jika nilai sama, status menjadi "Draw"
-        prev.status = "Draw"; // Peserta sebelumnya juga mendapat status "Draw"
-      } else {
-        current.status = "No Draw"; // Jika tidak sama, status menjadi "No Draw"
+      // Perbaiki status peserta sebelumnya jika baru terjadi draw
+      if (
+        prev &&
+        currentFinal === prev.total_nilai_lomba &&
+        currentBanding === prev.total_nilai_banding
+      ) {
+        prev.status = "Draw";
       }
 
-      // Menentukan keterangan dan poin dari masterRank berdasarkan peringkat
+      // Ambil informasi tambahan dari masterRank
       const rankInfo = masterRank.find(r => r.rank === current.rank);
-      current.keterangan = rankInfo ? rankInfo.keterangan : "-"; // Keterangan peringkat
-      current.points = rankInfo ? rankInfo.points : 0; // Poin berdasarkan peringkat
+      current.keterangan = rankInfo ? rankInfo.keterangan : "-";
+      current.points = rankInfo ? rankInfo.points : 0;
     }
   }
-  return lombaRankingMap;
+
+  return lombaRankingMap
 }
-
-
 
 // Fungsi untuk mengakumulasi points dan data lomba berdasarkan no_peserta
 function akumulasiPointsDenganLomba(data) {
@@ -933,7 +1038,6 @@ function akumulasiPointsDenganLomba(data) {
   return akumulasiPoints;
 }
 
-
 document.querySelectorAll('.filter-rekap-peserta').forEach(selectElement => {
   selectElement.addEventListener('change', setRekapNilai);
 });
@@ -959,7 +1063,6 @@ async function setResultRekapProgress() {
       fetch('/loadNilaiRekap', { method: 'POST' }).then(res => res.json()).then(data => data.data),
       fetch('/loadPointPenguranganPeserta', { method: 'POST' }).then(res => res.json()).then(data => data.data)
     ]);
-
     const pesertaSubTotal = {};
     const pesertaPengurangan = {};
 
@@ -994,13 +1097,32 @@ async function setResultRekapProgress() {
       if (akhirEl) { akhirEl.textContent = totalAkhir; akhirEl.classList.add('totalakhir-diisi'); }
     }
 
+    // Akumulasi poin pengurangan
+    const akumulasiPengurangan = {};
+
     penguranganData.forEach(({ lomba_id, no_peserta, point_pengurangan }) => {
+      const key = `${lomba_id}-${no_peserta}`;
+      if (!akumulasiPengurangan[key]) {
+        akumulasiPengurangan[key] = {
+          lomba_id,
+          no_peserta,
+          total: 0
+        };
+      }
+      akumulasiPengurangan[key].total += point_pengurangan;
+    });
+
+    // Tampilkan ke elemen HTML
+    Object.values(akumulasiPengurangan).forEach(({ lomba_id, no_peserta, total }) => {
       const el = document.querySelector(`.col-nilai-pinalti-lomba[lomba-id="${lomba_id}"][peserta-no="${no_peserta}"]`);
       if (el) {
-        el.textContent = point_pengurangan;
+        el.textContent = total;
         el.classList.add('pinalti-lomba-diisi');
+      } else {
+        console.warn(`Element tidak ditemukan untuk lomba-id="${lomba_id}", peserta-no="${no_peserta}"`);
       }
     });
+
 
     await progressNilai()
   } catch (err) {
@@ -1008,9 +1130,6 @@ async function setResultRekapProgress() {
     alert('Terjadi kesalahan dalam memproses data');
   }
 }
-
-
-
 
 async function progressNilai() {
   try {
@@ -1049,7 +1168,6 @@ async function progressNilai() {
     });
   }
 }
-
 
 async function fectDataOption() {
   // Mengambil data kategoriLomba, mataLomba, dan peserta
@@ -1303,7 +1421,6 @@ async function handleLombaHeaderClick(event) {
   if (firstButton) firstButton.click()
 }
 
-
 // Fungsi untuk toggle kategori
 function toggleKategori(kategoriClass) {
   let kategoriDiv = document.querySelector(`.${kategoriClass}`);
@@ -1524,8 +1641,6 @@ async function showParticipants(lombaId) {
   }
 }
 
-
-
 async function setSubPointContent(lombaId) {
   try {
     const formData = new FormData();
@@ -1721,12 +1836,15 @@ async function updateTotalNilai(lombaId) {
     }
 
     // Tampilkan total untuk masing-masing kategori
-    const kategoriContent = kategoriData.map(item => `
-      <div data-id="${item.kategori_id}" class="filter-icon form-input field-box wrap-footer-info-content">
-        <label>Total ${item.nama_kategori} :</label>
-        <span class="footer-info-total">0</span>
-      </div>
-    `).join('');
+    const kategoriContent = kategoriData
+      .filter(item => item.kategori_id !== 0)  // filter keluar kategori_id 0
+      .map(item => `
+    <div data-id="${item.kategori_id}" class="filter-icon form-input field-box wrap-footer-info-content">
+      <label>Total ${item.nama_kategori} :</label>
+      <span class="footer-info-total">0</span>
+    </div>
+  `).join('');
+
     document.getElementById('info-total-kategori-penilaian').innerHTML = kategoriContent;
 
     let subTotalNilai = 0;
@@ -3576,7 +3694,6 @@ async function setNilaiRekapJuaraPrint(kategoripenilaianLists, dataLomba, katego
     const categories = kategoripenilaianLists || [];
     const result = {};
 
-
     // Langkah 2: Memproses nilai dan mengategorikannya
     if (rekapData.length > 0) {
       rekapData.forEach(score => {
@@ -3631,12 +3748,13 @@ async function setNilaiRekapJuaraPrint(kategoripenilaianLists, dataLomba, katego
       });
     });
 
-    // Menampilkan hasil akhir dengan lomba_id
     totalNilaiKategori = result;
-    hasil2 = akumulasiNilaiDenganBanding(totalNilaiKategori, kategorPenilaianJuara, kategoriJuaraId, 'printRekap');
 
-    dataRankLombaPoint = processAndRankPeserta(totalNilaiKategori, masterRank, kategoriJuaraId);
+    generalPinalti = calculateGeneralPinalti(penguranganData)
+    hasil2 = akumulasiNilaiDenganBanding(totalNilaiKategori, kategorPenilaianJuara, kategoriJuaraId, 'printRekap', generalPinalti);
+    dataRankLombaPoint = processAndRankPeserta(totalNilaiKategori, masterRank, generalPinalti);
     hasilAkumulasi = accumulatePoints(hasil2, dataRankLombaPoint, kategoriJuaraId, 'printRekap');
+
     resultRekapPoint = {};
 
     hasilAkumulasi.forEach(peserta => {
@@ -3707,15 +3825,15 @@ async function setNilaiRekapJuaraPrint(kategoripenilaianLists, dataLomba, katego
             if (rekapBandingSet?.akumulasi_rekap_nilai === 'nilai') {
               row += `<td class="rekap-nilai-lomba" no-peserta="${noPeserta}" lomba-id="${lomba.lomba_id}">${totalNilaiLomba}</td>`;
             } else {
-              
-              
+
+
               if (dataLomba.length > 1) {
                 row += `
                   <td class="rank-${rank} rekap-nilai-lomba" no-peserta="${noPeserta}" lomba-id="${lomba.lomba_id}">${nilai}</td>
                   <td class="rank-${rank} rekap-rank-lomba" no-peserta="${noPeserta}" lomba-id="${lomba.lomba_id}">${rank}</td>
                   <td class="rank-${rank} rekap-point-lomba" no-peserta="${noPeserta}" lomba-id="${lomba.lomba_id}">${point}</td>
                 `;
-                
+
               } else {
                 row += `
                   <td class="rank-${rank} rekap-nilai-lomba" no-peserta="${noPeserta}" lomba-id="${lomba.lomba_id}">${nilai}</td>
@@ -3773,7 +3891,7 @@ async function setNilaiRekapJuaraPrint(kategoripenilaianLists, dataLomba, katego
 
       document.querySelector(`.tabel-rekap-juara-lomba-print[kategori-juara-id="${kategoriJuaraId}"] tbody`).innerHTML = rekapRow;
 
-      // Tandai peserta juara dengan ikon 🏆
+      // Tambahkan kelas 'main-rank' pada peringkat teratas
       for (let index = 0; index < totalJuara; index++) {
         const rowRanks = document.querySelectorAll(`.tabel-rekap-juara-lomba-print[kategori-juara-id="${kategoriJuaraId}"] tr.rank-${index + 1}`);
         rowRanks.forEach(row => {
@@ -3781,7 +3899,6 @@ async function setNilaiRekapJuaraPrint(kategoripenilaianLists, dataLomba, katego
         });
       }
     }
-
 
   } catch (error) {
     console.error('Error:', error);
@@ -4087,8 +4204,4 @@ document.querySelectorAll('.menu-button').forEach((button) => {
 
     submenu.classList.toggle('hidden');
   });
-});
-
-document.addEventListener('click', () => {
-  document.querySelectorAll('.submenu').forEach(sm => sm.classList.add('hidden'));
 });
