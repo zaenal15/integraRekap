@@ -146,8 +146,8 @@ func main() {
 	headersOk := handlers.AllowedHeaders([]string{"*"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
-	log.Fatal(http.ListenAndServe(CONFIG.Server(), handlers.CORS(originsOk, headersOk, methodsOk)(r)))
+	// log.Fatal(http.ListenAndServe(CONFIG.Server(), handlers.CORS(originsOk, headersOk, methodsOk)(r)))
 
-	// log.Fatal(http.ListenAndServeTLS(CONFIG.Server(), "server.crt", "server.key", handlers.CORS(originsOk, headersOk, methodsOk)(r)))
+	log.Fatal(http.ListenAndServeTLS(CONFIG.Server(), "server.crt", "server.key", handlers.CORS(originsOk, headersOk, methodsOk)(r)))
 }
 

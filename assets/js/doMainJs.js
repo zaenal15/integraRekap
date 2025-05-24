@@ -1,10 +1,10 @@
-const documentSection = document.getElementsByTagName('html')
-const bodySection = document.querySelector('body')
-const mainSection = document.querySelector('main')
-const doModal = document.querySelector('#doModal')
-const mainSlideBar = document.querySelector('#mainSlideBar')
-const mainSidebar = document.querySelector('#mainSidebar')
-const mainHeader = document.querySelector('#mainHeader')
+let documentSection = document.getElementsByTagName('html')
+let bodySection = document.querySelector('body')
+let mainSection = document.querySelector('main')
+let doModal = document.querySelector('#doModal')
+let mainSlideBar = document.querySelector('#mainSlideBar')
+let mainSidebar = document.querySelector('#mainSidebar')
+let mainHeader = document.querySelector('#mainHeader')
 
 let userInfo = {}
 let menuLists = {}
@@ -589,7 +589,6 @@ function createMenu() {
               .append(`<section title-main-menu="${y.name}" value="show" class="${allowed} wrap-sub-menu ${y.type}" id="wrap-sub-menu-${y.code}"><label class="title-wrap-sub-menu">${y.name}</label></section>`)
           }
 
-          console.log('createmenu', data)
           filterParent = data.filter(x => x.parent == y.id)
           menuLists[y.code] = y
           menuLists[y.code]["children"] = {}

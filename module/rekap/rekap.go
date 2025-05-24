@@ -1108,14 +1108,17 @@ func LoadRekapBandingKategoriJuara(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-
 func UploadPenilaian(w http.ResponseWriter, r *http.Request) {
     db, err := CONFIG.Connect_db()
-    CONFIG.CheckErr(err)
+    if err != nil {
+        log.Println("Gagal koneksi DB:", err)
+        http.Error(w, "Gagal koneksi database", http.StatusInternalServerError)
+        return
+    }
     defer db.Close()
 
-    // Tidak membatasi total ukuran form-data
-    err = r.ParseMultipartForm(0)
+    // Batasi maksimal ukuran file upload (20 MB)
+    err = r.ParseMultipartForm(20 << 20) // 20 MB
     if err != nil {
         http.Error(w, "Gagal memproses form-data", http.StatusBadRequest)
         return
@@ -1131,13 +1134,14 @@ func UploadPenilaian(w http.ResponseWriter, r *http.Request) {
     var uploaded []string
     var failed []string
 
+    log.Printf("[UPLOAD] Mulai upload %d file untuk peserta %s, lomba %s", len(files), noPeserta, lombaID)
+
     for _, fileHeader := range files {
         src, err := fileHeader.Open()
         if err != nil {
             failed = append(failed, fmt.Sprintf("%s (gagal dibuka)", fileHeader.Filename))
             continue
         }
-        defer src.Close()
 
         fileName := fileHeader.Filename
         filePath := filepath.Join(uploadDir, fileName)
@@ -1145,20 +1149,25 @@ func UploadPenilaian(w http.ResponseWriter, r *http.Request) {
         dst, err := os.Create(filePath)
         if err != nil {
             failed = append(failed, fmt.Sprintf("%s (gagal disimpan)", fileName))
+            src.Close()
             continue
         }
 
         if _, err := io.Copy(dst, src); err != nil {
-            dst.Close()
             failed = append(failed, fmt.Sprintf("%s (gagal menyalin file)", fileName))
+            dst.Close()
+            src.Close()
             continue
         }
+
         dst.Close()
+        src.Close()
 
         // Simpan ke database
         column := "no_peserta, lomba_id, file_path"
         values := fmt.Sprintf("'%s', '%s', '%s'", noPeserta, lombaID, filePath)
         if err := MODEL.Insert(column, values, "penilaian_foto"); err != nil {
+            log.Printf("Gagal insert DB untuk file %s: %v", fileName, err)
             failed = append(failed, fmt.Sprintf("%s (gagal simpan DB)", fileName))
             continue
         }
@@ -1171,19 +1180,18 @@ func UploadPenilaian(w http.ResponseWriter, r *http.Request) {
         result = "failed"
     }
 
-    // Logging aktivitas
+    // Ambil session user (pastikan aman dari panic)
     session, _ := CONFIG.Store.Get(r, "cookie-name")
-    logInfo := fmt.Sprintf("Upload %d file penilaian untuk no peserta %s, lomba %s", len(uploaded), noPeserta, lombaID)
-    MODEL.Log(
-        session.Values["Username"].(string),
-        session.Values["Name"].(string),
-        "Upload Penilaian",
-        "upload",
-        logInfo,
-        result,
-    )
+    username, ok1 := session.Values["Username"].(string)
+    name, ok2 := session.Values["Name"].(string)
+    if !ok1 || !ok2 {
+        log.Println("Session tidak valid, tidak bisa menyimpan log aktivitas")
+    } else {
+        logInfo := fmt.Sprintf("Upload %d file penilaian untuk no peserta %s, lomba %s", len(uploaded), noPeserta, lombaID)
+        MODEL.Log(username, name, "Upload Penilaian", "upload", logInfo, result)
+    }
 
-    // Response JSON
+    // Kirim respon JSON
     w.Header().Set("Content-Type", "application/json")
     w.WriteHeader(http.StatusOK)
     json.NewEncoder(w).Encode(map[string]interface{}{
@@ -1191,8 +1199,9 @@ func UploadPenilaian(w http.ResponseWriter, r *http.Request) {
         "uploaded": uploaded,
         "failed":   failed,
     })
-}
 
+    log.Printf("[UPLOAD] Selesai. Sukses: %d, Gagal: %d", len(uploaded), len(failed))
+}
 
 
 func LoadFotoPenilaian(w http.ResponseWriter, r *http.Request) {
