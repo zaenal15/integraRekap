@@ -1,6 +1,6 @@
 (function (window) {
     // Ubah ke true saat development, false saat production
-    const isDev = true;
+    const isDev = false;
 
     const assetBase = window.location.origin + "/assets";
     const assetJsPath = isDev ? "/js" : "/js-obfuscated";

@@ -750,29 +750,30 @@ function accumulatePoints(dataLomba, dataRankLombaPoint, kategoriJuaraId, type) 
   let sortedPeserta = [];
 
   // Sorting berdasarkan berbagai kondisi kombinasi akumulasi dan rakap_banding
-  if (datarekapBanding.akumulasi_rekap_nilai === 'point') {
-    // Urutkan berdasarkan total_point lalu point_banding
-    sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
-      if (b.total_point === a.total_point) {
-        return b.point_banding - a.point_banding;
-      }
-      return b.total_point - a.total_point;
-    });
-  }
+  // if (datarekapBanding.akumulasi_rekap_nilai === 'point') {
+  //   // Urutkan berdasarkan total_point lalu point_banding
+  //   sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
+  //     if (b.total_point === a.total_point) {
+  //       return b.point_banding - a.point_banding;
+  //     }
+  //     return b.total_point - a.total_point;
+  //   });
+  // }
 
-  if (
-    datarekapBanding.rakap_banding === 'point' &&
-    datarekapBanding.akumulasi_rekap_nilai === 'nilai'
-  ) {
-    // Urutkan berdasarkan total_nilai_lomba lalu point_banding
-    sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
-      if (b.total_nilai_lomba === a.total_nilai_lomba) {
-        return b.point_banding - a.point_banding;
-      }
-      return b.total_nilai_lomba - a.total_nilai_lomba;
-    });
-  }
+  // if (
+  //   datarekapBanding.rakap_banding === 'point' &&
+  //   datarekapBanding.akumulasi_rekap_nilai === 'nilai'
+  // ) {
+  //   // Urutkan berdasarkan total_nilai_lomba lalu point_banding
+  //   sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
+  //     if (b.total_nilai_lomba === a.total_nilai_lomba) {
+  //       return b.point_banding - a.point_banding;
+  //     }
+  //     return b.total_nilai_lomba - a.total_nilai_lomba;
+  //   });
+  // }
 
+  console.log('datarekapBanding', datarekapBanding)
   if (
     (datarekapBanding.rakap_banding === 'nilai' || datarekapBanding.rakap_banding === 'umum') &&
     datarekapBanding.akumulasi_rekap_nilai === 'nilai'
@@ -787,24 +788,31 @@ function accumulatePoints(dataLomba, dataRankLombaPoint, kategoriJuaraId, type) 
       return b.total_nilai_lomba - a.total_nilai_lomba;
     });
   }
-
   if (
     datarekapBanding.tipe_penilaian_lomba === 'mata lomba' &&
     datarekapBanding.akumulasi_rekap_nilai === 'point' &&
     datarekapBanding.rakap_banding === 'umum'
   ) {
-    const lombaIdTarget = '11'; // bisa disesuaikan
+    const lombaIdTarget ='11'
+
+    console.log('datarekapBanding', datarekapBanding);
 
     sortedPeserta = Object.values(pesertaMap).sort((a, b) => {
+      const aPoint = Number(a.total_point) || 0;
+      const bPoint = Number(b.total_point) || 0;
+
       const aBanding = a.rekap_lomba?.find(r => r.lomba_id === lombaIdTarget)?.nilai_banding_kategori || 0;
       const bBanding = b.rekap_lomba?.find(r => r.lomba_id === lombaIdTarget)?.nilai_banding_kategori || 0;
 
-      if (a.total_point !== b.total_point) {
-        return b.total_point - a.total_point;
-      }
+      // 1. Urut berdasarkan total_point DESC
+      if (aPoint !== bPoint) return bPoint - aPoint;
+
+      // 2. Jika point sama, urut berdasarkan nilai_banding_kategori DESC
       return bBanding - aBanding;
     });
   }
+
+
 
   if (
     datarekapBanding.tipe_penilaian_lomba === 'mata lomba' &&
@@ -846,12 +854,14 @@ function accumulatePoints(dataLomba, dataRankLombaPoint, kategoriJuaraId, type) 
     });
   }
 
+  console.log('sortedPeserta', sortedPeserta)
   let currentRank = 1;
   let lastRank = 1;
   let lastTotalPoint = -1;
   let lastDrawStatus = false;
   let lastPointBanding = -1;
 
+  
   sortedPeserta.forEach((peserta, index) => {
     if (peserta.total_nilai_lomba === 0 && peserta.total_point === 0) {
       peserta.rank = null;

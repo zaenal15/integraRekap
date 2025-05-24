@@ -114,58 +114,59 @@ async function setPeserta() {
     }
 
     pesertaData = await response.json();
-    pesertaLists = pesertaData.data;  // return the peserta data
-    console.log('pesertaLists', pesertaLists)
-    // Build HTML in memory before inserting it into the DOM
+    pesertaLists = pesertaData.data;
+
+    // Ubah object menjadi array dan urutkan berdasarkan no_peserta
+    const sortedPesertaArray = Object.values(pesertaLists).sort((a, b) => {
+      const numA = parseInt(a.no_peserta.split('-')[2], 10);
+      const numB = parseInt(b.no_peserta.split('-')[2], 10);
+      return numA - numB;
+    });
+
     let contentPeserta = ``;
 
-    // Loop over pesertaLists (using for...in for objects)
-    console.log('pesertaLists', pesertaLists)
-    for (let key in pesertaLists) {
-      let item = pesertaLists[key];
-
+    for (let item of sortedPesertaArray) {
       // Generate mata_lomba content
       let lombaContent = item.mata_lomba.map(lomba => {
         return `
-          <section class="lomba-item">
-            <img style="width: 12px;" src="../../assets/img/check-icon-blue.svg" alt="">
-            <span class="lomba-header" lomba-id="${lomba.lomba_id}">${lomba.nama_lomba}</span>
-          </section>
-        `;
-      }).join(''); // Join to create a single string
+      <section class="lomba-item">
+        <img style="width: 12px;" src="../../assets/img/check-icon-blue.svg" alt="">
+        <span class="lomba-header" lomba-id="${lomba.lomba_id}">${lomba.nama_lomba}</span>
+      </section>
+    `;
+      }).join('');
 
-      // Add participant content to contentPeserta
+      // Tambahkan konten peserta
       contentPeserta += `
-  <div onclick="selectPeserta(this)" 
-       class="participant-group"
-       data-id="${item.id}"
-       data-no_peserta="${item.no_peserta}"
-       data-regu="${item.regu}"
-       data-jenis_regu="${item.jenis_regu}"
-       data-tingkat_peserta="${item.tingkat_peserta}"
-       data-pangkalan_id="${item.pangkalan_id}"
-       data-no_wa="${item.no_wa}">
+    <div onclick="selectPeserta(this)" 
+         class="participant-group"
+         data-id="${item.id}"
+         data-no_peserta="${item.no_peserta}"
+         data-regu="${item.regu}"
+         data-jenis_regu="${item.jenis_regu}"
+         data-tingkat_peserta="${item.tingkat_peserta}"
+         data-pangkalan_id="${item.pangkalan_id}"
+         data-no_wa="${item.no_wa}">
 
-    <div class="pangkalan-header">
-      <img style="width: 123px;" src="../../assets/img/il-1.svg" alt="">
-      <div>No Peserta :</div>
-      <div class="no-peserta">${item.no_peserta}</div>
+      <div class="pangkalan-header">
+        <img style="width: 123px;" src="../../assets/img/il-1.svg" alt="">
+        <div>No Peserta :</div>
+        <div class="no-peserta">${item.no_peserta}</div>
+      </div>
+
+      <section class="pangkalan-body">
+        <section class="pangkalan-info">
+          <span pangkalan-id="${item.pangkalan_id}" class="pangkalan-name">${item.nama_pangkalan}</span>
+          <span style="text-transform: capitalize;" data-regu="${item.regu}" class="regu">Regu: ${item.regu} (${item.jenis_regu})</span>
+          <button class="update-peserta-lomba" onclick="updatePesertaModal(this, 'update')"><i class="fas fa-pencil-alt"></i></button>
+        </section>
+
+        <section class="lomba-list">
+          ${lombaContent}
+        </section>
+      </section>
     </div>
-
-    <section class="pangkalan-body">
-      <section class="pangkalan-info">
-        <span pangkalan-id="${item.pangkalan_id}" class="pangkalan-name">${item.nama_pangkalan}</span>
-        <span style="text-transform: capitalize;" data-regu="${item.regu}" class="regu">Regu: ${item.regu} (${item.jenis_regu})</span>
-        <button class="update-peserta-lomba" onclick="updatePesertaModal(this, 'update')"><i class="fas fa-pencil-alt"></i></button>
-      </section>
-
-      <section class="lomba-list">
-        ${lombaContent}
-      </section>
-    </section>
-  </div>
-`;
-
+  `;
     }
 
     // Insert the HTML into the DOM
