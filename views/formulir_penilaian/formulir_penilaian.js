@@ -1,10 +1,10 @@
-modals = ["#modal-update-kategori-penilaian", "#modal-update-point-penilaian", "#modal-update-sub-penilaian","#modal-update-kategori-pengurangan"];
+modals = ["#modal-update-kategori-penilaian", "#modal-update-point-penilaian", "#modal-update-sub-penilaian", "#modal-update-kategori-pengurangan"];
 fillModalContent(modals);
 
 generateSidebar();
 
 async function getData() {
-  const [mataLombaRes, pesertaRes] = await Promise.all([
+  let [mataLombaRes, pesertaRes] = await Promise.all([
     fetch('/loadLomba', { method: 'POST' }).then(res => res.json()),
     // fetch('/loadPeserta', { method: 'POST' }).then(res => res.json())
   ]);
@@ -16,8 +16,8 @@ async function getData() {
 }
 
 async function generateSidebar() {
-  const { mataLomba } = await getData();
-  const lombaData = mataLomba;
+  let { mataLomba } = await getData();
+  let lombaData = mataLomba;
   let container = document.getElementById("lomba-container");
   let groupedByKategori = {};
 
@@ -71,7 +71,7 @@ async function handleLombaHeaderClick(event) {
   await showSubPoint(lombaId);
 
   // After the function completes, click the first category button
-  const firstCategoryButton = document.querySelector(".btn-category-penilaian:first-child");
+  let firstCategoryButton = document.querySelector(".btn-category-penilaian:first-child");
   if (firstCategoryButton) {
     firstCategoryButton.click();
   }
@@ -213,7 +213,7 @@ function createCategories(data) {
 async function filterCategories(selectedCategory) {
   lombaId = document.querySelector('.lomba-header.active').getAttribute('data-lomba-id')
   const formData = new FormData();
-  formData.append('lomba_id', lombaId); 
+  formData.append('lomba_id', lombaId);
 
   console.log('selectedCategory', selectedCategory)
   // Memuat data SubPoint menggunakan POST
@@ -269,7 +269,7 @@ async function filterCategories(selectedCategory) {
   }
 
   console.log('filteredData', filteredData)
-  console.log('resultData',resultData);
+  console.log('resultData', resultData);
   createCategories(resultData);
 }
 
@@ -345,7 +345,7 @@ async function setKategoriModal() {
 
 async function updateKategoriLomba(el, act) {
   // Mengambil nilai nama kategori dari input
-  idlomba = Number(document.querySelector('.lomba-header.active').getAttribute('data-lomba-id')) 
+  idlomba = Number(document.querySelector('.lomba-header.active').getAttribute('data-lomba-id'))
   if (act == 'add') {
     idKategori = ''
     namaKategori = document.querySelector("#add-kategori-lomba-field").value;
@@ -403,7 +403,7 @@ async function updateKategoriLomba(el, act) {
     }).then((result) => {
       if (result.isConfirmed) {
         $.ajax({
-          url: 'updateKategoriPenilaian', 
+          url: 'updateKategoriPenilaian',
           type: 'POST',
           dataType: "JSON",
           data: {
@@ -431,10 +431,10 @@ async function updateKategoriLomba(el, act) {
               });
             }
           },
-          complete:async function () {
+          complete: async function () {
             closeLoader();
             setKategoriModal()
-            await showSubPoint(idlomba) 
+            await showSubPoint(idlomba)
             document.querySelector(`.lomba-header.active`).click();
           }
         });
@@ -526,7 +526,7 @@ async function setNilaiKategori(el, tipeNilai, idKategori, namaKategori) {
 
 
 
-function deleteKategori(el,lombaId) {
+function deleteKategori(el, lombaId) {
   boxCategoryList = el.closest('.box-category-content')
   id = boxCategoryList.getAttribute('category-id')
   namaKategori = boxCategoryList.querySelector('input').value
@@ -574,9 +574,9 @@ function deleteKategori(el,lombaId) {
             });
           }
         },
-        complete:async function () {
+        complete: async function () {
           setKategoriModal()
-          await showSubPoint(idlomba) 
+          await showSubPoint(idlomba)
           document.querySelector(`.lomba-header.active`).click();
           closeLoader();
         }
@@ -792,17 +792,17 @@ async function updateSubPointList(el, act) {
       kategoriPenilaian = document.getElementById('judul-ketegori-penilaian-header').textContent
       document.querySelector("#add-sub-point-field").value = ""
       await showSubPoint(idlomba)
-      document.querySelector(`.btn-category-penilaian[data-category="${kategoriPenilaian}"]` ).click();
+      document.querySelector(`.btn-category-penilaian[data-category="${kategoriPenilaian}"]`).click();
     }
   });
 }
 
-async function editSubPointList(el){
+async function editSubPointList(el) {
   openModal(modals[2])
   kategoriSubPoint = el.closest('.header-sub-point').getAttribute('data-kategori')
   kategoriPenilaian = document.querySelector('.btn-category-penilaian.active').getAttribute('data-category')
   idSubPointkategori = el.closest('.header-sub-point').getAttribute('data-id')
-  
+
   document.getElementById('judul-point-penilaian-header').textContent = kategoriSubPoint
   document.getElementById('judul-point-penilaian-header-field').value = kategoriSubPoint
   document.getElementById('judul-ketegori-penilaian-header').textContent = kategoriPenilaian
@@ -896,7 +896,7 @@ function deleteSubPointContent(el) {
             });
           }
         },
-        complete:async function () {
+        complete: async function () {
           await setKategoriModal()
           await showSubPoint(lombaId)
           document.querySelector(`.btn-category-penilaian[data-category="${kategoriPenilaian}"]`).click();
@@ -929,7 +929,7 @@ async function showKategoriPengurangan() {
   console.log('kategoriData', kategoriData)
   contentSubPoint = ``
   selectKategoriField = `<option value="">Pilih Kategori</option>`
-  if(lombaId == 11){
+  if (lombaId == 11) {
     selectKategoriField += `<option data-id="0">Pengurangan Pasukan</option>`
   }
   kategoriData.forEach(item => {
@@ -945,8 +945,8 @@ async function showKategoriPengurangan() {
       `;
     contentSubPoint += `</section>`;
   });
-  
-  if(lombaId == 11){
+
+  if (lombaId == 11) {
     contentSubPoint += `<section class="box-sub-point">`;
     contentSubPoint += `
       <section  data-kategori="" class="header-sub-point header-sub-point">
@@ -957,10 +957,10 @@ async function showKategoriPengurangan() {
       `;
     contentSubPoint += `</section>`;
   }
-  
+
   document.getElementById('wrap-content-list-kategori-pengurangan').innerHTML = contentSubPoint;
   document.getElementById('kategori-pengurangan-nilai-field').innerHTML = selectKategoriField
-  
+
   await setKategoriPenguranganPoint()
 }
 
@@ -1173,7 +1173,7 @@ async function setKategoriPenguranganPoint() {
 
 async function updateKategoriJuara(el, act) {
   // Mengambil nilai lomba ID dari elemen aktif
-  idlomba = Number(document.querySelector('.lomba-header.active').getAttribute('data-lomba-id')) 
+  idlomba = Number(document.querySelector('.lomba-header.active').getAttribute('data-lomba-id'))
 
   // Kondisi untuk menambah kategori juara baru
   if (act == 'add') {
