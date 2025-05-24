@@ -2172,7 +2172,7 @@ function showRekapContent(el, id) {
   // Menghapus kelas 'active' dari semua tombol rekap lomba
 
   if (id == 'wrap-rekap-juara') {
-    if (userInfo.Group_position != "EP00" && userInfo.Group_position != "EP01" && userInfo.Group_position !== "EP03") {
+    if (userInfo.Group_position != "EP00" && userInfo.Group_position != "EP01" && userInfo.Group_position !== "EP04" && userInfo.Group_position !== "EP05" && userInfo.Group_position !== "EP06" && userInfo.Group_position !== "EP07") {
       Swal.fire({
         icon: 'warning',
         title: 'Akses Ditolak',
