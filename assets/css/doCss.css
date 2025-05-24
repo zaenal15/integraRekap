@@ -40,7 +40,7 @@ body main #mainHeader .label-header {
 body main #mainHeader .label-header span {
   display: block;
   margin: auto;
-  background: #2200b8;
+  background: #fcbf49 !important;
   color: white !important;
   padding: 4px 7px;
   border-radius: 100px;

@@ -1,1 +1,1 @@
-function lineAmchart(_0x2d1505){}
+function lineAmchart(_0x436fb1){}

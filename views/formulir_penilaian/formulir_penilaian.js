@@ -4,7 +4,7 @@ fillModalContent(modals);
 generateSidebar();
 
 async function getData() {
-  const [mataLombaRes, pesertaRes] = await Promise.all([
+  let [mataLombaRes, pesertaRes] = await Promise.all([
     fetch('/loadLomba', { method: 'POST' }).then(res => res.json()),
     // fetch('/loadPeserta', { method: 'POST' }).then(res => res.json())
   ]);
@@ -16,8 +16,8 @@ async function getData() {
 }
 
 async function generateSidebar() {
-  const { mataLomba } = await getData();
-  const lombaData = mataLomba;
+  let { mataLomba } = await getData();
+  let lombaData = mataLomba;
   let container = document.getElementById("lomba-container");
   let groupedByKategori = {};
 
@@ -71,7 +71,7 @@ async function handleLombaHeaderClick(event) {
   await showSubPoint(lombaId);
 
   // After the function completes, click the first category button
-  const firstCategoryButton = document.querySelector(".btn-category-penilaian:first-child");
+  let firstCategoryButton = document.querySelector(".btn-category-penilaian:first-child");
   if (firstCategoryButton) {
     firstCategoryButton.click();
   }
