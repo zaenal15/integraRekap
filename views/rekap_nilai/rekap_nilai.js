@@ -2698,15 +2698,13 @@ function submitKuesioner() {
   $.ajax({
     url: 'saveKuesioner',
     type: 'POST',
-    dataType: "JSON",
-    data: {
-      isi_kuesioner: isi
-    },
+    dataType: "json",
+    data: { isi_kuesioner: isi },
     beforeSend: function () {
       openLoader()
     },
     success: function (data) {
-      if (data === "success") {
+      if (data.result === "success") {
         Swal.fire({
           title: '<strong>Terima Kasih!</strong>',
           icon: 'success',
@@ -2741,7 +2739,6 @@ function submitKuesioner() {
     }
   })
 }
-
 
 async function addRekapBandingKategoriJuara(el, act) {
   if (act !== 'add' && act !== 'update') {
