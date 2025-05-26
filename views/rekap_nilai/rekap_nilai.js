@@ -4188,7 +4188,7 @@ async function lembarJuaraPreviewModal(el, act) {
           "border": "1px solid black"
         },
         ".tabel-rekap-juara-lomba-print thead th": {
-          "background": "#1a237e",
+          "background": "#fcbf49",
           "color": "white"
         },
         ".tabel-rekap-juara-lomba-print tbody .rekap-nilai-lomba, .tabel-rekap-juara-lomba-print tbody .rekap-total-rank-points,.col-predikat, .col-rank, .tabel-rekap-juara-lomba-print tbody .rekap-total-points-banding, .tabel-rekap-juara-lomba-print tbody .rekap-point-lomba, .tabel-rekap-juara-lomba-print tbody .rekap-rank-lomba": {

@@ -1007,8 +1007,8 @@ body .report-print .tabel-rekap-juara-lomba-print th {
   font-size: 10px !important;
 }
 body .report-print .tabel-rekap-juara-lomba-print thead tr th {
-  background: #1a237e !important;
-  color: white !important;
+  background: #fcbf49 !important;
+  color: black !important;
 }
 body .report-print .tabel-rekap-juara-lomba-print tbody .rekap-nilai-lomba,
 body .report-print .tabel-rekap-juara-lomba-print tbody .rekap-total-rank-points,
