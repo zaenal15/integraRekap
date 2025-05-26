@@ -2739,6 +2739,7 @@ function submitKuesioner() {
   })
 }
 
+
 async function addRekapBandingKategoriJuara(el, act) {
   if (act !== 'add' && act !== 'update') {
     console.error("Action not allowed:", act);
