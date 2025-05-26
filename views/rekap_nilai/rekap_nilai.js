@@ -1137,7 +1137,6 @@ async function setResultRekapProgress() {
     await progressNilai()
   } catch (err) {
     console.error('Gagal memuat rekap:', err);
-    alert('Terjadi kesalahan dalam memproses data');
   }
 }
 
@@ -2182,7 +2181,18 @@ function showRekapContent(el, id) {
       return false
     }
   }
-  if (id == 'rekap-content-section' || id == 'wrap-body-lembar-penilaian') {
+  if (id == 'wrap-body-lembar-penilaian') {
+    if (userInfo.Group_position != "EP00" && userInfo.Group_position != "EP01" && userInfo.Group_position !== "EP04" && userInfo.Group_position !== "EP05" && userInfo.Group_position !== "EP06" && userInfo.Group_position !== "EP07") {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Akses Ditolak',
+        text: 'Maaf, Anda tidak memiliki akses ke menu ini.',
+        confirmButtonText: 'OK'
+      })
+      return false
+    }
+  }
+  if (id == 'rekap-content-section') {
     if (userInfo.Group_position != "EP00" && userInfo.Group_position != "EP01") {
       Swal.fire({
         icon: 'warning',

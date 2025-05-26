@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Token QR Jambore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h2 {
+      color: #333;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    canvas {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Cari No Peserta</h2>
+  <input type="text" id="searchInput" placeholder="Contoh: LABS-G-010">
+  <div id="result"></div>
+
+  <script src="qrious.min.js"></script>
+  <script>
+    const pesertaData = [
+      { no: "LABS-G-001", token: "XA7Z907J" },
+      { no: "LABS-G-002", token: "KTCNBV86" },
+      { no: "LABS-G-003", token: "Y5UOZ7PM" },
+      { no: "LABS-G-004", token: "N1HYOG2W" },
+      { no: "LABS-G-005", token: "ZFBT6HCJ" },
+      { no: "LABS-G-006", token: "N458LKJN" },
+      { no: "LABS-G-007", token: "0LN8LVQ0" },
+      { no: "LABS-G-008", token: "D76Y9OSO" },
+      { no: "LABS-G-009", token: "ADG58861" },
+      { no: "LABS-G-010", token: "I1UML5PQ" },
+      { no: "LABS-G-011", token: "XUB4OSC0" },
+      { no: "LABS-G-012", token: "GNHOLPDZ" },
+      { no: "LABS-G-013", token: "ZX7I09IN" },
+      { no: "LABS-G-014", token: "QZQZGA8Y" },
+      { no: "LABS-G-015", token: "H74OUG6F" },
+      { no: "LABS-G-016", token: "O10XKCE7" },
+      { no: "LABS-G-017", token: "N5QVYA3V" },
+      { no: "LABS-G-018", token: "3AH70JAY" },
+      { no: "LABS-G-019", token: "2SE3LWAN" }
+    ]
+
+    const input = document.getElementById('searchInput')
+    const result = document.getElementById('result')
+
+    input.addEventListener('input', function () {
+      const val = this.value.trim().toUpperCase()
+      const peserta = pesertaData.find(p => p.no === val)
+
+      result.innerHTML = ''
+      if (peserta) {
+        const tokenText = document.createElement('p')
+        tokenText.innerHTML = `<strong>Token:</strong> ${peserta.token}`
+        result.appendChild(tokenText)
+
+        const qr = new QRious({
+          value: peserta.token,
+          size: 200
+        })
+        result.appendChild(qr.image)
+      } else if (val !== '') {
+        result.innerHTML = '<p style="color:red;">Peserta tidak ditemukan.</p>'
+      }
+    })
+  </script>
+</body>
+</html>

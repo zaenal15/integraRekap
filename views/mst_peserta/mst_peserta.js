@@ -125,6 +125,7 @@ async function setPeserta() {
 
     let contentPeserta = ``;
 
+    console.log('sortedPesertaArray', sortedPesertaArray)
     for (let item of sortedPesertaArray) {
       // Generate mata_lomba content
       let lombaContent = item.mata_lomba.map(lomba => {
@@ -487,7 +488,7 @@ async function setTokenPeserta() {
           <td class="col-token">${peserta.token}</td>
           <td> 
             <div class="btn-group btn-group-sm">
-              <button class="btn btn-outline-secondary" onclick="generateTokenthis,${peserta.id})" title="Generate"><i class="bi bi-shuffle"></i></button>
+              <button class="btn btn-outline-secondary" onclick="generateToken(this,${peserta.id})" title="Generate"><i class="bi bi-shuffle"></i></button>
               <button class="btn btn-outline-primary" onclick="saveTokenPeserta(this,${peserta.id})" title="Save"><i class="bi bi-save2"></i></button>
               <button class="btn btn-outline-success" onclick="sendToWhatsApp(this)" title="Kirim WA"><i class="bi bi-whatsapp"></i></button>
             </div>
